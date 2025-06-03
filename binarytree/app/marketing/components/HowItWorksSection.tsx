@@ -27,18 +27,18 @@ export const HowItWorksSection = () => {
     <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Get Started in 3 Simple Steps
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-base lg:text-xl text-gray-600">
             From zero to hero portfolio in under 5 minutes
           </p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 relative">
           {/* Connection Lines */}
-          <div className="hidden md:block absolute top-1/2 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 transform -translate-y-1/2"></div>
-          <div className="hidden md:block absolute top-1/2 left-2/3 w-1/3 h-0.5 bg-gradient-to-r from-purple-300 to-pink-300 transform -translate-y-1/2"></div>
+          <div className="hidden md:block absolute top-1/2 left-1/4 w-1/3 h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 transform -translate-y-1/2"></div>
+          <div className="hidden md:block absolute top-1/2 left-2/4 w-1/3 h-0.5 bg-gradient-to-r from-purple-300 to-pink-300 transform -translate-y-1/2"></div>
           
           {steps.map((step, index) => (
             <Card 
@@ -46,7 +46,7 @@ export const HowItWorksSection = () => {
               className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up relative z-10 bg-white"
               style={{animationDelay: `${index * 0.2}s`}}
             >
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-4 lg:p-8 text-center">
                 <div className="text-5xl mb-4">{step.icon}</div>
                 <div className="text-sm font-bold text-blue-600 mb-2">STEP {step.number}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">

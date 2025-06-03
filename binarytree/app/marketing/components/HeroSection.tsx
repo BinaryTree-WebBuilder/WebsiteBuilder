@@ -7,7 +7,7 @@ import { Typewriter } from 'react-simple-typewriter';
 
 export const HeroSection = () => {
   return (
-    <section className="pt-30 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white">
+    <section className="pt-26 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in-left">
@@ -16,12 +16,12 @@ export const HeroSection = () => {
               Now live in beta
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Your Tech Portfolio,{" "}
               <span className="text-gradient">Simplified</span>.{" "}
-              Get Hired Faster.
+              Get More Interviews
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p className="text-base text-gray-600 mb-8 leading-relaxed">
               Binarytree is like Linktree, but purpose-built for displaying your code, projects, 
               and resume in a way that truly impresses recruiters and lands opportunities.
             </p>
@@ -29,7 +29,7 @@ export const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button 
                 size="lg" 
-                className="bg-gradient-primary hover:opacity-90 text-white px-8 py-4 text-lg font-semibold"
+                className="bg-gradient-primary hover:opacity-90 text-white px-8 py-8 text-lg font-semibold cursor-pointer"
               >
                 Build Your Free Portfolio Now
                 <ArrowUp className="ml-2 h-5 w-5 rotate-45" />
@@ -38,9 +38,8 @@ export const HeroSection = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="px-8 py-4 text-lg border-gray-300 hover:bg-gray-50"
+                className="px-8 py-8 text-lg border-gray-300 hover:bg-gray-50 cursor-pointer"
               >
-                <Github className="mr-2 h-5 w-5" />
                 View Examples
               </Button>
             </div>
@@ -50,7 +49,7 @@ export const HeroSection = () => {
                 ✅ No credit card required
               </span>
               <span className="flex items-center">
-                ✅ Free custom domain
+                ✅ Free premium domain
               </span>
             </div>
           </div>

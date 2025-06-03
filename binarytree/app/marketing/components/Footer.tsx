@@ -6,21 +6,17 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">BT</span>
-              </div>
-              <span className="text-xl font-bold">BinaryTree</span>
-            </div>
+          <div className="flex items-center my-8">
+            <img
+              src="/binarytree-logo.png"
+              alt="BinaryTree Logo"
+              className="h-10 object-contain" // slightly larger logo & padding
+            />
+          </div>
             <p className="text-gray-400 mb-6 max-w-md">
               The easiest way for developers to create stunning portfolios that get them hired. 
               Like Linktree, but built specifically for technical professionals.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Github className="h-6 w-6" />
-              </a>
-            </div>
           </div>
           
           <div>
@@ -45,7 +41,7 @@ export const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 BinaryTree. All rights reserved.</p>
+          <p>&copy; 2024 Binarytree. All rights reserved.</p>
         </div>
       </div>
     </footer>
