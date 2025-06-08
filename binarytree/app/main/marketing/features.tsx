@@ -116,7 +116,7 @@ const Features = () => {
                   <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
                     feature.comingSoon 
                       ? 'bg-gray-300' 
-                      : 'bg-slate-700'
+                      : 'bg-gradient-primary'
                   }`}>
                     <feature.icon className={`h-6 w-6 ${
                       feature.comingSoon ? 'text-gray-500' : 'text-white'
@@ -138,7 +138,7 @@ const Features = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-gray-800 rounded-2xl p-12 text-white animate-fade-in-up">
+          <div className="text-center bg-gradient-primary rounded-2xl p-12 text-white animate-fade-in-up">
             <h3 className="text-3xl font-bold mb-4">
               Ready to Build Your Portfolio?
             </h3>

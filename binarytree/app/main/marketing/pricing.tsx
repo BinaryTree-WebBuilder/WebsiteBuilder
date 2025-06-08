@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check } from "lucide-react";
+import { Check, ChevronsUp } from "lucide-react";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
 import Link from "next/link";
@@ -8,12 +8,24 @@ import Link from "next/link";
 
 const Pricing = () => {
   const features = [
-    "Premium binarytree.me domain",
-    "Popup for each project",
-    "5 Projects",
     "High performance pages",
+    "Premium binarytree.me domain",
+    "Access to 1 professional template",
+    "Create up to 5 projects",
+    "Download as Resume (Limited)",
     "Has 'Made with BinaryTree' badge",
-    "Customer support",
+    "Basic customer support",
+  ];
+
+  const proFeatures = [
+    "Everything in Free",
+    "Custom Domain",
+    "Curated Templates",
+    "20 Projects",
+    "Unlimited Resume Download",
+    "Remove 'Made with BinaryTree' badge",
+    "Priority Supoort",
+
   ];
 
   return (
@@ -67,6 +79,38 @@ const Pricing = () => {
                 </p>
               </CardContent>
             </Card>
+
+            {/* <Card className="p-0 w-full max-w-md border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300 animate-fade-in-up">
+              <CardHeader className="py-6 text-center bg-gradient-primary text-white rounded-t-lg">
+                <CardTitle className="text-3xl font-bold mb-2">PRO</CardTitle>
+                <div className="text-5xl font-bold mb-2">Coming Soon</div>
+                <p className="text-blue-100">Accelerate your Tech Career</p>
+              </CardHeader>
+              
+              <CardContent className="p-8">
+                <ul className="space-y-4 mb-8">
+                  {proFeatures.map((feature, index) => (
+                    <li key={index} className="flex items-start space-x-3">
+                      <ChevronsUp className="h-5 w-5 text-gradient flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                  <Button 
+                    className="w-full bg-slate-700 hover:bg-slate-800 hover:opacity-90 text-white py-6 text-lg font-semibold"
+                    asChild
+                  >
+                    <Link  href="/auth/register">
+                      Get Started Free
+                    </Link>
+                  </Button>
+
+                
+                <p className="text-center text-sm text-gray-500 mt-4">
+                  No credit card required
+                </p>
+              </CardContent>
+            </Card> */}
           </div>
 
           {/* Additional Info */}

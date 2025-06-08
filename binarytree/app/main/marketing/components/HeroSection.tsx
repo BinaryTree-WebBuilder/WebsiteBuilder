@@ -19,12 +19,11 @@ export const HeroSection = () => {
             
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Your Tech Portfolio,{" "}
-             <span className="text-gradient">Simplified.</span>{" "}
-              Accelerate Your Career
-            </h1>
-            <p className="text-base text-gray-600 mb-8 leading-relaxed">
-              <span className="text-gradient font-bold">Binarytree</span> is like Linktree, but purpose-built for displaying your code, projects, 
-              and resume in a way that truly impresses recruiters and lands opportunities.
+              <span className="text-gradient">Simplified.</span>{" "}
+              Get Hired Faster by recruiters           
+              </h1>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <span className="text-gradient font-bold">Binarytree</span> turns your tech projects into job offers. Build a powerful online portfolio designed to impress recruiters, in minutes.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -33,7 +32,7 @@ export const HeroSection = () => {
                   size="lg" 
                   className="w-full bg-gradient-primary hover:opacity-90 text-white px-8 py-8 text-lg font-semibold cursor-pointer"
                 >
-                  Build Your Own Free Portfolio Now!
+                  Build Your Free Portfolio Now
                 </Button>
               </Link>
 

@@ -24,18 +24,18 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Examples</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Templates</a></li>
+              <li><Link href="/main/features" className="hover:text-white transition-colors">Features</Link></li>
+              <li><Link href="/main/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+              <li><Link href="/main/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
+              <li><Link href="/amin/faq" className="hover:text-white transition-colors">FAQ</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              {/* <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li> */}
               <li><Link href="/main/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link href="/main/tos" className="hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>
