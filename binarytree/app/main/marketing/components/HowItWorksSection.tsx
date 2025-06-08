@@ -24,11 +24,11 @@ export const HowItWorksSection = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
+    <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Get Started in 3 Simple Steps
+            Get Started in <span className="text-gradient">3 Simple Steps</span> 
           </h2>
           <p className="text-base lg:text-xl text-gray-600">
             From zero to hero portfolio in under 5 minutes

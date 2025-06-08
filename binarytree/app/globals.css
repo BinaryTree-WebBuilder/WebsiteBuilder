@@ -161,6 +161,9 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+  html, :host {
+    /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  }
 
   .dark {
     --background: 222.2 84% 4.9%;
@@ -221,8 +224,15 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+
+  }
+
+  .bg-dark{
+    background: rgb(24, 24, 24);
   }
   
+
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }

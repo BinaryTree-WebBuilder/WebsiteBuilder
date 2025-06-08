@@ -1,36 +1,39 @@
+
+
 // app/builder/page.tsx
-'use client'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase-server'
+import { redirect } from 'next/navigation'
+import LogoutButton from '@/app/main/auth/components/logoutbutton'
 
-export default function BuilderPage() {
-  const [loading, setLoading] = useState(true)
-  const router = useRouter()
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) router.push('/auth/login')
-      else setLoading(false)
-    })
-  }, [])
+export default async function BuilderPage() {
+  const supabase = createClient()
+  const { data: { session } } = await supabase.auth.getSession()
 
-  async function handleLogout() {
-    await supabase.auth.signOut()
-    router.push('/')
+
+  if (!session) {
+    redirect('/main/auth/login') // ✅ Redirect on server
   }
 
-  if (loading) return <div>Loading...</div>
+  // Access the user object from the session
+  const user = session.user;
+
+  // You can now access user properties like email, id, etc.
+  const userEmail = user?.email; // Use optional chaining in case user is null/undefined (though it shouldn't be here)
+
+
 
   return (
     <div className="p-4">
       👷 Builder Page (Protected)
-      <button
-        onClick={handleLogout}
-        className="ml-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-      >
-        Logout
-      </button>
+      {userEmail ? (
+        <p className="text-lg">
+          Welcome, <span className="font-semibold">{userEmail}</span>!
+        </p>
+      ) : (
+        <p className="text-lg">Welcome!</p>
+      )}
+      <LogoutButton />
     </div>
   )
 }

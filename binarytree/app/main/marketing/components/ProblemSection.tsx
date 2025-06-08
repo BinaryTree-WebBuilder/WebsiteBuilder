@@ -8,15 +8,14 @@ export const ProblemSection = () => {
       description: "Stop wasting valuable engineering hours building your portfolio website, fussing over design, UI/UX issues, or struggling with every new project update"
     },
     {
-      icon: "📋",
+      icon: "📝",
       title: "Static Resumes",
       description: "Static resumes don't capture your full potential. They hide your actual code, dynamic projects, and technical problem-solving."
     },
     {
-      icon: "🔗",
-      title: "Scattered Links",
-      description: "No more sending multiple links to recruiters. Consolidate your project websites, GitHub repositories, and live demos into one central, easy-to-navigate portfolio they'll love."
-    }
+      icon: "🗂️",
+      title: "Scattered Versions",
+      description: "Applying to frontend, backend, or data roles often means rewriting and reorganizing your resume each time to match the field."}
   ];
 
   return (
@@ -24,11 +23,10 @@ export const ProblemSection = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Tired of the Usual Portfolio Headaches?
+            Tired of the Usual <span className="text-gradient">Portfolio Headaches?</span>
           </h2>
           <p className="text-base lg:text-xl text-gray-600 max-w-8xl mx-auto">
-            We know the struggle. You're a developer, not a designer. 
-            Let's fix these common frustrations once and for all.
+            Static resumes, scattered versions, wasted hours — time for a smarter portfolio.
           </p>
         </div>
         

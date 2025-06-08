@@ -11,7 +11,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "Is Binarytree really free?",
-      answer: "Yes! Our free plan includes everything you need to get started: a premium binarytree.me domain, customer support, high-performance pages, and up to 7 sections for your portfolio."
+      answer: "Yes! Our free plan includes everything you need to get started: a premium binarytree.me domain, customer support, high-performance pages, and up to 5 projects for your portfolio"
     },
     {
       question: "How is this different from other portfolio builders?",
@@ -23,7 +23,7 @@ const FAQ = () => {
     },
     {
       question: "What's included in the Pro plan?",
-      answer: "Pro includes custom domain connection, contact form integration, removal of the 'Made with BinaryTree' badge, up to 24 sections, custom favicon, and Google Analytics integration and many more, coming soon."
+      answer: "Pro includes custom domain connection, AI Rewrite tools, premium templates, contact form integration, removal of the 'Made with Binarytree' badge, +25 projects, custom favicon, and Google Analytics integration and many more, coming soon."
     },
     {
       question: "How quickly can I set up my portfolio?",
@@ -47,10 +47,10 @@ const FAQ = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16 animate-fade-in-up">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Frequently Asked Questions
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Frequently Asked <span className="text-gradient"> Questions</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="lg:text-xl text-gray-600 max-w-2xl mx-auto">
               Got questions? We've got answers.
             </p>
           </div>
@@ -64,7 +64,7 @@ const FAQ = () => {
                   value={`item-${index}`}
                   className="border border-gray-200 rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <AccordionTrigger className="text-lg cursor-pointer text-left font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                  <AccordionTrigger className="text-lg cursor-pointer text-left font-semibold text-gray-900 hover:text-indigo-600 transition-colors">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-base text-gray-600 leading-relaxed">
@@ -76,7 +76,7 @@ const FAQ = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center mt-16 animate-fade-in-up">
+          {/* <div className="text-center mt-16 animate-fade-in-up">
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               Still have questions?
             </h3>
@@ -91,7 +91,7 @@ const FAQ = () => {
                 Get Started Free
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>      
     </div>

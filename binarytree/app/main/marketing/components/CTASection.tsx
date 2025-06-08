@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUp, Check } from "lucide-react";
+import Link from 'next/link';
+
 
 export const CTASection = () => {
   return (
@@ -9,20 +11,23 @@ export const CTASection = () => {
           Your Next Opportunity is Waiting
         </h2>
         <p className="text-base lg:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-          Join thousands of developers who've already transformed their careers with Binarytree. 
+          {/* Join thousands of developers who've already transformed their careers with Binarytree. 
+          Start building your standout portfolio today. */}
+
+          Join thousands of developers who is ready to transformed their careers with Binarytree. 
           Start building your standout portfolio today.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <Link href="/main/auth/register">
           <Button 
                 size="lg" 
                 variant="ghost" 
-                className="text-base px-5 py-6 cursor-pointer bg-white"
+                className="hover:text-gray-800 text-base px-10 py-10 cursor-pointer bg-white"
               >
-                Build Your Free Portfolio Now
-                <ArrowUp className="ml-2 h-5 w-5 rotate-45" />
+                <span className="text-gradient lg:text-xl">Start Building Your Portfolio Now!</span>
               </Button>
-            
+          </Link>
         </div>
         
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-blue-100">

@@ -23,7 +23,7 @@ export const SolutionSection = () => {
       title: "Recruiter-Ready Layouts",
       subtitle: "Designed to Get You Hired",
       description: "Meticulously designed template ensures a professional look optimized for busy recruiters. Organize Education, Experience, and Projects and more perfectly.",
-      benefit: "Stand out with a polished portfolio that guides recruiters straight to your most relevant skills."
+      benefit: "Stand out with a polished portfolio and download it instantly as an ATS-friendly resume."
     },
     {
       icon: <Users className="h-8 w-8 text-orange-600" />,
@@ -39,7 +39,7 @@ export const SolutionSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-3xl lg:text-4xl  font-bold text-gray-900 mb-4">
-            Binarytree: Your Professional Edge, Built in Minutes
+            <span className="text-gradient">Binarytree</span>: Your Professional Edge, Built in Minutes
           </h2>
           <p className="text-base lg:text-xl  text-gray-600 max-w-8xl mx-auto">
           Turn your projects into job offers. Build a powerful online portfolio designed for recruiters, in minutes.

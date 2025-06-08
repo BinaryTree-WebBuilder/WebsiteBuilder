@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import Landing from "../app/marketing/landing";
+import Landing from "./marketing/landing";
 
 
 export default function Home() {

@@ -2,12 +2,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, Github, Code, Book, FileText, ArrowUp } from "lucide-react";
-import { Header } from "../marketing/components/Header";
-import { HeroSection } from "../marketing/components/HeroSection";
-import { ProblemSection } from "../marketing/components/ProblemSection";
-import { SolutionSection } from "../marketing/components/SolutionSection";
-import { HowItWorksSection } from "../marketing/components/HowItWorksSection";
-import { CTASection } from "../marketing/components/CTASection";
+import { Header } from "../Header";
+import { HeroSection } from "./components/HeroSection";
+import { ProblemSection } from "./components/ProblemSection";
+import { SolutionSection } from "./components/SolutionSection";
+import { HowItWorksSection } from "./components/HowItWorksSection";
+import { CTASection } from "./components/CTASection";
 
 const Index = () => {
   return (

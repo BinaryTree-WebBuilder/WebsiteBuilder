@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUp, Github, Code } from "lucide-react";
 import { Typewriter } from 'react-simple-typewriter';
+import Link from 'next/link';
 
 
 export const HeroSection = () => {
@@ -13,35 +14,46 @@ export const HeroSection = () => {
           <div className="animate-fade-in-left">
             <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium mb-6">
               <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-              Now live in beta
+              Now live in MVP
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Your Tech Portfolio,{" "}
-              <span className="text-gradient">Simplified</span>.{" "}
-              Get More Interviews
+             <span className="text-gradient">Simplified.</span>{" "}
+              Accelerate Your Career
             </h1>
             <p className="text-base text-gray-600 mb-8 leading-relaxed">
-              Binarytree is like Linktree, but purpose-built for displaying your code, projects, 
+              <span className="text-gradient font-bold">Binarytree</span> is like Linktree, but purpose-built for displaying your code, projects, 
               and resume in a way that truly impresses recruiters and lands opportunities.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button 
-                size="lg" 
-                className="bg-gradient-primary hover:opacity-90 text-white px-8 py-8 text-lg font-semibold cursor-pointer"
-              >
-                Build Your Free Portfolio Now
-                <ArrowUp className="ml-2 h-5 w-5 rotate-45" />
-              </Button>
-              
-              <Button 
+              <Link href="/main/auth/register">
+                <Button 
+                  size="lg" 
+                  className="w-full bg-gradient-primary hover:opacity-90 text-white px-8 py-8 text-lg font-semibold cursor-pointer"
+                >
+                  Build Your Own Free Portfolio Now!
+                </Button>
+              </Link>
+
+              <Link href="/main/portfolio">
+                  <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full text-gradient hover:opacity-90 px-8 py-8 text-lg border-gray-300 hover:bg-gray-50 cursor-pointer"
+                >
+                  View Examples
+                </Button>
+              </Link>
+    
+              {/* <Button 
                 variant="outline" 
                 size="lg" 
                 className="px-8 py-8 text-lg border-gray-300 hover:bg-gray-50 cursor-pointer"
               >
-                View Examples
-              </Button>
+                <span className="text-gradient">View Examples</span>
+              </Button> */}
             </div>
             
             <div className="flex items-center text-sm text-gray-500">

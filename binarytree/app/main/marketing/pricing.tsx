@@ -1,17 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
-import { Header } from "../marketing/components/Header";
-import { Footer } from "../marketing/components/Footer";
+import { Header } from "../Header";
+import { Footer } from "../Footer";
+import Link from "next/link";
+
 
 const Pricing = () => {
   const features = [
     "Premium binarytree.me domain",
-    "Customer support", 
+    "Popup for each project",
+    "5 Projects",
     "High performance pages",
     "Has 'Made with BinaryTree' badge",
-    "Popup for each project",
-    "7 Section Max"
+    "Customer support",
   ];
 
   return (
@@ -23,10 +25,10 @@ const Pricing = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16 animate-fade-in-up">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            Free Today, Pro Tomorrow!
+            <h1 className="text-4xl lg:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            Free Today, <span className="text-gradient">Pro Tomorrow!</span> 
             </h1>
-            <p className="text-xl text-gray-600 max-w-6xl mx-auto">
+            <p className="lg:text-xl text-gray-600 max-w-6xl mx-auto">
             Start building your professional portfolio today. We're constantly evolving, and a powerful Pro version packed with even more features is just around the corner!            
             </p>
           </div>
@@ -34,7 +36,7 @@ const Pricing = () => {
           {/* Pricing Card */}
           <div className="flex justify-center">
             <Card className="p-0 w-full max-w-md border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300 animate-fade-in-up">
-              <CardHeader className="py-6 text-center bg-gradient-primary text-white rounded-t-lg">
+              <CardHeader className="py-6 text-center bg-gray-800 text-white rounded-t-lg">
                 <CardTitle className="text-3xl font-bold mb-2">FREE</CardTitle>
                 <div className="text-5xl font-bold mb-2">$0</div>
                 <p className="text-blue-100">Forever free to get started</p>
@@ -49,15 +51,16 @@ const Pricing = () => {
                     </li>
                   ))}
                 </ul>
-                
-                <Button 
-                  className="w-full bg-gradient-primary hover:opacity-90 text-white py-3 text-lg font-semibold"
-                  asChild
-                >
-                  <Button>
-                    Get Started Free
+
+                  <Button 
+                    className="w-full bg-slate-700 hover:bg-slate-800 hover:opacity-90 text-white py-6 text-lg font-semibold"
+                    asChild
+                  >
+                    <Link  href="/auth/register">
+                      Get Started Free
+                    </Link>
                   </Button>
-                </Button>
+
                 
                 <p className="text-center text-sm text-gray-500 mt-4">
                   No credit card required
@@ -67,7 +70,7 @@ const Pricing = () => {
           </div>
 
           {/* Additional Info */}
-          <div className="text-center mt-16 animate-fade-in-up">
+          {/* <div className="text-center mt-16 animate-fade-in-up">
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               Ready to showcase your work?
             </h3>
@@ -84,11 +87,11 @@ const Pricing = () => {
                 View Live Examples
               </Button>
             </Button>
-          </div>
+          </div> */}
+          
         </div>
       </div>
       
-      <Footer />
     </div>
   );
 };

@@ -78,15 +78,15 @@ const Features = () => {
     <div className="min-h-screen bg-white">
       
       {/* Main Content */}
-      <div className="pt-30 pb-20 px-4 sm:px-6 lg:px-8">
+      <div className="pt-36 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16 animate-fade-in-up">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
               Features Built for
-              <span className="text-gradient block">Developers</span>
+              <span className="text-gradient"> Developers</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="lg:text-xl text-gray-600 max-w-3xl mx-auto">
               Everything you need to create a professional portfolio that showcases your skills and gets you hired. 
               Built specifically for the tech community.
             </p>
@@ -116,7 +116,7 @@ const Features = () => {
                   <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
                     feature.comingSoon 
                       ? 'bg-gray-300' 
-                      : 'bg-gradient-primary'
+                      : 'bg-slate-700'
                   }`}>
                     <feature.icon className={`h-6 w-6 ${
                       feature.comingSoon ? 'text-gray-500' : 'text-white'
@@ -138,7 +138,7 @@ const Features = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-gradient-primary rounded-2xl p-12 text-white animate-fade-in-up">
+          <div className="text-center bg-gray-800 rounded-2xl p-12 text-white animate-fade-in-up">
             <h3 className="text-3xl font-bold mb-4">
               Ready to Build Your Portfolio?
             </h3>
@@ -147,23 +147,15 @@ const Features = () => {
               Get started in minutes, no coding required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg font-semibold"
-                asChild
-              >
-                <Link href="/">
-                  Get Started Free
-                </Link>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 text-lg font-semibold"
-                asChild
-              >
-                <Link href="/pricing">
-                  View Pricing
-                </Link>
-              </Button>
+              <Link href="/auth/register">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="lg:w-6/10 mx-auto px-8 py-8 text-lg border-gray-300 hover:bg-gray-50 cursor-pointer text-black"                
+                >
+                    <span className="text-gradient">Get Started Free</span>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

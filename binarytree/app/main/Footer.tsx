@@ -1,4 +1,6 @@
 import { Github } from "lucide-react";
+import Link from "next/link";
+
 
 export const Footer = () => {
   return (
@@ -34,8 +36,8 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+              <li><Link href="/main/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/main/tos" className="hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
