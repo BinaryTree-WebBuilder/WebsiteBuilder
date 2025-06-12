@@ -27,7 +27,7 @@ export default function Register() {
   type Provider = 'google' | 'github';
 
 
-  const handleRegister = async (e: React.FormEvent)  => {
+  const handleRegisterValidation = async (e: React.FormEvent)  => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
@@ -57,25 +57,26 @@ export default function Register() {
       return;
     }
 
+    
 
-    try {
-      const { error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            username,
-          },
-          emailRedirectTo: redirectToUrl
-        },
-      });
+    // try {
+    //   const { error: signUpError } = await supabase.auth.signUp({
+    //     email,
+    //     password,
+    //     options: {
+    //       data: {
+    //         username,
+    //       },
+    //       emailRedirectTo: redirectToUrl
+    //     },
+    //   });
 
-      if (signUpError) throw signUpError;
-    } catch (err) {
-      setError('Registration failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+    //   if (signUpError) throw signUpError;
+    // } catch (err) {
+    //   setError('Registration failed. Please try again.');
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   const handleOAuthSignIn = async (provider: Provider): Promise<void> => {
