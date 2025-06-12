@@ -19,7 +19,7 @@ export const CTASection = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Link href="/main/auth/register">
+          <Link href="/auth/register">
           <Button 
                 size="lg" 
                 variant="ghost" 

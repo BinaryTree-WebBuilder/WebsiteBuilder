@@ -210,7 +210,15 @@
   .bg-gradient-primary {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
+
+  .bg-gradient-primary-1 {
+    background: #764ba2;
+  }
   
+  .bg-gradient-primary-2 {
+    background: #667eea;
+  }
+
   .bg-gradient-secondary {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   }

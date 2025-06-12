@@ -44,8 +44,8 @@ export default function Register() {
       return;
     }
 
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters');
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters');
       setIsLoading(false);
       return;
     }
@@ -241,6 +241,26 @@ export default function Register() {
               disabled={isLoading}>
                 {isLoading ? 'Creating Account...' : 'Register'}
               </Button>
+
+              {/* Divider */}
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">Already have an account?</span>
+              </div>
+            </div>
+
+            {/* Sign Up Link */}
+            <div className="text-center">
+              <Link 
+                href="/auth/login" 
+                className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+              >
+                Go to Login
+              </Link>
+            </div>
             </form>
           </CardContent>
         </Card>

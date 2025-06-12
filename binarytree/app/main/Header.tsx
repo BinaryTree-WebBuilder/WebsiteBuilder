@@ -26,10 +26,10 @@ export const Header = () => {
       </nav>
 
       <div className="flex items-center space-x-5">
-        <Link href="/main/auth/login">
+        <Link href="/auth/login">
             <Button variant="ghost" size="sm" className="text-base px-5 py-6 cursor-pointer">Login</Button>
         </Link>
-        <Link  href="/main/auth/register">
+        <Link  href="/auth/register">
               <Button className="bg-gradient-primary hover:opacity-90 text-white text-base px-5 py-6 cursor-pointer" size="sm">
                 Get Started Free
             </Button>

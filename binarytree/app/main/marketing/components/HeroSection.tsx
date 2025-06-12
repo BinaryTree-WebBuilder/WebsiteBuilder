@@ -20,14 +20,14 @@ export const HeroSection = () => {
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Your Tech Portfolio,{" "}
               <span className="text-gradient">Simplified.</span>{" "}
-              Get Hired Faster by recruiters           
+              Get Hired Faster by Recruiters           
               </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               <span className="text-gradient font-bold">Binarytree</span> turns your tech projects into job offers. Build a powerful online portfolio designed to impress recruiters, in minutes.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link href="/main/auth/register">
+              <Link href="/auth/register">
                 <Button 
                   size="lg" 
                   className="w-full bg-gradient-primary hover:opacity-90 text-white px-8 py-8 text-lg font-semibold cursor-pointer"
@@ -42,7 +42,7 @@ export const HeroSection = () => {
                   size="lg" 
                   className="w-full text-gradient hover:opacity-90 px-8 py-8 text-lg border-gray-300 hover:bg-gray-50 cursor-pointer"
                 >
-                  View Examples
+                  View Other Portfolios
                 </Button>
               </Link>
     

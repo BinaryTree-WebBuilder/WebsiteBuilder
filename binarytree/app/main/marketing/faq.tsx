@@ -11,11 +11,11 @@ const FAQ = () => {
   const faqs = [
     {
       question: "Is Binarytree really free?",
-      answer: "Yes! Our free plan includes everything you need to get started: a premium binarytree.me domain, customer support, high-performance pages, and up to 5 projects for your portfolio"
+      answer: "Yes! Our free plan includes everything you need to get started: a premium binarytree.me domain, customer support, high-performance pages, and up to 5 projects for your portfolio, Nuild your Free Portfolio Today!"
     },
     {
       question: "How is this different from other portfolio builders?",
-      answer: "Binarytree is purpose-built for developers. We understand your need to showcase technical projects, GitHub repos, and development skills in a way that impresses recruiters and hiring managers."
+      answer: "Binarytree is purpose-built for developers. We understand your need to showcase technical projects, link GitHub repos, and display development skills in a way that impresses recruiters and hiring managers."
     },
     {
       question: "Can I use my own domain?",
@@ -23,7 +23,7 @@ const FAQ = () => {
     },
     {
       question: "What's included in the Pro plan?",
-      answer: "Pro includes custom domain connection, AI Rewrite tools, premium templates, contact form integration, removal of the 'Made with Binarytree' badge, +25 projects, custom favicon, and Google Analytics integration and many more, coming soon."
+      answer: "Pro includes custom domain connection, AI Rewrite tools, premium templates, contact form integration, removal of the 'Made with Binarytree' badge, +25 projects, and many more, coming soon."
     },
     {
       question: "How quickly can I set up my portfolio?",
@@ -31,7 +31,7 @@ const FAQ = () => {
     },
     {
       question: "Is there customer support?",
-      answer: "Yes! Both free and Pro users get access to our customer support team. We're here to help you create the best possible portfolio."
+      answer: "Yes! Both free and Pro users get access to our customer support team. We're here to help you create the best possible portfolio and get hired faster!"
     },
     {
       question: "Can I upgrade or downgrade my plan?",
