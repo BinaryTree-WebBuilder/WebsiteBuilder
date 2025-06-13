@@ -79,8 +79,6 @@ export default function PersonalInfoForm() {
     const userId = session.user.id;
     const accessToken = session.access_token;
 
-    console.log
-
     let profileImageUrl = "";
 
     if (profileImageFile) {
