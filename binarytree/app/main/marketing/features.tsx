@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
   Code, 
-  Github, 
   Zap, 
   Palette, 
   Globe, 
@@ -143,7 +142,7 @@ const Features = () => {
               Ready to Build Your Portfolio?
             </h3>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of developers who've already transformed their careers with Binarytree. 
+              Join thousands of developers who&apos;ve already transformed their careers with Binarytree. 
               Get started in minutes, no coding required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

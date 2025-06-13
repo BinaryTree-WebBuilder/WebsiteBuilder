@@ -5,13 +5,14 @@ import { useEffect } from 'react'
 
 import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import Image from 'next/image'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, Mail, Lock, ArrowLeft, Github } from "lucide-react";
+import { Eye, EyeOff, Lock } from "lucide-react";
 import Link from "next/link";
 
 
@@ -37,7 +38,7 @@ export default function UpdatePasswordPage() {
     return () => {
       listener.subscription.unsubscribe();
     };
-  }, []);
+  }, [supabase]);
 
 
 const handleUpdatePassword = async (e: React.FormEvent) => {
@@ -72,8 +73,12 @@ const handleUpdatePassword = async (e: React.FormEvent) => {
 
       // ✅ Redirect to your desired page after successful login
       router.push('/main/auth/updatepasswordsuccess');
-    } catch (err: any) {
-      setError(err.message || 'Reset Password failed. Please try again.');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Reset Password failed. Please try again.');
+      }      
     } finally {
       setIsLoading(false);
     }
@@ -92,7 +97,7 @@ const handleUpdatePassword = async (e: React.FormEvent) => {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-3">
-              <img
+              <Image
                 src="/binarytree-logo.png"
                 alt="BinaryTree Logo"
                 className="h-16 object-contain px-3 cursor-pointer"
@@ -105,7 +110,7 @@ const handleUpdatePassword = async (e: React.FormEvent) => {
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-2xl font-bold text-gray-900">Forgot Password</CardTitle>
             <CardDescription className="text-gray-600">
-              Enter email and we'll send you instructions to reset password
+              Enter email and we&apos;ll send you instructions to reset password
             </CardDescription>
           </CardHeader>
           

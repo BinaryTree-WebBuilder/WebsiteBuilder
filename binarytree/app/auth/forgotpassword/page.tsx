@@ -11,8 +11,10 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, Mail, Lock, ArrowLeft, Github } from "lucide-react";
+import { Mail} from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+
 
 
 
@@ -39,7 +41,7 @@ export default function ForgotPasswordPage() {
     };
 
     checkSession();
-  }, [router]);
+  }, [router, supabase]);
 
 const handleForgetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,8 +61,12 @@ const handleForgetPassword = async (e: React.FormEvent) => {
 
       // ✅ Redirect to your desired page after successful login
       router.push('/main/auth/resetemailnotify');
-    } catch (err: any) {
-      setError(err.message || 'Reset Password failed. Please try again.');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Reset Password failed. Please try again.');
+      }    
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +85,7 @@ const handleForgetPassword = async (e: React.FormEvent) => {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-3">
-              <img
+              <Image
                 src="/binarytree-logo.png"
                 alt="BinaryTree Logo"
                 className="h-16 object-contain px-3 cursor-pointer"
@@ -92,7 +98,7 @@ const handleForgetPassword = async (e: React.FormEvent) => {
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-2xl font-bold text-gray-900">Forgot Password</CardTitle>
             <CardDescription className="text-gray-600">
-              Enter email and we'll send you instructions to reset password
+              Enter email and we&apos;ll send you instructions to reset password
             </CardDescription>
           </CardHeader>
           

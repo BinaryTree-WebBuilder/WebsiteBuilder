@@ -1,4 +1,4 @@
-import { Github } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 
@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
           <div className="flex items-center my-8">
-            <img
+            <Image
               src="/binarytree-logo.png"
               alt="BinaryTree Logo"
               className="h-10 object-contain" // slightly larger logo & padding

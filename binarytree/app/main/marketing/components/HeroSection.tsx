@@ -1,8 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { ArrowUp, Github, Code } from "lucide-react";
-import { Typewriter } from 'react-simple-typewriter';
+import { Github, Code } from "lucide-react";
 import Link from 'next/link';
 
 

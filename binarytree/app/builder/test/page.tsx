@@ -13,8 +13,7 @@ export default async function BuilderPage() {
 
   // Securely get the user
   const {
-    data: { user },
-    error,
+    data: { user }
   } = await supabase.auth.getUser();
 
   if (!user) {

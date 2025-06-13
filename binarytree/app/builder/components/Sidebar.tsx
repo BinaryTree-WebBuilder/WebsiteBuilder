@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, User, BookOpen, Briefcase, FileText } from 'lucide-react';
+import { User, BookOpen, Briefcase, FileText } from 'lucide-react';
 
 const navItems = [
   { label: 'Personal Info', icon: User, href: '/builder/sections/personalinfo' },

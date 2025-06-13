@@ -7,12 +7,12 @@ import LogoutButton from '@/app/auth/components/logoutbutton'
 
 export default function Topbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !(dropdownRef.current as any).contains(event.target)) {
+    if (dropdownRef.current && dropdownRef.current.contains(event.target as Node)) {
         setDropdownOpen(false);
       }
     }

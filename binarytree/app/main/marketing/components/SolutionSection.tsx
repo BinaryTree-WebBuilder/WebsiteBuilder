@@ -1,6 +1,6 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, Check, PanelsTopLeft, Github, FileText, ArrowUp } from "lucide-react";
+import { Users, Check, PanelsTopLeft, Github, FileText } from "lucide-react";
 
 export const SolutionSection = () => {
   const features = [

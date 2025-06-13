@@ -18,7 +18,7 @@ export default function TOSPage() {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">1. Acceptance of Terms</h2>
               <p className="text-muted-foreground leading-relaxed">
-                By accessing and using BinaryTree's services, you agree to be bound by these Terms of Service 
+                By accessing and using BinaryTree&apos;s services, you agree to be bound by these Terms of Service 
                 and all applicable laws and regulations. If you do not agree with any of these terms, 
                 you are prohibited from using or accessing this site.
               </p>
@@ -27,7 +27,7 @@ export default function TOSPage() {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">2. Use License</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Permission is granted to temporarily use BinaryTree's services for personal, 
+                Permission is granted to temporarily use BinaryTree&apos;s services for personal, 
                 non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
               </p>
               <ul className="list-disc list-inside text-muted-foreground mt-4 space-y-2">
@@ -58,7 +58,7 @@ export default function TOSPage() {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">5. Disclaimer</h2>
               <p className="text-muted-foreground leading-relaxed">
-                The materials on BinaryTree's website are provided on an 'as is' basis. 
+                The materials on BinaryTree&apos;s website are provided on an &apos;as is&apos; basis. 
                 BinaryTree makes no warranties, expressed or implied, and hereby disclaims and 
                 negates all other warranties including without limitation, implied warranties or 
                 conditions of merchantability, fitness for a particular purpose, or non-infringement 
@@ -72,7 +72,7 @@ export default function TOSPage() {
                 In no event shall BinaryTree or its suppliers be liable for any damages 
                 (including, without limitation, damages for loss of data or profit, or due to 
                 business interruption) arising out of the use or inability to use the materials 
-                on BinaryTree's website, even if BinaryTree or an authorized representative has 
+                on BinaryTree&apos;s website, even if BinaryTree or an authorized representative has 
                 been notified orally or in writing of the possibility of such damage.
               </p>
             </section>

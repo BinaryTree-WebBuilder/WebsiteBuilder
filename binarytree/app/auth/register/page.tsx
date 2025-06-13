@@ -1,19 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Eye, EyeOff, Mail, Lock, ArrowLeft, Github } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Register() {
   const supabase = createClientComponentClient();
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -22,12 +21,18 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const redirectToUrl = `${window.location.origin}/api/auth/callback`; // This will be e.g., http://localhost:3000/auth/callback
 
   type Provider = 'google' | 'github';
 
+  const origin =
+  typeof window !== 'undefined'
+    ? window.location.origin
+    : process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
-  const handleRegisterValidation = async (e: React.FormEvent)  => {
+const redirectToUrl = `${origin}/api/auth/callback`;
+
+
+  const handleRegister = async (e: React.FormEvent)  => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
@@ -57,26 +62,26 @@ export default function Register() {
       return;
     }
 
-    
 
-    // try {
-    //   const { error: signUpError } = await supabase.auth.signUp({
-    //     email,
-    //     password,
-    //     options: {
-    //       data: {
-    //         username,
-    //       },
-    //       emailRedirectTo: redirectToUrl
-    //     },
-    //   });
+    try {
+      const { error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username,
+          },
+          emailRedirectTo: redirectToUrl
+        },
+      });
 
-    //   if (signUpError) throw signUpError;
-    // } catch (err) {
-    //   setError('Registration failed. Please try again.');
-    // } finally {
-    //   setIsLoading(false);
-    // }
+      if (signUpError) throw signUpError;
+    } catch (err) {
+      console.log(err);
+      setError('Registration failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleOAuthSignIn = async (provider: Provider): Promise<void> => {
@@ -105,7 +110,7 @@ export default function Register() {
 
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-3">
-              <img
+              <Image
                 src="/binarytree-logo.png"
                 alt="BinaryTree Logo"
                 className="h-16 object-contain px-3 cursor-pointer"

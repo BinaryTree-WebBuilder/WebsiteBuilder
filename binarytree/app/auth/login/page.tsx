@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useFormState } from 'react-dom'
 import Link from 'next/link';
-
-import { login, googleLogin } from '../login/action'
+import Image from 'next/image'
+import { login } from '../login/action'
 
 import {
   Card,
@@ -22,9 +21,6 @@ import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { GoogleLoginButton } from "../components/googleloginbutton";
 
 
-type Provider = 'google' | 'github';
-const initialState = { error: '' }
-
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState('');
@@ -32,7 +28,6 @@ export default function Login() {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [redirectToUrl, setRedirectToUrl] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -67,7 +62,7 @@ export default function Login() {
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-3">
-            <img
+            <Image
               src="/binarytree-logo.png"
               alt="BinaryTree Logo"
               className="h-16 object-contain px-3 cursor-pointer"

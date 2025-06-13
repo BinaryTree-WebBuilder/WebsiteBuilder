@@ -68,7 +68,7 @@ export default function PersonalInfoForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { data, error } = await supabase.auth.getSession();
+    const { data } = await supabase.auth.getSession();
     const session = data.session;
 
     if (!session) {
@@ -136,7 +136,7 @@ export default function PersonalInfoForm() {
         >
           {profileImagePreview ? (
             <div className="space-y-4">
-              <img
+              <Image
                 src={profileImagePreview}
                 alt="Profile"
                 className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white shadow-lg"

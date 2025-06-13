@@ -5,8 +5,9 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import Image from 'next/image'
 
 
 
@@ -28,7 +29,7 @@ export default function UpdatePasswordSuccessPage() {
     };
 
     checkSession();
-  }, [router]);
+  }, [router, supabase]);
 
 
 
@@ -45,7 +46,7 @@ export default function UpdatePasswordSuccessPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-3">
-              <img
+              <Image
                 src="/binarytree-logo.png"
                 alt="BinaryTree Logo"
                 className="h-16 object-contain px-3 cursor-pointer"

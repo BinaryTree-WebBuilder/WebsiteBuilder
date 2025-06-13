@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, ChevronsUp } from "lucide-react";
-import { Header } from "../Header";
-import { Footer } from "../Footer";
+import { Check } from "lucide-react";
 import Link from "next/link";
 
 
@@ -17,20 +15,18 @@ const Pricing = () => {
     "Basic customer support",
   ];
 
-  const proFeatures = [
-    "Everything in Free",
-    "Custom Domain",
-    "Curated Templates",
-    "20 Projects",
-    "Unlimited Resume Download",
-    "Remove 'Made with BinaryTree' badge",
-    "Priority Supoort",
-
-  ];
+  // const proFeatures = [
+  //   "Everything in Free",
+  //   "Custom Domain",
+  //   "Curated Templates",
+  //   "20 Projects",
+  //   "Unlimited Resume Download",
+  //   "Remove 'Made with BinaryTree' badge",
+  //   "Priority Supoort",
+  // ];
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
       
       {/* Main Content */}
       <div className="pt-36 pb-20 px-4 sm:px-6 lg:px-8">
@@ -41,7 +37,7 @@ const Pricing = () => {
             Free Today, <span className="text-gradient">Pro Tomorrow!</span> 
             </h1>
             <p className="lg:text-xl text-gray-600 max-w-6xl mx-auto">
-            Start building your professional portfolio today. We're constantly evolving, and a powerful Pro version packed with even more features is just around the corner!            
+            Start building your professional portfolio today. We&apos;re constantly evolving, and a powerful Pro version packed with even more features is just around the corner!            
             </p>
           </div>
 

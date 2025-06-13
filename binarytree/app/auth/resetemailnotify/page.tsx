@@ -1,18 +1,12 @@
 'use client'
-
-import { useState } from 'react'
 import { useEffect } from 'react'
 
 import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, Mail, Lock, ArrowLeft, Github } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
 
 
 
@@ -34,7 +28,7 @@ export default function ResetPasswordPage() {
     };
 
     checkSession();
-  }, [router]);
+  }, [router, supabase]);
 
 
 
@@ -51,7 +45,7 @@ export default function ResetPasswordPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-3">
-              <img
+              <Image
                 src="/binarytree-logo.png"
                 alt="BinaryTree Logo"
                 className="h-16 object-contain px-3 cursor-pointer"

@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./override.css";
 
-import {Header} from "./main/Header";
-import {Footer} from "./main/Footer";
 
 
 export const metadata: Metadata = {

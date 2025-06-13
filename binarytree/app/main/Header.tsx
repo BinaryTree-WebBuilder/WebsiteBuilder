@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
 // components/Navbar.tsx
 import Link from "next/link";
+import Image from "next/image";
 
 export const Header = () => {
   return (
@@ -10,7 +10,7 @@ export const Header = () => {
     <div className="flex justify-between items-center h-16  "> {/* increased from h-16 */}
       <div className="flex items-center">
         <Link href="/">
-          <img
+          <Image
             src="/binarytree-logo.png"
             alt="BinaryTree Logo"
             className="h-8 object-contain px-3 cursor-pointer"
