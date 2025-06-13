@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
 import  AuthLogo from '../components/authlogo';
 
 
