@@ -1,16 +1,15 @@
 import { Button } from "@/components/ui/button";
 // components/Navbar.tsx
 import Link from "next/link";
-import Image from "next/image";
 
 export const Header = () => {
   return (
 <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50 py-4">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="flex justify-between items-center h-16  "> {/* increased from h-16 */}
-      <div className="flex items-center">
+      <div className="flex items-center relative">
         <Link href="/">
-          <Image
+          <img
             src="/binarytree-logo.png"
             alt="BinaryTree Logo"
             className="h-8 object-contain px-3 cursor-pointer"

@@ -9,7 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import  AuthLogo from '../components/authlogo';
+
 
 export default function Register() {
   const supabase = createClientComponentClient();
@@ -109,13 +110,7 @@ const redirectToUrl = `${origin}/api/auth/callback`;
       <div className="w-full max-w-lg relative z-10">
 
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center space-x-3">
-              <Image
-                src="/binarytree-logo.png"
-                alt="BinaryTree Logo"
-                className="h-16 object-contain px-3 cursor-pointer"
-              />
-          </Link>
+          <AuthLogo/>
         </div>
 
         <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">

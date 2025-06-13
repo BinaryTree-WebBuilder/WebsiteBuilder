@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail} from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import  AuthLogo from '../components/authlogo';
 
 
 
@@ -84,13 +84,7 @@ const handleForgetPassword = async (e: React.FormEvent) => {
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center space-x-3">
-              <Image
-                src="/binarytree-logo.png"
-                alt="BinaryTree Logo"
-                className="h-16 object-contain px-3 cursor-pointer"
-              />
-          </Link>
+          <AuthLogo/>
         </div>
 
         {/* Login Card */}

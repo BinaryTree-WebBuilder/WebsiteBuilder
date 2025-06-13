@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image'
 import { login } from '../login/action'
+import  AuthLogo from '../components/authlogo';
 
 import {
   Card,
@@ -61,13 +61,7 @@ export default function Login() {
 
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center space-x-3">
-            <Image
-              src="/binarytree-logo.png"
-              alt="BinaryTree Logo"
-              className="h-16 object-contain px-3 cursor-pointer"
-            />
-          </Link>
+          <AuthLogo/>
         </div>
 
         <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">

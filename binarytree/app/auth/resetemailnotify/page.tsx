@@ -6,7 +6,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import Image from "next/image";
+import  AuthLogo from '../components/authlogo';
 
 
 
@@ -44,13 +44,7 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center space-x-3">
-              <Image
-                src="/binarytree-logo.png"
-                alt="BinaryTree Logo"
-                className="h-16 object-contain px-3 cursor-pointer"
-              />
-          </Link>
+          <AuthLogo/>
         </div>
 
         {/* Login Card */}
