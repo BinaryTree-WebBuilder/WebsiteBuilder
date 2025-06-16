@@ -106,27 +106,27 @@ export default function PersonalInfoPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="text-md font-bold" htmlFor="full_name">Full Name</label>
-            <input name="full_name" className="text-md w-full border p-2 rounded" value={formData.full_name} onChange={handleChange} required />
+            <input name="full_name" className="text-md w-full border p-3 rounded" value={formData.full_name} onChange={handleChange} required />
           </div>
           <div>
             <label className="text-md font-bold" htmlFor="email">Email</label>
-            <input name="email" className="text-md w-full border p-4 rounded" type="email" value={formData.email} onChange={handleChange} required />
+            <input name="email" className="text-md w-full border p-3 rounded" type="email" value={formData.email} onChange={handleChange} required />
           </div>
           <div>
             <label className="text-md font-bold" htmlFor="phone">Phone</label>
-            <input name="phone" className="text-md w-full border p-4 rounded" value={formData.phone} onChange={handleChange} />
+            <input name="phone" className="text-md w-full border p-3 rounded" value={formData.phone} onChange={handleChange} />
           </div>
           <div> 
             <label className="text-md font-bold" htmlFor="location">Location</label>
-            <input name="location" className="text-md w-full border p-2 rounded" value={formData.location} onChange={handleChange} />
+            <input name="location" className="text-md w-full border p-3 rounded" value={formData.location} onChange={handleChange} />
           </div>
           <div>
             <label className="text-md font-bold" htmlFor="linkedin_url">LinkedIn</label>
-            <input name="linkedin_url" className="text-md w-full border p-2 rounded" value={formData.linkedin_url} onChange={handleChange} />
+            <input name="linkedin_url" className="text-md w-full border p-3 rounded" value={formData.linkedin_url} onChange={handleChange} />
           </div>
           <div>
             <label className="text-md font-bold" htmlFor="github_url">GitHub</label>
-            <input name="github_url" className="text-md w-full border p-2 rounded" value={formData.github_url} onChange={handleChange} />
+            <input name="github_url" className="text-md w-full border p-3 rounded" value={formData.github_url} onChange={handleChange} />
           </div>
         </div>
 

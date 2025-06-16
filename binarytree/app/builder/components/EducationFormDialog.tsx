@@ -91,7 +91,7 @@ export function EducationFormDialog({
                     [field]: e.target.value,
                   }))
                 }
-                className="text-md w-full border px-4 py-2 rounded"
+                className="text-md w-full border p-3 rounded"
               />
             </div>
           ))}
