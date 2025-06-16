@@ -42,7 +42,7 @@ export default function Sidebar() {
       {/* Bottom Button */}
       <div className="mt-auto pt-6">
         <Link href="/builder">
-        <button className="w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-md p-4 rounded-md">
+        <button className="cursor-pointer w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-md p-4 rounded-md">
           Preview Portfolio
         </button>
         </Link>
