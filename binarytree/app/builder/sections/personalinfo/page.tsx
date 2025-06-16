@@ -87,7 +87,7 @@ export default function PersonalInfoPage() {
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md border shadow-sm">
         {/* Profile Image Upload */}
         <div>
-          <label className="text-lg font-bold">Profile Image</label>
+          <label className="text-md font-bold">Profile Image</label>
           <div className="text-center">
             {profileImagePreview ? (
               <img src={profileImagePreview} alt="Profile Image Preview" className="w-32 h-32 mx-auto rounded-full mb-2" />
@@ -105,33 +105,33 @@ export default function PersonalInfoPage() {
         {/* Form Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="text-lg font-bold" htmlFor="full_name">Full Name</label>
-            <input name="full_name" className="text-lg w-full border p-4 rounded" value={formData.full_name} onChange={handleChange} required />
+            <label className="text-md font-bold" htmlFor="full_name">Full Name</label>
+            <input name="full_name" className="text-md w-full border p-2 rounded" value={formData.full_name} onChange={handleChange} required />
           </div>
           <div>
-            <label className="text-lg font-bold" htmlFor="email">Email</label>
-            <input name="email" className="text-lg w-full border p-4 rounded" type="email" value={formData.email} onChange={handleChange} required />
+            <label className="text-md font-bold" htmlFor="email">Email</label>
+            <input name="email" className="text-md w-full border p-4 rounded" type="email" value={formData.email} onChange={handleChange} required />
           </div>
           <div>
-            <label className="text-lg font-bold" htmlFor="phone">Phone</label>
-            <input name="phone" className="text-lg w-full border p-4 rounded" value={formData.phone} onChange={handleChange} />
+            <label className="text-md font-bold" htmlFor="phone">Phone</label>
+            <input name="phone" className="text-md w-full border p-4 rounded" value={formData.phone} onChange={handleChange} />
           </div>
           <div> 
-            <label className="text-lg font-bold" htmlFor="location">Location</label>
-            <input name="location" className="text-lg w-full border p-4 rounded" value={formData.location} onChange={handleChange} />
+            <label className="text-md font-bold" htmlFor="location">Location</label>
+            <input name="location" className="text-md w-full border p-2 rounded" value={formData.location} onChange={handleChange} />
           </div>
           <div>
-            <label className="text-lg font-bold" htmlFor="linkedin_url">LinkedIn</label>
-            <input name="linkedin_url" className="text-lg w-full border p-4 rounded" value={formData.linkedin_url} onChange={handleChange} />
+            <label className="text-md font-bold" htmlFor="linkedin_url">LinkedIn</label>
+            <input name="linkedin_url" className="text-md w-full border p-2 rounded" value={formData.linkedin_url} onChange={handleChange} />
           </div>
           <div>
-            <label className="text-lg font-bold" htmlFor="github_url">GitHub</label>
-            <input name="github_url" className="text-lg w-full border p-4 rounded" value={formData.github_url} onChange={handleChange} />
+            <label className="text-md font-bold" htmlFor="github_url">GitHub</label>
+            <input name="github_url" className="text-md w-full border p-2 rounded" value={formData.github_url} onChange={handleChange} />
           </div>
         </div>
 
         <div>
-          <label className="text-lg font-bold" htmlFor="bio">Professional Bio</label>
+          <label className="text-md font-bold" htmlFor="bio">Professional Bio</label>
           <Textarea name="bio" value={formData.bio} onChange={handleChange} rows={4} />
         </div>
 
