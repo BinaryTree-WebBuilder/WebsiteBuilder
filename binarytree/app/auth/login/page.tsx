@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -74,10 +74,12 @@ export default function Login() {
 
           <CardContent className="space-y-6">
 
-
-            <div className="grid grid-cols-1 gap-4">
+                        
+          <div className="grid grid-cols-1 gap-4">
               <GoogleLoginButton/>
-            </div>
+          </div>
+
+
 
 
             <div className="relative">
@@ -133,7 +135,7 @@ export default function Login() {
 
               {error && (
               <Alert variant="destructive" className="">
-                <AlertDescription>{error}</AlertDescription>
+                <AlertTitle>{error}</AlertTitle>
               </Alert>
             )}
 
@@ -150,6 +152,28 @@ export default function Login() {
               >
                 {isLoading ? 'Logging in...' : 'Login'}
               </Button>
+
+                            {/* Divider */}
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">Already have an account?</span>
+              </div>
+            </div>
+
+            {/* Sign Up Link */}
+            <div className="text-center">
+              <Link 
+                href="/auth/register" 
+                className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+              >
+                Don&apos;t have an account?
+              </Link>
+            </div>
+
+
             </form>
           </CardContent>
         </Card>

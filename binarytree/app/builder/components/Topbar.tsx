@@ -10,15 +10,15 @@ export default function Topbar() {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // Close dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-    if (dropdownRef.current && dropdownRef.current.contains(event.target as Node)) {
-        setDropdownOpen(false);
+    useEffect(() => {
+      function handleClickOutside(event: MouseEvent) {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+          setDropdownOpen(false);
+        }
       }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
   return (
     <div className="w-full flex justify-end items-center px-6 py-4 bg-white border-b shadow-sm relative">
@@ -39,7 +39,8 @@ export default function Topbar() {
             <div className="absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-md z-50">
               <ul className="text-lg text-gray-700">
                 <li className="px-6 py-4 hover:bg-gray-100 cursor-pointer">Settings</li>
-                <li className="px-6 py-4 cursor-pointer">
+
+                <li className="px-6 py-4 cursor-pointer hover:bg-gray-100 cursor-pointer">
                     <LogoutButton />
                 </li>
               </ul>

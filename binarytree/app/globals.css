@@ -11,6 +11,11 @@
   font-family:'Courier New', Courier, monospace;
 }
 
+.ProseMirror:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

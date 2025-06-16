@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { User, BookOpen, Briefcase, FileText } from 'lucide-react';
@@ -8,8 +7,8 @@ import { User, BookOpen, Briefcase, FileText } from 'lucide-react';
 const navItems = [
   { label: 'Personal Info', icon: User, href: '/builder/sections/personalinfo' },
   { label: 'Education', icon: BookOpen, href: '/builder/sections/education' },
-  { label: 'Experience', icon: Briefcase, href: '/experience' },
-  { label: 'Projects', icon: FileText, href: '/projects' },
+  { label: 'Experience', icon: Briefcase, href: '/builder/sections/experience' },
+  { label: 'Projects', icon: FileText, href: '/builder/sections/projects' },
 ];
 
 export default function Sidebar() {
@@ -19,7 +18,7 @@ export default function Sidebar() {
     <div className="h-screen w-64 flex flex-col bg-white border-r shadow-sm px-4 py-6">
       {/* Logo */}
       <div className="mb-10 flex justify-center">
-        <Image src="/binarytree-logo.png" alt="Logo" width={80} height={80} className="rounded-full" />
+        <img src="/binarytree-logo.png" alt="Logo" className="rounded-full p-4" />
       </div>
 
       {/* Navigation Links */}
