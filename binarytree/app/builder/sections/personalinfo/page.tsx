@@ -89,13 +89,17 @@ useEffect(() => {
       <p className="text-gray-600 mb-6">Add your Personal Information and your Socials</p>
 
 
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md border shadow-sm">
-        {/* Profile Image Upload */}
-        <div>
+    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md border shadow-sm">
+
+      {/* Grid Container */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        {/* Profile Image Upload - full width (span 2 cols on md+) */}
+        <div className="md:col-span-2">
           <label className="text-md font-bold">Profile Image</label>
           <div className="text-center">
             {profileImagePreview ? (
-              <img src={profileImagePreview} alt="Profile Image Preview" className="w-32 h-32 mx-auto rounded-full mb-2" />
+              <img src={profileImagePreview} alt="Profile" className="w-32 h-32 mx-auto rounded-full mb-2" />
             ) : (
               <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto flex items-center justify-center mb-2">
                 <User className="w-8 h-8 text-gray-400" />
@@ -107,55 +111,62 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* Form Fields */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="text-md font-bold" htmlFor="full_name">Full Name</label>
-            <input name="full_name" className="text-md w-full border p-3 rounded" value={formData.full_name} onChange={handleChange} required />
-          </div>
-          <div>
-            <label className="text-md font-bold" htmlFor="email">Email</label>
-            <input name="email" className="text-md w-full border p-3 rounded" type="email" value={formData.email} onChange={handleChange} required />
-          </div>
-          <div>
-            <label className="text-md font-bold" htmlFor="phone">Phone</label>
-            <input name="phone" className="text-md w-full border p-3 rounded" value={formData.phone} onChange={handleChange} />
-          </div>
-          <div> 
-            <label className="text-md font-bold" htmlFor="location">Location</label>
-            <input name="location" className="text-md w-full border p-3 rounded" value={formData.location} onChange={handleChange} />
-          </div>
-          <div>
-            <label className="text-md font-bold" htmlFor="linkedin_url">LinkedIn</label>
-            <input name="linkedin_url" className="text-md w-full border p-3 rounded" value={formData.linkedin_url} onChange={handleChange} />
-          </div>
-          <div>
-            <label className="text-md font-bold" htmlFor="github_url">GitHub</label>
-            <input name="github_url" className="text-md w-full border p-3 rounded" value={formData.github_url} onChange={handleChange} />
-          </div>
+        {/* Two-column fields */}
+        <div>
+          <label className="text-md font-bold" htmlFor="full_name">Full Name</label>
+          <input name="full_name" className="text-md w-full border p-3 rounded" value={formData.full_name} onChange={handleChange} required />
+        </div>
+        <div>
+          <label className="text-md font-bold" htmlFor="email">Email</label>
+          <input name="email" className="text-md w-full border p-3 rounded" type="email" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div>
+          <label className="text-md font-bold" htmlFor="phone">Phone</label>
+          <input name="phone" className="text-md w-full border p-3 rounded" value={formData.phone} onChange={handleChange} />
+        </div>
+        <div>
+          <label className="text-md font-bold" htmlFor="location">Location</label>
+          <input name="location" className="text-md w-full border p-3 rounded" value={formData.location} onChange={handleChange} />
+        </div>
+        <div>
+          <label className="text-md font-bold" htmlFor="linkedin_url">LinkedIn</label>
+          <input name="linkedin_url" className="text-md w-full border p-3 rounded" value={formData.linkedin_url} onChange={handleChange} />
+        </div>
+        <div>
+          <label className="text-md font-bold" htmlFor="github_url">GitHub</label>
+          <input name="github_url" className="text-md w-full border p-3 rounded" value={formData.github_url} onChange={handleChange} />
         </div>
 
-        <div>
+        {/* Bio - span full width */}
+        <div className="md:col-span-2">
           <label className="text-md font-bold" htmlFor="bio">Professional Bio</label>
           <Textarea name="bio" value={formData.bio} onChange={handleChange} rows={4} />
         </div>
 
-        <div className="text-center">
-          <Button className='w-1/2 p-8 bg-gradient-primary-2' type="submit" disabled={formState === 'loading'}>
+        {/* Submit Button - span full width */}
+        <div className="md:col-span-2 text-center">
+          <Button className="w-1/2 p-8 bg-gradient-primary-2" type="submit" disabled={formState === 'loading'}>
             {formState === 'loading' ? 'Saving...' : 'Save Info'}
           </Button>
         </div>
 
-        {formState === 'success' && (
-          <p className="text-green-600 mt-2">✅ Personal Info added successfully!</p>
+        {/* Status messages */}
+        {formState !== 'idle' && (
+          <div className="md:col-span-2 text-center">
+            {formState === 'success' && (
+              <p className="text-green-600 mt-2">✅ Personal Info added successfully!</p>
+            )}
+            {formState === 'error' && (
+              <p className="text-red-600 mt-2">❌ Failed to save Personal Info. Try again.</p>
+            )}
+            {formState === 'loading' && (
+              <p className="text-blue-600 mt-2">⏳ Saving...</p>
+            )}
+          </div>
         )}
-        {formState === 'error' && (
-          <p className="text-red-600 mt-2">❌ Failed to save Personal Info. Try again.</p>
-        )}
-        {formState === 'loading' && (
-          <p className="text-blue-600 mt-2">⏳ Saving...</p>
-        )}
-      </form>
+      </div>
+    </form>
+
 
       {showImageModal && (
         <ProfileImageModal
