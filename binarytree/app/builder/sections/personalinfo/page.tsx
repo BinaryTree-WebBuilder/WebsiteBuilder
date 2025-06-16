@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { User } from 'lucide-react';
@@ -22,29 +22,34 @@ export default function PersonalInfoPage() {
     bio: '',
   });
 
-  // Fetch personal info on mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getPersonalInfo();
-        if (data) {
-          setFormData({
-            full_name: data.full_name || '',
-            email: data.email || '',
-            phone: data.phone || '',
-            location: data.location || '',
-            linkedin_url: data.linkedin_url || '',
-            github_url: data.github_url || '',
-            bio: data.bio || '',
-          });
-          if (data.profile_image_url) setProfileImagePreview(data.profile_image_url);
-        }
-      } catch (err) {
-        console.error('Failed to fetch personal info', err);
+const hasFetched = useRef(false);
+
+useEffect(() => {
+  if (hasFetched.current) return;
+
+  const fetchData = async () => {
+    try {
+      const data = await getPersonalInfo();
+      if (data) {
+        setFormData({
+          full_name: data.full_name || '',
+          email: data.email || '',
+          phone: data.phone || '',
+          location: data.location || '',
+          linkedin_url: data.linkedin_url || '',
+          github_url: data.github_url || '',
+          bio: data.bio || '',
+        });
+        if (data.profile_image_url) setProfileImagePreview(data.profile_image_url);
       }
-    };
-    fetchData();
-  }, []);
+    } catch (err) {
+      console.error('Failed to fetch personal info', err);
+    }
+  };
+
+  fetchData();
+  hasFetched.current = true;
+}, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
