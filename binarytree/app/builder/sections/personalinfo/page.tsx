@@ -85,7 +85,7 @@ export default function PersonalInfoPage() {
       <p className="text-gray-600 mb-6">Add your Personal Information and your Socials</p>
 
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md border shadow-sm">
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 md:!grid-cols-2 gap-4">
 
           {/* Profile Image */}
           <div className="md:col-span-2">

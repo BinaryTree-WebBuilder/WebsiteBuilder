@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { User, BookOpen, Briefcase, FileText } from 'lucide-react';
+import { User, BookOpen, Briefcase, FileText, X } from 'lucide-react';
 
 const navItems = [
   { label: 'Personal Info', icon: User, href: '/builder/sections/personalinfo' },
@@ -11,11 +11,18 @@ const navItems = [
   { label: 'Projects', icon: FileText, href: '/builder/sections/projects' },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ closeSidebar }: { closeSidebar?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <div className="h-screen w-64 flex flex-col bg-white border-r shadow-sm px-4 py-6">
+    <div className="h-full w-64 flex flex-col bg-white border-r shadow-sm px-4 py-6">
+      {/* Close button on mobile */}
+      <div className="md:!hidden flex justify-end mb-4">
+        <button onClick={closeSidebar}>
+          <X className="w-6 h-6 text-gray-700" />
+        </button>
+      </div>
+
       {/* Logo */}
       <div className="mb-10 flex justify-center">
         <img src="/binarytree-logo.png" alt="Logo" className="rounded-full p-4" />
@@ -27,6 +34,7 @@ export default function Sidebar() {
           <Link
             key={label}
             href={href}
+            onClick={closeSidebar}
             className={`flex items-center space-x-3 px-4 py-4 rounded-md text-md font-medium ${
               pathname === href
                 ? 'bg-blue-100 text-blue-600'
@@ -42,11 +50,10 @@ export default function Sidebar() {
       {/* Bottom Button */}
       <div className="mt-auto pt-6">
         <Link href="/builder">
-        <button className="cursor-pointer w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-md p-4 rounded-md">
-          Preview Portfolio
-        </button>
+          <button className="cursor-pointer w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-md p-4 rounded-md">
+            Preview Portfolio
+          </button>
         </Link>
-
       </div>
     </div>
   );
