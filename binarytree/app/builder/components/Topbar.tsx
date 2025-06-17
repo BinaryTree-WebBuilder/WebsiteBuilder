@@ -28,7 +28,7 @@ export default function Topbar({ toggleSidebar }: { toggleSidebar: () => void })
       </div>
 
       <div className="flex items-center space-x-4 ml-auto">
-        <button className="bg-gradient-primary hover:bg-blue-700 text-white text-md p-3 rounded-md">
+        <button className="bg-gradient-primary hover:bg-gradient-secondary text-white text-md py-3 px-6 font-semibold cursor-pointer rounded-md">
           Upgrade
         </button>
         <div className="relative" ref={dropdownRef}>

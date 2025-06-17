@@ -38,7 +38,7 @@ export default function Sidebar({ closeSidebar }: { closeSidebar?: () => void })
             key={label}
             href={href}
             onClick={closeSidebar}
-            className={`flex items-center space-x-3 px-4 py-4 rounded-md text-base font-medium ${
+            className={`flex items-center space-x-3 p-3 rounded-md text-base font-medium ${
               pathname === href
                 ? 'bg-blue-100 text-blue-600'
                 : 'text-gray-700 hover:bg-gray-100'
@@ -53,8 +53,8 @@ export default function Sidebar({ closeSidebar }: { closeSidebar?: () => void })
       {/* Bottom Button */}
       <div className="mt-auto pt-6">
         <Link href="/builder">
-          <button className="flex justify-center items-center gap-2 align-middle cursor-pointer w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-md p-4 rounded-md">
-            <Eye className="w-5 h-5" />
+          <button className="flex justify-center items-center gap-4 align-middle cursor-pointer w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-base p-4 rounded-md">
+            <Eye className="w-4 h-4" />
             Preview Portfolio
           </button>
         </Link>
