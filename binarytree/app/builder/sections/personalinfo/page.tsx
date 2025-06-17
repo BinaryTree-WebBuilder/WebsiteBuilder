@@ -9,7 +9,7 @@ import ProfileImageModal from '../../components/ProfileImageModal';
 import { usePersonalInfoStore } from '../../stores/usePersonalInfoStores';
 
 export default function PersonalInfoPage() {
-  const { data: personalInfo, fetchInfo, setInfo } = usePersonalInfoStore();
+  const { data: personalInfo, fetchInfo } = usePersonalInfoStore();
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [showImageModal, setShowImageModal] = useState(false);
   const [profileImagePreview, setProfileImagePreview] = useState('');

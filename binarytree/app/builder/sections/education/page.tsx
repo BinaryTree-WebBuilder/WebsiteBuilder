@@ -14,7 +14,7 @@ import { ConfirmationDialog } from '../../components/ConfirmationDialog'
 import { useEducationStore } from '../../stores/userEducationStores'
 
 export default function EducationFormPage() {
-  const { entries, loaded, fetchEducation, setEntries } = useEducationStore()
+  const { entries, loaded, fetchEducation } = useEducationStore()
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false)
