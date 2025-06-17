@@ -84,7 +84,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6">
+    <div className="max-w-6xl w-full mx-auto px-4 py-6">
       <h2 className="text-2xl font-semibold mb-4">Personal Info</h2>
       <p className="text-gray-600 mb-6">Add your Personal Information and your Socials</p>
 
@@ -92,7 +92,7 @@ useEffect(() => {
     <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md border shadow-sm">
 
       {/* Grid Container */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-1 gap-4">
         
         {/* Profile Image Upload - full width (span 2 cols on md+) */}
         <div className="md:col-span-2">
