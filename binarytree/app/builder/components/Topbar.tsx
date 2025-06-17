@@ -19,7 +19,7 @@ export default function Topbar({ toggleSidebar }: { toggleSidebar: () => void })
   }, []);
 
   return (
-    <div className="w-full flex justify-between items-center p-4 bg-white border-b shadow-sm relative">
+    <div className="fixed top-0 left-0 w-full z-50 flex justify-between items-center p-4 bg-white border-b shadow-sm">
       {/* Hamburger for mobile */}
       <div className="md:hidden">
         <button onClick={toggleSidebar}>

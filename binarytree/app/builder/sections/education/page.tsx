@@ -85,7 +85,7 @@ export default function EducationFormPage() {
             value={`item-${idx}`}
             className="border border-gray-200 py-3 px-6 rounded-lg shadow-sm"
           >
-            <AccordionTrigger className="text-xl font-semibold text-left text-gray-900 cursor-pointer">
+            <AccordionTrigger className="truncate text-xl font-semibold text-left text-gray-900 cursor-pointer">
               <span className="truncate">{edu.institution_name}</span>
             </AccordionTrigger>
             <AccordionContent className="text-lg leading-relaxed">

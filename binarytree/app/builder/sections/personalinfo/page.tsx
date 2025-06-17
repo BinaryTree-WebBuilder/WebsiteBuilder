@@ -157,7 +157,7 @@ export default function PersonalInfoPage() {
           </div>
 
           <div className="md:col-span-2 text-center">
-            <Button className="w-1/2 p-8 bg-gradient-primary-2" type="submit" disabled={formState === 'loading'}>
+            <Button className="w-3/5 p-8 bg-gradient-primary-2" type="submit" disabled={formState === 'loading'}>
               {formState === 'loading' ? 'Saving...' : 'Save Info'}
             </Button>
           </div>

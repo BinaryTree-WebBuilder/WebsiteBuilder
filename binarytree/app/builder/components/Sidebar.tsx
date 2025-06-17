@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { User, BookOpen, Briefcase, FileText, X } from 'lucide-react';
+import {
+  Eye,
+} from "lucide-react"
 
 const navItems = [
   { label: 'Personal Info', icon: User, href: '/builder/sections/personalinfo' },
@@ -50,7 +53,8 @@ export default function Sidebar({ closeSidebar }: { closeSidebar?: () => void })
       {/* Bottom Button */}
       <div className="mt-auto pt-6">
         <Link href="/builder">
-          <button className="cursor-pointer w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-md p-4 rounded-md">
+          <button className="flex justify-center items-center gap-2 align-middle cursor-pointer w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-md p-4 rounded-md">
+            <Eye className="w-5 h-5" />
             Preview Portfolio
           </button>
         </Link>

@@ -16,7 +16,7 @@ export default function BuilderLayout({ children }: { children: React.ReactNode 
       {/* Sidebar */}
       <div className={`
           transition-transform transform bg-white shadow-md w-64
-          fixed inset-y-0 left-0 z-50 
+          fixed inset-y-0 left-0 z-51 
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
           md:!static md:!translate-x-0 md:!block
         `}
@@ -27,7 +27,7 @@ export default function BuilderLayout({ children }: { children: React.ReactNode 
       {/* Main content area */}
       <div className="flex-1 flex flex-col overflow-auto">
         <Topbar toggleSidebar={toggleSidebar} />
-        <main className="p-4">{children}</main>
+        <main className="p-4 mt-20">{children}</main>
       </div>
     </div>
   );
