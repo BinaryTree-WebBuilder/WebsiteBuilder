@@ -8,7 +8,7 @@ export default function AuthLogo() {
               <img
                 src="/binarytree-logo.png"
                 alt="BinaryTree Logo"
-                className="h-16 object-contain px-3 cursor-pointer"
+                className="h-12 object-contain px-3 cursor-pointer"
               />
           </Link>
   )

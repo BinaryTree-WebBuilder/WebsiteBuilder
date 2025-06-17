@@ -18,7 +18,7 @@ export default function Sidebar({ closeSidebar }: { closeSidebar?: () => void })
   const pathname = usePathname();
 
   return (
-    <div className="h-full w-64 flex flex-col bg-white border-r shadow-sm px-4 py-6">
+    <div className="h-full w-64 flex flex-col bg-white border-r shadow-sm px-2 py-6">
       {/* Close button on mobile */}
       <div className="md:!hidden flex justify-end mb-4">
         <button onClick={closeSidebar}>
@@ -27,7 +27,7 @@ export default function Sidebar({ closeSidebar }: { closeSidebar?: () => void })
       </div>
 
       {/* Logo */}
-      <div className="mb-10 flex justify-center">
+      <div className="mb-4 flex justify-center">
         <img src="/binarytree-logo.png" alt="Logo" className="rounded-full p-4" />
       </div>
 
@@ -38,7 +38,7 @@ export default function Sidebar({ closeSidebar }: { closeSidebar?: () => void })
             key={label}
             href={href}
             onClick={closeSidebar}
-            className={`flex items-center space-x-3 px-4 py-4 rounded-md text-md font-medium ${
+            className={`flex items-center space-x-3 px-4 py-4 rounded-md text-base font-medium ${
               pathname === href
                 ? 'bg-blue-100 text-blue-600'
                 : 'text-gray-700 hover:bg-gray-100'

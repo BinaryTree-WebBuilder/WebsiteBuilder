@@ -17,9 +17,9 @@ export const HeroSection = () => {
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              Your Tech Portfolio,{" "}
+              Your Tech <span className="text-gradient">Portfolio,</span>{" "}
               <span className="text-gradient">Simplified.</span>{" "}
-              Get Hired Faster by Recruiters           
+              Get Hired Faster by <span className="text-gradient">Recruiters</span>           
               </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               <span className="text-gradient font-bold">Binarytree</span> turns your tech projects into job offers. Build a powerful online portfolio designed to impress recruiters, in minutes.

@@ -65,7 +65,7 @@ export default function Login() {
         </div>
 
         <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-          <CardHeader className="text-center pb-6">
+          <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-gray-900">Welcome Back</CardTitle>
             <CardDescription className="text-gray-600">
               Sign in to your account to continue building
@@ -154,12 +154,12 @@ export default function Login() {
               </Button>
 
                             {/* Divider */}
-            <div className="relative my-6">
+            <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Already have an account?</span>
+                <span className="px-2 bg-white text-gray-500">Don&apos;t have an account?</span>
               </div>
             </div>
 
@@ -169,7 +169,7 @@ export default function Login() {
                 href="/auth/register" 
                 className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
               >
-                Don&apos;t have an account?
+                Sign up Now
               </Link>
             </div>
 

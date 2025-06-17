@@ -37,10 +37,10 @@ export const Header = () => {
           {/* Desktop Buttons */}
           <div className="hidden md:!flex items-center space-x-5">
             <Link href="/auth/login">
-              <Button variant="ghost" size="sm" className="text-base px-5 py-6">Login</Button>
+              <Button variant="ghost" size="sm" className="cursor-pointer text-base px-5 py-6">Login</Button>
             </Link>
             <Link href="/auth/register">
-              <Button className="bg-gradient-primary hover:opacity-90 text-white text-base px-5 py-6" size="sm">
+              <Button className="cursor-pointer bg-gradient-primary hover:opacity-90 text-white text-base px-5 py-6" size="sm">
                 Get Started Free
               </Button>
             </Link>
