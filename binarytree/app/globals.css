@@ -224,6 +224,10 @@
     background: #667eea;
   }
 
+  .bg-color-primary-2 {
+    background-color: #667eea !important;
+  }
+
   .bg-gradient-secondary {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   }

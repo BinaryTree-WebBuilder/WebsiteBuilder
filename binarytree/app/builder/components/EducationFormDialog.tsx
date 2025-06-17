@@ -11,19 +11,21 @@ import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 
 const fieldLabels: Record<string, string> = {
-  institution: "Institution Name",
-  location: "Location",
+  institution_name: "Institution",
+  institution_location: "Location",
   degree: "Degree",
-  fieldOfStudy: "Field of Study",
-  graduationDate: "Graduation Date",
+  field_of_study: "Field of Study",
+  start_date: "Start Date", // ✅ New field
+  graduation_date: "Graduation Date",
 }
 
 export interface EducationData {
-  institution: string
-  location: string
+  institution_name: string
+  institution_location: string
   degree: string
-  fieldOfStudy: string
-  graduationDate: string
+  field_of_study: string
+  start_date: string // ✅ New field
+  graduation_date: string
   achievements: string[]
 }
 
@@ -42,11 +44,12 @@ export function EducationFormDialog({
 }: EducationFormDialogProps) {
   const [formData, setFormData] = useState<EducationData>(
     initialData ?? {
-      institution: '',
-      location: '',
+      institution_name: '',
+      institution_location: '',
       degree: '',
-      fieldOfStudy: '',
-      graduationDate: '',
+      field_of_study: '',
+      start_date: '',
+      graduation_date: '',
       achievements: [''],
     }
   )
@@ -54,11 +57,12 @@ export function EducationFormDialog({
   useEffect(() => {
     setFormData(
       initialData ?? {
-        institution: '',
-        location: '',
+        institution_name: '',
+        institution_location: '',
         degree: '',
-        fieldOfStudy: '',
-        graduationDate: '',
+        field_of_study: '',
+        start_date: '',
+        graduation_date: '',
         achievements: [''],
       }
     )
@@ -76,14 +80,16 @@ export function EducationFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {(Object.keys(fieldLabels) as Array<keyof EducationData>).map((field) => (
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-4">
+          {(Object.keys(fieldLabels) as Array<keyof EducationData>).filter(
+            (field) => field !== "achievements"
+          ).map((field) => (
             <div key={field}>
               <label className="block text-md font-medium">
                 {fieldLabels[field]}
               </label>
               <input
-                type={field === 'graduationDate' ? 'date' : 'text'}
+                type={(field === 'graduation_date' || field === 'start_date') ? 'date' : 'text'}
                 value={formData[field]}
                 onChange={(e) =>
                   setFormData((prev) => ({
@@ -96,6 +102,7 @@ export function EducationFormDialog({
             </div>
           ))}
 
+          {/* Achievements Section (Full width) */}
           <div className="col-span-full">
             <label className="block font-medium mb-1">Achievements</label>
             {formData.achievements.map((ach, idx) => (

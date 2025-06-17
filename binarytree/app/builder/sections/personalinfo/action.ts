@@ -41,6 +41,8 @@ export async function savePersonalInfo(formData: FormData) {
     linkedin_url,
     github_url,
     bio,
+    show_phone,
+    show_location
   } = Object.fromEntries(formData.entries()) as Record<string, string>;
 
   const {
@@ -66,6 +68,8 @@ export async function savePersonalInfo(formData: FormData) {
       linkedin_url,
       github_url,
       bio,
+      show_phone,
+      show_location
     });
 
   if (insertError) {

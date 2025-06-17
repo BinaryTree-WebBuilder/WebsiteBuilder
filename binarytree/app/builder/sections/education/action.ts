@@ -7,11 +7,12 @@ const TABLE_NAME = 'education'
 
 export interface EducationEntry {
   id?: string
-  institution: string
-  location: string
+  institution_name: string
+  institution_location: string
   degree: string
-  fieldOfStudy: string
-  graduationDate: string // ISO date format (e.g. "2025-06-01")
+  field_of_study: string
+  start_date: string // ISO date format (e.g. "2025-06-01")
+  graduation_date: string // ISO date format (e.g. "2025-06-01")
   achievements: string[]
   user_id?: string
 }
