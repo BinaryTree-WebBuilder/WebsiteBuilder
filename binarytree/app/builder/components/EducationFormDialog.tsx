@@ -90,7 +90,7 @@ export function EducationFormDialog({
               </label>
               <input
                 type={(field === 'graduation_date' || field === 'start_date') ? 'date' : 'text'}
-                value={formData[field]}
+                value={formData[field] ?? ''}
                 onChange={(e) =>
                   setFormData((prev) => ({
                     ...prev,
@@ -109,13 +109,13 @@ export function EducationFormDialog({
               <div key={idx} className="flex gap-2 mb-2">
                 <input
                   type="text"
-                  value={ach}
+                  value={ach ?? ''}
                   onChange={(e) => {
                     const updatedAchievements = [...formData.achievements]
                     updatedAchievements[idx] = e.target.value
                     setFormData({ ...formData, achievements: updatedAchievements })
                   }}
-                  className="text-lg w-full border p-4 rounded"
+                  className="text-md w-full border p-3 rounded"
                 />
                 <Button
                   variant="ghost"

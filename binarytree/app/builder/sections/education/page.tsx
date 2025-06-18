@@ -74,7 +74,7 @@ export default function EducationFormPage() {
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h2 className="text-2xl font-semibold">Education</h2>
+            <h2 className="text-2xl font-bold">Education</h2>
           </div>
           <Button className="bg-gradient-primary-2 px-8 py-4 h-fit" onClick={openNewForm}>
             + Add Education
@@ -94,9 +94,9 @@ export default function EducationFormPage() {
           <AccordionItem
             key={idx}
             value={`item-${idx}`}
-            className="border border-gray-200 py-3 px-6 rounded-lg shadow-sm"
+            className="border border-gray-200 py-2 px-4 rounded-lg shadow-sm"
           >
-            <AccordionTrigger className="truncate text-xl font-semibold text-left text-gray-900 cursor-pointer">
+            <AccordionTrigger className="truncate text-lg font-semibold text-left text-gray-900 cursor-pointer">
               <span className="truncate">{edu.institution_name}</span>
             </AccordionTrigger>
             <AccordionContent className="text-lg leading-relaxed">

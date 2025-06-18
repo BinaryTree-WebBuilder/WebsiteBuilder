@@ -85,7 +85,7 @@ export default function PersonalInfoPage() {
             <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h2 className="text-2xl font-semibold">Personal Info</h2>
+            <h2 className="text-2xl font-bold">Personal Info</h2>
           </div>
           <div className="invisible bg-gradient-primary-2 px-8 py-4 h-fit">
             Placeholder

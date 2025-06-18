@@ -4,6 +4,8 @@ import Topbar from '@/app/builder/components/Topbar';
 import Sidebar from '@/app/builder/components/Sidebar';
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Toaster } from "sonner";
+
 
 function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false);
@@ -90,6 +92,7 @@ export default function BuilderLayout({ children }: { children: React.ReactNode 
           <main className="p-4 mt-20 bg-gray-50 min-h-screen">{children}</main>
         </div>
       )}
+        <Toaster richColors position="bottom-right" />
     </div>
   );
 }

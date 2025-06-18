@@ -2,14 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { User, BookOpen, Briefcase, FileText, Eye } from 'lucide-react';
+import { User, BookOpen, Briefcase, FileCode, Eye } from 'lucide-react';
+
 import { useEffect, useRef } from 'react';
 
 const navItems = [
   { label: 'Personal Info', icon: User, href: '/builder/sections/personalinfo' },
   { label: 'Education', icon: BookOpen, href: '/builder/sections/education' },
   { label: 'Experience', icon: Briefcase, href: '/builder/sections/experience' },
-  { label: 'Projects', icon: FileText, href: '/builder/sections/projects' },
+  { label: 'Projects', icon: FileCode, href: '/builder/sections/projects' },
 ];
 
 export default function Sidebar({

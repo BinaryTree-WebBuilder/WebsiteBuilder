@@ -1,173 +1,147 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { saveExperience } from './action';
-import TechnologiesInput  from '../../components/TechnologiesInput';
-import TiptapEditor from '@/components/ui/tiptapeditor'; // adjust path
-import { Button } from '@/components/ui/button';
+import { useState, useEffect } from 'react'
+import { submitExperience, updateExperience, deleteExperience } from './action'
+import { Button } from '@/components/ui/button'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '@/components/ui/accordion'
+import { ExperienceFormDialog } from '../../components/ExperienceFormDialog'
+import { ConfirmationDialog } from '../../components/ConfirmationDialog'
+import { useExperienceStore } from '../../stores/userExperienceStores'
 
-const emptyExperience = {
-  company: '',
-  position: '',
-  startDate: '',
-  endDate: '',
-  currentlyWorking: false,
-  description: '',
-  technologies: [] as string[], // keep technologies as an array
-};
+import { toast } from "sonner"
+
 
 export default function ExperienceFormPage() {
-  const [experience, setExperience] = useState({ ...emptyExperience });
-  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const { entries, loaded, fetchExperience } = useExperienceStore()
+  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false)
+  const [selectedEntry, setSelectedEntry] = useState<any | null>(null)
 
-    const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-    const { name, value, type } = e.target;
 
-    if (type === 'checkbox') {
-        const target = e.target as HTMLInputElement;
-        setExperience((prev) => ({
-        ...prev,
-        [name]: target.checked,
-        }));
+  useEffect(() => {
+    if (!loaded) fetchExperience()
+  }, [loaded, fetchExperience])
+
+  const openNewForm = () => {
+    setSelectedEntry(null)
+    setIsFormOpen(true)
+  }
+
+  const openEditForm = (entry: any) => {
+    setSelectedEntry(entry)
+    setIsFormOpen(true)
+  }
+
+  const confirmDelete = (entry: any) => {
+    setSelectedEntry(entry)
+    setIsDeleteConfirmOpen(true)
+  }
+
+const handleSave = async (data: any) => {
+  try {
+    toast.loading("Saving experience...", {
+      id: "exp-toast",
+    });
+
+    const result = selectedEntry
+      ? await updateExperience(selectedEntry.id, data)
+      : await submitExperience([data]);
+
+    if (result.success) {
+      toast.success("✅ Experience saved successfully!", {
+        id: "exp-toast",
+      });
+      await fetchExperience();
+      setIsFormOpen(false);
     } else {
-        setExperience((prev) => ({
-        ...prev,
-        [name]: value,
-        }));
+      throw new Error();
     }
-    };
+  } catch {
+    toast.error("❌ Failed to save experience. Try again.", {
+      id: "exp-toast",
+    });
+  }
+};
 
+  const handleDelete = async () => {
+    if (!selectedEntry?.id) return
 
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormState('loading');
-
-    try {
-      const result = await saveExperience(experience);
-      if (result.success) {
-        setFormState('success');
-        setExperience({ ...emptyExperience });
-
-        setTimeout(() => setFormState('idle'), 3000);
-      } else {
-        throw new Error(result.error || 'Unknown error');
-      }
-    } catch (err) {
-      console.error(err);
-      setFormState('error');
-      setTimeout(() => setFormState('idle'), 3000);
+    const result = await deleteExperience(selectedEntry.id)
+    if (result.success) {
+      toast.success("🗑️ Experience deleted successfully!", { id: "exp-toast" });
+      setIsDeleteConfirmOpen(false)
+      await fetchExperience()
+    } else {
+    toast.error("❌ Failed to delete experience. Try again.", { id: "exp-toast" });
     }
-  };
+  }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6">
-      <h2 className="text-2xl font-semibold mb-4">Experience</h2>
-      <p className="text-gray-600 mb-6">Add your work experience and internships</p>
-
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md border shadow-sm">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="max-w-6xl mx-auto px-4 py-6 bg-gray-50">
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-3">
           <div>
-            <label className="block font-medium mb-1">Company *</label>
-            <input
-              type="text"
-              name="company"
-              value={experience.company}
-              onChange={handleChange}
-              required
-              className="w-full border px-3 py-2 rounded"
-            />
+            <h2 className="text-2xl font-bold">Experience</h2>
           </div>
-
-          <div>
-            <label className="block font-medium mb-1">Position *</label>
-            <input
-              type="text"
-              name="position"
-              value={experience.position}
-              onChange={handleChange}
-              required
-              className="w-full border px-3 py-2 rounded"
-            />
-          </div>
+          <Button className="bg-gradient-primary-2 px-8 py-4 h-fit" onClick={openNewForm}>
+            + Add Experience
+          </Button>
         </div>
+        <p className="text-gray-600">Add your Experience in working, full-time, part-time or internship</p>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block font-medium mb-1">Start Date</label>
-            <input
-              type="date"
-              name="startDate"
-              value={experience.startDate}
-              onChange={handleChange}
-              className="w-full border px-3 py-2 rounded"
-            />
-          </div>
 
-          {!experience.currentlyWorking && (
-            <div>
-              <label className="block font-medium mb-1">End Date</label>
-              <input
-                type="date"
-                name="endDate"
-                value={experience.endDate}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded"
-              />
-            </div>
-          )}
-        </div>
+      <Accordion type="single" collapsible className="w-full space-y-4 mb-10 bg-white">
+        {entries.map((edu, idx) => (
+          <AccordionItem
+            key={idx}
+            value={`item-${idx}`}
+            className="border border-gray-200 py-2 px-4 rounded-lg shadow-sm"
+          >
+            <AccordionTrigger className="truncate text-lg font-semibold text-left text-gray-900 cursor-pointer">
+              <span className="truncate">{edu.company}</span>
+            </AccordionTrigger>
+            <AccordionContent className="text-lg leading-relaxed">
+              <p className="text-lg my-2"><span className="font-semibold">Position:</span> {edu.position}</p>
+              <p className="text-lg my-2"><span className="font-semibold">Start Date:</span> {edu.start_date}</p>
+              <p className="text-lg my-2"><span className="font-semibold">End Date:</span> {edu.end_date}</p>
+              <p className="text-lg my-2"><span className="font-semibold">Current Working here:</span> {edu.currently_working}</p>
+              <p className="text-lg my-2"><span className="font-semibold">Job Description:</span> <br/>{edu.job_description}</p>
+              <p className="text-lg my-2"><span className="font-semibold underline">Technologies</span></p>
+              {edu.technologies?.length > 0 && (
+                <ul className="list-disc list-inside mt-2 text-lg">
+                  {edu.technologies.map((a: string, i: number) => (
+                    <li key={i}>{a}</li>
+                  ))}
+                </ul>
+              )}
+              <div className="mt-4 flex justify-end gap-2">
+                <Button size="lg" onClick={() => openEditForm(edu)}>Edit</Button>
+                <Button size="lg" variant="destructive" onClick={() => confirmDelete(edu)}>Delete</Button>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
 
-        <div className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            name="currentlyWorking"
-            checked={experience.currentlyWorking}
-            onChange={handleChange}
-          />
-          <label>Currently working here</label>
-        </div>
+      <ExperienceFormDialog
+        open={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+        onSave={handleSave}
+        initialData={selectedEntry}
+      />
 
-        <div>
-          <label className="block font-medium mb-1">Job Description *</label>
-          <TiptapEditor
-            content={experience.description}
-            onChange={(val) =>
-                setExperience((prev) => ({ ...prev, description: val }))
-            }
-            />
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Technologies Used</label>
-        {/* Use TechnologiesInput here and sync to experience */}
-            <TechnologiesInput
-                technologies={experience.technologies}
-                setTechnologies={(techs) =>
-                setExperience((prev) => ({ ...prev, technologies: techs }))
-                }
-            />
-        </div>
-
-        <Button
-          type="submit"
-          className="w-full p-8 bg-gradient-primary-1"
-        >
-          + Add Experience
-        </Button>
-
-        {formState === 'success' && (
-          <p className="text-green-600 mt-2">✅ Experience added successfully!</p>
-        )}
-        {formState === 'error' && (
-          <p className="text-red-600 mt-2">❌ Failed to save experience. Try again.</p>
-        )}
-        {formState === 'loading' && (
-          <p className="text-blue-600 mt-2">⏳ Saving...</p>
-        )}
-      </form>
+      <ConfirmationDialog
+        open={isDeleteConfirmOpen}
+        onCancel={() => setIsDeleteConfirmOpen(false)}
+        onConfirm={handleDelete}
+        message={`Are you sure you want to delete "${selectedEntry?.company} : ${selectedEntry?.position}"?`}
+      />
     </div>
-  );
+  )
 }
