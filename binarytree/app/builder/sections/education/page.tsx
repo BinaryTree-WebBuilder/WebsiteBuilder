@@ -70,9 +70,16 @@ export default function EducationFormPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6">
-      <h2 className="text-2xl font-semibold mb-4">Education</h2>
-      <p className="text-gray-600 mb-6">Add your Education History and Achievements</p>
+    <div className="max-w-6xl mx-auto px-4 py-6">
+<div className="flex items-start justify-between mb-6">
+  <div>
+    <h2 className="text-2xl font-semibold">Education</h2>
+    <p className="text-gray-600">Add your Education History and Achievements</p>
+  </div>
+  <Button className="bg-gradient-primary-2 px-8 py-4 h-fit" onClick={openNewForm}>
+    + Add Education
+  </Button>
+</div>
 
       {formState === 'success' && <p className="text-green-600 mt-2">✅ Education saved successfully!</p>}
       {formState === 'error' && <p className="text-red-600 mt-2">❌ Failed to save education. Try again.</p>}
@@ -109,12 +116,6 @@ export default function EducationFormPage() {
           </AccordionItem>
         ))}
       </Accordion>
-
-      <div className="mb-6 text-center">
-        <Button className="p-8 w-1/2 bg-gradient-primary-2" onClick={openNewForm}>
-          + Add Education
-        </Button>
-      </div>
 
       <EducationFormDialog
         open={isFormOpen}

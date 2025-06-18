@@ -27,7 +27,7 @@ export default function BuilderLayout({ children }: { children: React.ReactNode 
       {/* Main content area */}
       <div className="flex-1 flex flex-col overflow-auto">
         <Topbar toggleSidebar={toggleSidebar} />
-        <main className="p-4 mt-20">{children}</main>
+        <main className="p-4 mt-20 bg-gray-50 min-h-screen">{children}</main>
       </div>
     </div>
   );
