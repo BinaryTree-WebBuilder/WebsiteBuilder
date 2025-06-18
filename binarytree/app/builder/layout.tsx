@@ -80,7 +80,7 @@ export default function BuilderLayout({ children }: { children: React.ReactNode 
             className="flex-1 flex flex-col overflow-hidden relative z-[40] bg-gray-50"
           >
             <Topbar toggleSidebar={toggleSidebar} isOverlaying={isSidebarOpen} />
-            <main className="p-4 mt-20 min-h-screen">{children}</main>
+            <main className="py-4 my-15 min-h-screen overflow-auto">{children}</main>
           </motion.div>
         </>
       ) : (

@@ -71,15 +71,19 @@ export default function EducationFormPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
-<div className="flex items-start justify-between mb-6">
-  <div>
-    <h2 className="text-2xl font-semibold">Education</h2>
-    <p className="text-gray-600">Add your Education History and Achievements</p>
-  </div>
-  <Button className="bg-gradient-primary-2 px-8 py-4 h-fit" onClick={openNewForm}>
-    + Add Education
-  </Button>
-</div>
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h2 className="text-2xl font-semibold">Education</h2>
+          </div>
+          <Button className="bg-gradient-primary-2 px-8 py-4 h-fit" onClick={openNewForm}>
+            + Add Education
+          </Button>
+        </div>
+        <p className="text-gray-600">Add your Education History and Achievements</p>
+      </div>
+
+
 
       {formState === 'success' && <p className="text-green-600 mt-2">✅ Education saved successfully!</p>}
       {formState === 'error' && <p className="text-red-600 mt-2">❌ Failed to save education. Try again.</p>}
