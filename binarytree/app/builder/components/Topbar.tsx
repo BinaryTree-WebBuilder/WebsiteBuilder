@@ -4,7 +4,13 @@ import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, UserCircle, Menu } from 'lucide-react';
 import LogoutButton from '@/app/auth/components/logoutbutton';
 
-export default function Topbar({ toggleSidebar }: { toggleSidebar: () => void }) {
+export default function Topbar({
+  toggleSidebar,
+  isOverlaying = false,
+}: {
+  toggleSidebar: () => void;
+  isOverlaying?: boolean;
+}) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -19,7 +25,11 @@ export default function Topbar({ toggleSidebar }: { toggleSidebar: () => void })
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 flex justify-between items-center p-4 bg-white border-b shadow-sm">
+    <div
+      className={`fixed top-0 left-0 w-full flex justify-between items-center p-4 bg-white border-b shadow-sm transition-all ${
+        isOverlaying ? 'z-[30]' : 'z-[40]' // keep consistent
+      }`}
+    >
       {/* Hamburger for mobile */}
       <div className="md:hidden">
         <button onClick={toggleSidebar}>
