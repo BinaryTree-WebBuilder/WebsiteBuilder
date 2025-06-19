@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Instagram } from "lucide-react";
 
