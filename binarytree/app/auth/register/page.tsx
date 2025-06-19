@@ -61,7 +61,7 @@ const [success, setSuccess] = useState<string | null>(null);
   };
 
   return (
-    <div className="flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full opacity-10 animate-pulse-slow"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full opacity-10 animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
