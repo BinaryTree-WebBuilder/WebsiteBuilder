@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, ChevronsUp } from "lucide-react";
+import { Check } from "lucide-react";
 import Link from "next/link";
 
 
