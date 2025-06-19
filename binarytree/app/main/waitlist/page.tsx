@@ -37,16 +37,21 @@ export default function WaitlistPage() {
 
     const result = await addToWaitlist(email);
     if (result.success) {
-      toast.success("🎉 You've been added to the waitlist!");
-      setEmail("");
+      toast.success("🎉 You've been added to the waitlist!", {
+        id: "waitlist-toast",
+      });
     } else {
       if (result.message === "already_exists") {
-        toast.info("You're already on the waitlist!");
+        toast.info("You're already on the waitlist!", {
+        id: "waitlist-toast",
+        });
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error("Something went wrong. Please try again.", {
+        id: "waitlist-toast",
+        });
       }
     }
-
+    setEmail("");
     setLoading(false);
   };
 
