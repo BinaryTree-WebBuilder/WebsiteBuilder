@@ -10,7 +10,7 @@ export interface ExperienceEntry {
   company: string
   position: string
   start_date: string
-  end_date: string
+  end_date?: string
   job_description: string
   currently_working: boolean
   technologies: string[]
@@ -46,22 +46,34 @@ export async function submitExperience(entries: ExperienceEntry[]): Promise<{
 }> {
   const supabase = await createClient()
 
+  console.log("Enter submitExperience");
+
   const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser()
 
-  if (userError || !user) return { success: false }
+  if (userError || !user) {
+    console.error("User error:", userError)
+    return { success: false }
+  }
 
   const payload = entries.map((entry) => ({
     ...entry,
     user_id: user.id,
   }))
 
+  console.log("Submitting payload to Supabase:", JSON.stringify(payload, null, 2))
+
   const { error } = await supabase.from(TABLE_NAME).insert(payload)
+
+  if (error) {
+    console.error("Insert error:", error)
+  }
 
   return { success: !error }
 }
+
 
 export async function updateExperience(
   id: string,

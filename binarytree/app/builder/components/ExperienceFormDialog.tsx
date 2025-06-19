@@ -24,7 +24,7 @@ export interface ExperienceData {
   company: string,
   position: string,
   start_date: string,
-  end_date: string,
+  end_date: string | null, // <-- allow null
   job_description: string,
   technologies: string[],
   currently_working: boolean
@@ -92,27 +92,30 @@ export function ExperienceFormDialog({
 
                 {field === 'currently_working' ? (
                 <input
-                    type="checkbox"
-                    checked={formData.currently_working}
-                    onChange={(e) =>
+                  type="checkbox"
+                  checked={formData.currently_working}
+                  onChange={(e) => {
+                    const isChecked = e.target.checked
                     setFormData((prev) => ({
-                        ...prev,
-                        currently_working: e.target.checked,
+                      ...prev,
+                      currently_working: isChecked,
+                      end_date: isChecked ? '' : prev.end_date // Clear end_date if checked
                     }))
-                    }
-                    className="w-4 h-4 mt-2"
+                  }}
+                  className="w-4 h-4 mt-2"
                 />
                 ) : (
                 <input
-                    type={(field === 'end_date' || field === 'start_date') ? 'date' : 'text'}
-                    value={formData[field] ?? ''}
-                    onChange={(e) =>
+                  type={(field === 'end_date' || field === 'start_date') ? 'date' : 'text'}
+                  value={formData[field] ?? ''}
+                  onChange={(e) =>
                     setFormData((prev) => ({
-                        ...prev,
-                        [field]: e.target.value,
+                      ...prev,
+                      [field]: e.target.value,
                     }))
-                    }
-                    className="text-md w-full border p-3 rounded"
+                  }
+                  disabled={field === 'end_date' && formData.currently_working}
+                  className={`text-md w-full border p-3 rounded ${field === 'end_date' && formData.currently_working ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                 />
                 )}
             </div>
@@ -165,7 +168,13 @@ export function ExperienceFormDialog({
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button onClick={() => onSave(formData)}>
+          <Button onClick={() => {
+            const cleanedData = {
+              ...formData,
+              end_date: formData.currently_working ? null  : formData.end_date
+            }
+            onSave(cleanedData)
+          }}>
             {initialData ? 'Update' : 'Add'}
           </Button>
         </div>
