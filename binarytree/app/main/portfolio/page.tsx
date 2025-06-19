@@ -1,10 +1,8 @@
 'use client';
 
 import { useState, useRef } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Mail, Instagram } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export default function PortfolioPage() {
   return (
