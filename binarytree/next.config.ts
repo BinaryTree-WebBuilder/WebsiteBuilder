@@ -5,9 +5,20 @@ const nextConfig: NextConfig = {
       return [
         {
           source: '/',           // The incoming path pattern
-          destination: '/main',  // The path to redirect to
+          destination: '/main',
           permanent: true,       // Use true for 308 Permanent Redirect (SEO friendly)
         },
+        // {
+        //   source: '/auth/:path*',
+        //   destination: '/main/waitlist',
+        //   permanent: true,
+        // },
+
+        // {
+        //   source: '/builder/:path*',
+        //   destination: '/main/waitlist',
+        //   permanent: true,
+        // },
       ];
     },
 };
