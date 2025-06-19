@@ -11,7 +11,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "Is Binarytree really free?",
-      answer: "Yes! Our free plan includes everything you need to get started: a premium binarytree.me domain, customer support, high-performance pages, and up to 5 projects for your portfolio, Nuild your Free Portfolio Today!"
+      answer: "Yes! Our free plan includes everything you need to get started: a premium binarytree.me domain, customer support, high-performance pages, and up to 4 projects for your portfolio, Build your Free Portfolio Today!"
     },
     {
       question: "How is this different from other portfolio builders?",
@@ -22,8 +22,8 @@ const FAQ = () => {
       answer: "Yes! With our Pro plan coming soon, you can connect your own custom domain. Free users get a premium binarytree.me subdomain that looks professional and is perfect for getting started."
     },
     {
-      question: "What&apos;s included in the Pro plan?",
-      answer: "Pro includes custom domain connection, AI Rewrite tools, premium templates, contact form integration, removal of the &apos;Made with Binarytree&apos; badge, +25 projects, and many more, coming soon."
+      question: "What's included in the Pro plan?",
+      answer: "Pro includes custom domain connection, Enhanced templates with animations, contact form integration, removal of the \"Made with Binarytree\" badge, +25 projects, and many more, coming soon."
     },
     {
       question: "How quickly can I set up my portfolio?",
@@ -31,7 +31,7 @@ const FAQ = () => {
     },
     {
       question: "Is there customer support?",
-      answer: "Yes! Both free and Pro users get access to our customer support team. We&apos;re here to help you create the best possible portfolio and get hired faster!"
+      answer: "Yes! Both free and Pro users get access to our customer support team. We\"re here to help you create the best possible portfolio and get hired faster!"
     },
     {
       question: "Can I upgrade or downgrade my plan?",

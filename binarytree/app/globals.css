@@ -219,7 +219,15 @@
   .bg-gradient-primary-1 {
     background: #764ba2;
   }
+
+  .bg-primary-op20{
+    background: #764ba220;
+  }
   
+  .text-gradient-primary-1 {
+    color: #764ba2;
+  }
+
   .bg-gradient-primary-2 {
     background: #667eea;
   }

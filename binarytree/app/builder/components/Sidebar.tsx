@@ -43,11 +43,11 @@ export default function Sidebar({
       {/* Sidebar */}
       <div
         ref={sidebarRef}
-        className="relative h-full w-64 flex flex-col bg-white border-r shadow-sm px-2 py-6 z-50"
+        className="relative min-h-screen  w-64 flex flex-col bg-gray-50 border-r shadow-sm px-2 py-6 z-50"
       >
         {/* Logo */}
         <div className="mb-4 flex justify-center">
-          <img src="/binarytree-logo.png" alt="Logo" className="rounded-full p-4" />
+          <img src="/binarytree-logo.png" alt="Logo" className="rounded-full px-4 mb-10" />
         </div>
 
         {/* Navigation Links */}
@@ -59,7 +59,7 @@ export default function Sidebar({
               onClick={closeSidebar}
               className={`flex items-center space-x-3 p-3 rounded-md text-base font-medium ${
                 pathname === href
-                  ? 'bg-blue-100 text-blue-600'
+                  ? 'bg-primary-op20 text-gradient-primary-1'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >

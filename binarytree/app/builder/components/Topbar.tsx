@@ -26,7 +26,7 @@ export default function Topbar({
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full flex justify-between items-center p-4 bg-white border-b shadow-sm transition-all ${
+      className={`fixed top-0 left-0 w-full flex justify-between items-center px-4 py-3 bg-gray-50 border-b shadow-sm transition-all ${
         isOverlaying ? 'z-[30]' : 'z-[40]' // keep consistent
       }`}
     >

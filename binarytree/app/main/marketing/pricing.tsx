@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check } from "lucide-react";
+import { Check, ChevronsUp } from "lucide-react";
 import Link from "next/link";
 
 
@@ -8,9 +8,9 @@ const Pricing = () => {
   const features = [
     "High performance pages",
     "Premium binarytree.me domain",
-    "Access to 1 professional template",
-    "Create up to 5 projects",
-    "Download as Resume (Limited)",
+    "Access to 2 professional template",
+    "Create up to 4 projects",
+    "Download as Resume",
     "Has 'Made with BinaryTree' badge",
     "Basic customer support",
   ];
@@ -42,7 +42,7 @@ const Pricing = () => {
           </div>
 
           {/* Pricing Card */}
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-4">
             <Card className="p-0 w-full max-w-md border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300 animate-fade-in-up">
               <CardHeader className="py-6 text-center bg-gray-800 text-white rounded-t-lg">
                 <CardTitle className="text-3xl font-bold mb-2">FREE</CardTitle>
@@ -76,14 +76,14 @@ const Pricing = () => {
               </CardContent>
             </Card>
 
-            {/* <Card className="p-0 w-full max-w-md border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300 animate-fade-in-up">
+            {/*<Card className="p-0 w-full max-w-md border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300 animate-fade-in-up">
               <CardHeader className="py-6 text-center bg-gradient-primary text-white rounded-t-lg">
                 <CardTitle className="text-3xl font-bold mb-2">PRO</CardTitle>
                 <div className="text-5xl font-bold mb-2">Coming Soon</div>
                 <p className="text-blue-100">Accelerate your Tech Career</p>
               </CardHeader>
               
-              <CardContent className="p-8">
+               <CardContent className="p-8">
                 <ul className="space-y-4 mb-8">
                   {proFeatures.map((feature, index) => (
                     <li key={index} className="flex items-start space-x-3">
@@ -106,7 +106,7 @@ const Pricing = () => {
                   No credit card required
                 </p>
               </CardContent>
-            </Card> */}
+            </Card>  */}
           </div>
 
           {/* Additional Info */}
