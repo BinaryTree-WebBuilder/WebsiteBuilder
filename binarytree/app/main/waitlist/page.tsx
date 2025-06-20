@@ -22,18 +22,23 @@ export default function WaitlistPage() {
     e.preventDefault();
 
     if (!validateEmail(email)) {
-      toast.error("Please enter a valid email address.");
+        toast.error("Please enter a valid email address.", {
+        id: "waitlist-toast",
+        });
       return;
     }
 
     const now = Date.now();
     if (now - lastSubmitTimeRef.current < 10000) {
-      toast.error("You're submitting too fast. Please wait a moment.");
+      toast.error("You're submitting too fast. Please wait a moment.", {
+        id: "waitlist-toast",
+      });
       return;
     }
 
     setLoading(true);
     lastSubmitTimeRef.current = now;
+
 
     const result = await addToWaitlist(email);
     if (result.success) {
