@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
 import { Pencil, Trash2 } from 'lucide-react'
+import Link from 'next/link';
 
 interface Project {
   id: string;
@@ -76,13 +77,24 @@ export default function ProjectPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">My Projects</h1>
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h2 className="text-2xl font-bold">💻 Projects</h2>
+          </div>
+          <Link href="project/addproject">
+              <Button className="bg-gradient-primary-2 px-8 py-4 h-fit">
+                + Add Projects
+              </Button>
+          </Link>
+        </div>
+      </div>
 
       <div className="space-y-6">
         {projects.map((project) => (
             <Card key={project.id} className="flex lg:!flex-row overflow-clip gap-4 p-0">
             {/* Image Section */}
-            <div className="w-1/5 hidden lg:!block">
+            <div className="w-1/6 hidden lg:!block">
                 <img
                 src={project.project_image_url}
                 alt={project.project_name}
@@ -94,8 +106,8 @@ export default function ProjectPage() {
             <div className="flex-1 flex flex-col justify-between p-4">
                 <div className='flex flex-col justify-between h-full'>
                     <div>
-                        <h2 className="font-bold text-lg">{project.project_name}</h2>
-                        <p className="text-gray-600 leading-snug truncate-3-lines">
+                        <h2 className="font-bold">{project.project_name}</h2>
+                        <p className="text-gray-600 leading-snug truncate-3-lines text-sm">
                             {project.project_description}
                         </p>
                     </div>

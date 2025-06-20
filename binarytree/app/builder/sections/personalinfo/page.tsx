@@ -82,16 +82,15 @@ export default function PersonalInfoPage() {
   return (
     <div className="max-w-6xl w-full mx-auto px-4 py-6">
 
-            <div className="mb-6">
+      <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h2 className="text-2xl font-bold">Personal Info</h2>
+            <h2 className="text-2xl font-bold">🪪 Personal Info</h2>
           </div>
           <div className="invisible bg-gradient-primary-2 px-8 py-4 h-fit">
             Placeholder
           </div>
         </div>
-        <p className="text-gray-600">Add your Personal Information and your Socials</p>
       </div>
 
 
