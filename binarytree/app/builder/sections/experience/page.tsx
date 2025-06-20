@@ -86,13 +86,12 @@ const handleSave = async (data: any) => {
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h2 className="text-2xl font-bold">Experience</h2>
+            <h2 className="text-2xl font-bold">💼 Experience</h2>
           </div>
           <Button className="bg-gradient-primary-2 px-8 py-4 h-fit" onClick={openNewForm}>
             + Add Experience
           </Button>
         </div>
-        <p className="text-gray-600">Add your Experience in working, full-time, part-time or internship</p>
       </div>
 
 

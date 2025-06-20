@@ -10,7 +10,7 @@ const navItems = [
   { label: 'Personal Info', icon: User, href: '/builder/sections/personalinfo' },
   { label: 'Education', icon: BookOpen, href: '/builder/sections/education' },
   { label: 'Experience', icon: Briefcase, href: '/builder/sections/experience' },
-  { label: 'Projects', icon: FileCode, href: '/builder/sections/projects' },
+  { label: 'Projects', icon: FileCode, href: '/builder/sections/project' },
 ];
 
 export default function Sidebar({
