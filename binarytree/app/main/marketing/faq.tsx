@@ -9,35 +9,35 @@ import {
 
 const FAQ = () => {
   const faqs = [
-    {
-      question: "Is Binarytree really free?",
-      answer: "Yes! Our free plan includes everything you need to get started: a premium binarytree.me domain, customer support, high-performance pages, and up to 4 projects for your portfolio, Build your Free Portfolio Today!"
-    },
-    {
-      question: "How is this different from other portfolio builders?",
-      answer: "Binarytree is purpose-built for developers. We understand your need to showcase technical projects, link GitHub repos, and display development skills in a way that impresses recruiters and hiring managers."
-    },
-    {
-      question: "Can I use my own domain?",
-      answer: "Yes! With our Pro plan coming soon, you can connect your own custom domain. Free users get a premium binarytree.me subdomain that looks professional and is perfect for getting started."
-    },
-    {
-      question: "What's included in the Pro plan?",
-      answer: "Pro includes custom domain connection, Enhanced templates with animations, contact form integration, removal of the \"Made with Binarytree\" badge, +25 projects, and many more, coming soon."
-    },
-    {
-      question: "How quickly can I set up my portfolio?",
-      answer: "You can have your portfolio live in minutes! Simply sign up, add your projects and information, and publish. No coding or design skills required."
-    },
-    {
-      question: "Is there customer support?",
-      answer: "Yes! Both free and Pro users get access to our customer support team. We\"re here to help you create the best possible portfolio and get hired faster!"
-    },
-    {
-      question: "Can I upgrade or downgrade my plan?",
-      answer: "You can upgrade to Pro at any time. Since our free plan is always available, you can also downgrade if needed, though some Pro features will no longer be accessible."
-    }
-  ];
+  {
+    "question": "Is Binarytree really free?",
+    "answer": "Yes! Our free plan includes everything you need to get started: a premium binarytree.me domain, customer support, high-performance pages, and up to 4 projects for your portfolio. Build your Free Portfolio Today!"
+  },
+  {
+    "question": "How is this different from other portfolio builders?",
+    "answer": "Binarytree is purpose-built for developers. We understand your need to showcase technical projects, link GitHub repos, and display development skills in a way that impresses recruiters and hiring managers."
+  },
+  {
+    "question": "Can I use my own domain?",
+    "answer": "Currently, all users receive a premium binarytree.me subdomain that looks professional and is perfect for getting started. We are exploring options for custom domains in the future based on user feedback."
+  },
+  {
+    "question": "What premium features does Binarytree offer?",
+    "answer": "Our free plan provides a robust set of features to build a stunning portfolio. We are continuously working on new enhancements and will introduce more advanced features based on user demand and feedback."
+  },
+  {
+    "question": "How quickly can I set up my portfolio?",
+    "answer": "You can have your portfolio live in minutes! Simply sign up, add your projects and information, and publish. No coding or design skills required."
+  },
+  {
+    "question": "Is there customer support?",
+    "answer": "Yes! All Binarytree users get access to our customer support team. We're here to help you create the best possible portfolio and get hired faster!"
+  },
+  {
+    "question": "Are there different plans available?",
+    "answer": "Currently, we offer a comprehensive free plan designed to help you create a professional online presence. We are gathering user feedback to determine future plan offerings that best meet the needs of our community."
+  }
+];
 
   return (
     <div className="min-h-screen bg-white">

@@ -34,7 +34,7 @@ const Pricing = () => {
           {/* Header Section */}
           <div className="text-center mb-16 animate-fade-in-up">
             <h1 className="text-4xl lg:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            Free Today, <span className="text-gradient">Pro Tomorrow!</span> 
+            Free Forever, <span className="text-gradient">For You</span> 
             </h1>
             <p className="lg:text-xl text-gray-600 max-w-6xl mx-auto">
             Start building your professional portfolio today. We&apos;re constantly evolving, and a powerful Pro version packed with even more features is just around the corner!            
