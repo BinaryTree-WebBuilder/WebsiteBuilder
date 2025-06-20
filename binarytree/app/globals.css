@@ -127,6 +127,8 @@
 
 @layer base {
   :root {
+      --line-height-base: 1.25rem; /* Or whatever your line height is */
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -218,7 +220,8 @@
     -webkit-line-clamp: 3;       /* Limit to 3 lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: var(--line-height-base);
+    height: calc(3 * var(--line-height-base));
   }
 
   .bg-gradient-primary {

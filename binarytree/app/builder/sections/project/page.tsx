@@ -95,7 +95,7 @@ export default function ProjectPage() {
                 <div className='flex flex-col justify-between h-full'>
                     <div>
                         <h2 className="text-xl font-semibold">{project.project_name}</h2>
-                        <p className="text-gray-600 mt-2 leading-snug line-clamp-3 min-h-[4.875rem]">
+                        <p className="text-gray-600 mt-2 leading-snug truncate-3-lines">
                             {project.project_description}
                         </p>
                     </div>
