@@ -47,7 +47,7 @@ export default function Sidebar({
       >
         {/* Logo */}
         <div className="mb-4 flex justify-center">
-          <img src="/binarytree-logo.png" alt="Logo" className="rounded-full px-4 mb-10" />
+          <img src="/binarytree-logo.png" alt="Logo" className="rounded-full px-4 mb-2" />
         </div>
 
         {/* Navigation Links */}
