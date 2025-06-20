@@ -80,9 +80,9 @@ export default function ProjectPage() {
 
       <div className="space-y-6">
         {projects.map((project) => (
-            <Card key={project.id} className="flex flex-row overflow-hidden gap-4 p-0">
+            <Card key={project.id} className="flex lg:!flex-row overflow-clip gap-4 p-0">
             {/* Image Section */}
-            <div className="w-1/5 hidden md:!block">
+            <div className="w-1/5 hidden lg:!block">
                 <img
                 src={project.project_image_url}
                 alt={project.project_name}
@@ -94,18 +94,18 @@ export default function ProjectPage() {
             <div className="flex-1 flex flex-col justify-between p-4">
                 <div className='flex flex-col justify-between h-full'>
                     <div>
-                        <h2 className="text-xl font-semibold">{project.project_name}</h2>
-                        <p className="text-gray-600 mt-2 leading-snug truncate-3-lines">
+                        <h2 className="font-bold text-lg">{project.project_name}</h2>
+                        <p className="text-gray-600 leading-snug truncate-3-lines">
                             {project.project_description}
                         </p>
                     </div>
 
                 {/* Tech Stack */}
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-2 flex gap-2 truncate">
                     {project.technologies_used.map((tech, idx) => (
                     <span
                         key={idx}
-                        className="text-sm bg-gray-100 text-gray-700 px-2 py-1 rounded-md"
+                        className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-md"
                     >
                         {tech}
                     </span>
@@ -115,18 +115,18 @@ export default function ProjectPage() {
             </div>
 
             {/* Actions Section */}
-            <div className="flex flex-col justify-between items-end md:w-1/6 gap-2 pr-5 py-4">
+            <div className="flex flex-col justify-between items-end lg:w-1/6 gap-2 px-5 py-4">
                 <div className="flex gap-2">
-                <Button variant="ghost" size="icon" onClick={() => handleEdit(project)}>
+                <Button variant="ghost" size="icon" className='cursor-pointer' onClick={() => handleEdit(project)}>
                     <Pencil className="w-5 h-5 text-blue-600" />
                 </Button>
-                <Button variant="ghost" size="icon" onClick={() => handleDelete(project.id)}>
+                <Button variant="ghost" size="icon" className='cursor-pointer' onClick={() => handleDelete(project.id)}>
                     <Trash2 className="w-5 h-5 text-red-500" />
                 </Button>
                 </div>
                 <Button
                 variant="secondary"
-                className="w-full"
+                className="w-full text-sm cursor-pointer p-0"
                 onClick={() => router.push(`/project/${project.id}`)}
                 >
                 Details →
