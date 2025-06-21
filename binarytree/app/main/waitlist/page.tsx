@@ -69,7 +69,7 @@ export default function WaitlistPage() {
 
       <div className="max-w-2xl w-full">
         <Card className="shadow-lg animate-fade-in-up border border-gray-200">
-          <CardContent className="py-12 px-8 text-center">
+          <CardContent className="py-6 px-8 text-center">
             <img
               src="/binarytree-logo.png"
               alt="BinaryTree Logo"

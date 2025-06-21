@@ -1,21 +1,27 @@
-// utils/cropImage.ts
-export default function getCroppedImg(imageSrc: string, pixelCrop: any): Promise<Blob> {
+export default function getCroppedImg(
+  imageSrc: string,
+  pixelCrop: { x: number; y: number; width: number; height: number },
+  outputSize?: { width: number; height: number }
+): Promise<Blob> {
   return new Promise((resolve, reject) => {
     const image = new Image();
-    image.crossOrigin = 'anonymous'; // Needed for CORS if image is external
+    image.crossOrigin = 'anonymous';
     image.src = imageSrc;
 
     image.onload = () => {
       const canvas = document.createElement('canvas');
-      const size = 300;
-      canvas.width = size;
-      canvas.height = size;
+
+      // If not specified, use cropped area's width/height
+      const targetWidth = outputSize?.width || pixelCrop.width;
+      const targetHeight = outputSize?.height || pixelCrop.height;
+
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
 
       const ctx = canvas.getContext('2d');
       if (!ctx) return reject('Canvas context error');
 
-      // Fill with transparent background (default for PNG)
-      ctx.clearRect(0, 0, size, size);
+      ctx.clearRect(0, 0, targetWidth, targetHeight);
 
       ctx.drawImage(
         image,
@@ -25,13 +31,13 @@ export default function getCroppedImg(imageSrc: string, pixelCrop: any): Promise
         pixelCrop.height,
         0,
         0,
-        size,
-        size
+        targetWidth,
+        targetHeight
       );
 
       canvas.toBlob(
         (blob) => (blob ? resolve(blob) : reject('Cropping failed.')),
-        'image/png', // preserve transparency
+        'image/png',
         1.0
       );
     };

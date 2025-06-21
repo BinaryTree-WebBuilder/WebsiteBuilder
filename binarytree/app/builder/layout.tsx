@@ -87,9 +87,9 @@ export default function BuilderLayout({ children }: { children: React.ReactNode 
         </>
       ) : (
         // Desktop Content
-        <div className="flex-1 flex flex-col overflow-auto">
+        <div className="flex-1 flex flex-col overflow-auto bg-gray-50">
           <Topbar toggleSidebar={toggleSidebar} isOverlaying={false} />
-          <main className="p-4 mt-20 bg-gray-50 min-h-screen">{children}</main>
+          <main className="p-4 mt-20">{children}</main>
         </div>
       )}
         <Toaster richColors position="bottom-right" />

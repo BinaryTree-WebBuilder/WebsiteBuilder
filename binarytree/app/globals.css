@@ -229,7 +229,11 @@
   }
 
   .bg-gradient-primary-1 {
-    background: #764ba2;
+    background: #764ba2 ;
+  }
+
+  .bg-gradient-primary-light {
+    background: #B5BFEB;
   }
 
   .bg-primary-op20{

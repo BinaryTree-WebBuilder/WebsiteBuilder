@@ -5,18 +5,20 @@ import { submitExperience, updateExperience, deleteExperience } from './action'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Pencil, Trash2 } from 'lucide-react'
+import { Pencil, Trash2, ChevronDown, ChevronUp } from 'lucide-react'
 import { ExperienceFormDialog } from '../../components/ExperienceFormDialog'
 import { ConfirmationDialog } from '../../components/ConfirmationDialog'
 import { useExperienceStore } from '../../stores/userExperienceStores'
 import { toast } from 'sonner'
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 export default function ExperienceFormPage() {
   const { entries, loaded, fetchExperience } = useExperienceStore()
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false)
   const [selectedEntry, setSelectedEntry] = useState<any | null>(null)
-  const [expandedDescriptions, setExpandedDescriptions] = useState<Record<number, boolean>>({})
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
   useEffect(() => {
     if (!loaded) fetchExperience()
@@ -70,11 +72,8 @@ export default function ExperienceFormPage() {
     }
   }
 
-  const toggleDescription = (index: number) => {
-    setExpandedDescriptions(prev => ({
-      ...prev,
-      [index]: !prev[index],
-    }))
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(prev => (prev === index ? null : index))
   }
 
   return (
@@ -87,79 +86,93 @@ export default function ExperienceFormPage() {
       </div>
 
       <div className="grid gap-6">
-        {entries.map((exp, idx) => {
-          const isExpanded = expandedDescriptions[idx] ?? false
-          const description = exp.job_description || ''
-          const preview = description.slice(0, 180)
+        {entries.map((exp, idx) => (
+          <Card key={idx} className="py-6 pl-10 pr-6 relative border-none shadow-md">
+            <div className="absolute top-0 left-0 bg-color-tertiary-1 text-white text-xs font-bold py-2 px-3 rounded-tl-lg rounded-br-lg z-10">
+              {idx + 1}
+            </div>
+            <CardContent className="p-0">
+              <div className="flex flex-col md:!flex-row sm:justify-between gap-4">
 
-          return (
-            <Card key={idx} className="p-6 relative">
-              <CardContent>
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-base font-bold">
+                {/* Left Section */}
+                <div className="w-full sm:w-3/4">
+                  <h3 className="text-lg font-bold">
                     {exp.company} — {exp.position}
                   </h3>
-                  <div className="flex gap-2">
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      onClick={() => openEditForm(exp)}
-                      className="text-gray-700 hover:text-blue-600"
-                    >
-                      <Pencil size={18} />
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      onClick={() => confirmDelete(exp)}
-                      className="text-gray-700 hover:text-red-600"
-                    >
-                      <Trash2 size={18} />
-                    </Button>
+                  <div className="text-sm mt-1">
+                    <p>
+                      <span className="font-semibold">Duration:</span>{' '}
+                      {exp.start_date} → {exp.currently_working ? 'Present' : exp.end_date}
+                    </p>
                   </div>
-                </div>
-
-                <div className="text-sm">
-                  <p className="font-semibold">
-                    {exp.start_date} → {exp.currently_working ? 'Present' : exp.end_date}
-                  </p>
 
                   {exp.technologies?.length > 0 && (
-                  <div className="mt-4">
-                    <p className="font-semibold mb-1">Technologies Used:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech: string, i: number) => (
-                        <Badge
-                          key={i}
-                          variant="outline"
-                          className="rounded-full bg-gray-100 text-gray-800 px-3 py-1 text-sm"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
+                    <div className="mt-3">
+                      <div className="flex flex-wrap gap-2">
+                        {exp.technologies.map((tech: string, i: number) => (
+                          <Badge
+                            key={i}
+                            variant="outline"
+                            className="rounded-full bg-gray-100 text-gray-800 px-3 text-xs"
+                          >
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                  <div className="mt-2">
-                    <span className="font-semibold">Job Description:</span>{' '}
-                    <p className="text-gray-700 mt-1 whitespace-pre-line">
-                      {isExpanded ? description : `${preview}${description.length > 180 ? '...' : ''}`}
-                    </p>
-                    {description.length > 180 && (
-                      <button
-                        className="text-sm text-blue-600 hover:underline mt-1"
-                        onClick={() => toggleDescription(idx)}
-                      >
-                        {isExpanded ? 'Show Less' : 'Show More'}
-                      </button>
-                    )}
-                  </div>
+                <AnimatePresence initial={false}>
+                  {expandedIndex === idx && (
+                    <motion.div
+                      key="descriptions"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden mt-3"
+                    >
+                      <p className="font-semibold underline">Job Description</p>
+                      <p className="text-sm text-gray-800 whitespace-pre-line mt-1">
+                        {exp.job_description}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+
                 </div>
-              </CardContent>
-            </Card>
-          )
-        })}
+
+                {/* Right Section */}
+                <div className="sm:w-1/4 flex sm:flex-col items-end sm:items-end justify-between sm:justify-start gap-2">
+                  <div className="flex gap-1">
+                    <Button variant="ghost" size="icon" onClick={() => openEditForm(exp)}>
+                      <Pencil className="w-5 h-5 text-blue-600" />
+                    </Button>
+                    <Button variant="ghost" size="icon" onClick={() => confirmDelete(exp)}>
+                      <Trash2 className="w-5 h-5 text-red-500" />
+                    </Button>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    className="text-blue-600 text-xs hover:underline"
+                    onClick={() => toggleExpand(idx)}
+                  >
+                    {expandedIndex === idx ? (
+                      <>
+                        Hide Details <ChevronUp size={16} className="ml-1" />
+                      </>
+                    ) : (
+                      <>
+                        Show More Details <ChevronDown size={16} className="ml-1" />
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
 
       <ExperienceFormDialog

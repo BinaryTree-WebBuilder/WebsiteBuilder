@@ -80,12 +80,12 @@ export default function PersonalInfoPage() {
   };
 
   return (
-    <div className="max-w-5xl w-full mx-auto px-4 py-6">
+    <div className="max-w-5xl mx-auto px-4 py-6">
 
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h2 className="text-2xl font-bold">🪪 Personal Info</h2>
+            <h2 className="text-2xl font-bold">👤 Personal Info</h2>
           </div>
           <div className="invisible bg-gradient-primary-2 px-8 py-4 h-fit">
             Placeholder
@@ -94,7 +94,7 @@ export default function PersonalInfoPage() {
       </div>
 
 
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md border shadow-sm">
+      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-8 shadow-lg bg-white rounded-3xl">
         <div className="grid grid-cols-1 md:!grid-cols-2 gap-4">
 
           {/* Profile Image */}
@@ -102,7 +102,7 @@ export default function PersonalInfoPage() {
             <label className="text-md font-bold">Profile Image</label>
             <div className="text-center">
               {profileImagePreview ? (
-                <img src={profileImagePreview} alt="Profile" className="w-32 h-32 mx-auto rounded-full mb-2" />
+                <img src={profileImagePreview} alt="Profile" className="border w-32 h-32 mx-auto rounded-full mb-2" />
               ) : (
                 <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto flex items-center justify-center mb-2">
                   <User className="w-8 h-8 text-gray-400" />
@@ -124,32 +124,58 @@ export default function PersonalInfoPage() {
             <input name="email" className="text-md w-full border p-3 rounded" type="email" value={formData.email} onChange={handleChange} required />
           </div>
 
-          <div>
-            <label className="text-md font-bold" htmlFor="phone">Mobile Number</label>
-            <input name="phone" className="text-md w-full border p-3 rounded" value={formData.phone} onChange={handleChange} />
-            <label className="inline-flex items-center mt-2 text-sm">
+          <div className="mb-6 relative">
+            <label htmlFor="phone" className="text-md font-bold block mb-1"> Mobile Number <span className='text-gray-600 text-xs'>(Toggle for Visibility)</span></label>
+            <div className="relative">
               <input
-                type="checkbox"
-                className="mr-2"
-                checked={formData.show_phone}
-                onChange={(e) => setFormData((prev) => ({ ...prev, show_phone: e.target.checked }))}
+                name="phone"
+                id="phone"
+                placeholder="+65 9123 4567"
+                className="text-md w-full border p-3 pr-16 rounded"
+                value={formData.phone}
+                onChange={handleChange}
               />
-              Show mobile number on portfolio
-            </label>
+              <label className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={formData.show_phone}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, show_phone: e.target.checked }))
+                  }
+                />
+                <div className="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-600 relative">
+                  <div className="absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                </div>
+              </label>
+            </div>
           </div>
 
-          <div>
-            <label className="text-md font-bold" htmlFor="location">Location</label>
-            <input name="location" className="text-md w-full border p-3 rounded" value={formData.location} onChange={handleChange} />
-            <label className="inline-flex items-center mt-2 text-sm">
+          <div className="mb-6 relative">
+            <label htmlFor="location" className="text-md font-bold block mb-1"> Location <span className='text-gray-600 text-xs'>(Toggle for Visibility)</span></label>
+            <div className="relative">
               <input
-                type="checkbox"
-                className="mr-2"
-                checked={formData.show_location}
-                onChange={(e) => setFormData((prev) => ({ ...prev, show_location: e.target.checked }))}
+                name="location"
+                id="location"
+                placeholder="Singapore, SG"
+                className="text-md w-full border p-3 pr-16 rounded"
+                value={formData.location}
+                onChange={handleChange}
               />
-              Show location on portfolio
-            </label>
+              <label className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={formData.show_location}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, show_location: e.target.checked }))
+                  }
+                />
+                <div className="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-600 relative">
+                  <div className="absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                </div>
+              </label>
+            </div>
           </div>
 
           <div>

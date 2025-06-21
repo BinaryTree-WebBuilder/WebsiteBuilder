@@ -136,6 +136,10 @@ const Features = () => {
             ))}
           </div>
 
+          <div className="text-center text-2xl md:text-6xl">
+            <h2 className="text-gradient font-semibold pb-12">Many more coming soon ...</h2>
+          </div>
+
           {/* CTA Section */}
           <div className="text-center bg-gradient-primary rounded-2xl p-12 text-white animate-fade-in-up">
             <h3 className="text-3xl font-bold mb-4">

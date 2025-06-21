@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { submitEducation, updateEducation, deleteEducation } from './action';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Pencil, Trash2 } from 'lucide-react';
+import { Pencil, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
 import { EducationFormDialog } from '../../components/EducationFormDialog';
 import { ConfirmationDialog } from '../../components/ConfirmationDialog';
 import { useEducationStore } from '../../stores/userEducationStores';
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { toast } from 'sonner';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 export default function EducationFormPage() {
@@ -20,9 +21,8 @@ export default function EducationFormPage() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const toggleExpand = (index: number) => {
-  setExpandedIndex(prev => (prev === index ? null : index));
+    setExpandedIndex(prev => (prev === index ? null : index));
   };
-
 
   useEffect(() => {
     if (!loaded) fetchEducation();
@@ -45,15 +45,19 @@ export default function EducationFormPage() {
 
   const handleSave = async (data: any) => {
     setFormState('loading');
+    toast.loading('Saving education...', { id: 'edu-toast' });
+
     const result = selectedEntry
       ? await updateEducation(selectedEntry.id, data)
       : await submitEducation([data]);
 
     if (result.success) {
-      setFormState('success');
+      toast.success('✅ Education saved successfully!', { id: 'edu-toast' });
       setIsFormOpen(false);
       await fetchEducation();
+      setFormState('success');
     } else {
+      toast.error('❌ Failed to save education. Try again.', { id: 'edu-toast' });
       setFormState('error');
     }
 
@@ -64,10 +68,11 @@ export default function EducationFormPage() {
     if (!selectedEntry?.id) return;
     const result = await deleteEducation(selectedEntry.id);
     if (result.success) {
+      toast.success('🗑️ Education deleted successfully!');
       setIsDeleteConfirmOpen(false);
       await fetchEducation();
     } else {
-      alert('Failed to delete entry.');
+      toast.error('❌ Failed to delete education. Try again.');
     }
   };
 
@@ -80,77 +85,80 @@ export default function EducationFormPage() {
         </Button>
       </div>
 
-      {formState === 'success' && <p className="text-green-600 mb-4">✅ Education saved successfully!</p>}
-      {formState === 'error' && <p className="text-red-600 mb-4">❌ Failed to save education. Try again.</p>}
-      {formState === 'loading' && <p className="text-blue-600 mb-4">⏳ Saving...</p>}
-
       <div className="grid gap-6">
         {entries.map((edu, idx) => (
-            <Card key={idx} className="py-6 pl-10 pr-6 relative">
-              <div className="absolute top-0 left-0 bg-color-tertiary-1 text-white text-xs font-bold py-2 px-3 rounded-tl-lg rounded-br-lg z-10">
-                {idx + 1}
-              </div>
-              <CardContent className="p-0">
-                <div className="flex flex-col sm:!flex-row sm:!justify-between gap-4">
-                  
-                  {/* Left Section: Education Info */}
-                  <div className="w-full sm:!w-3/4">
-                    <h3 className="text-base font-bold">
-                      {edu.institution_name} – {edu.degree} | {edu.field_of_study}
-                    </h3>
-                    <div className="text-sm mt-1">
-                      <p>
-                        <span className="font-semibold text-sm">From:</span> {edu.start_date}{' '}
-                        <span className="font-semibold">to</span> {edu.graduation_date}
-                      </p>
-                      <p>
-                        <span className="font-semibold text-sm">Location:</span> {edu.institution_location}
-                      </p>
-                    </div>
-
-                    {expandedIndex === idx && edu.achievements?.length > 0 && (
-                      <div className="mt-3">
-                        <p className="font-semibold underline">Achievements</p>
-                        <ul className="list-disc pl-5 mt-1 text-sm text-gray-800">
-                          {edu.achievements.map((a: string, i: number) => (
-                            <li key={i}>{a}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+          <Card key={idx} className="py-6 pl-10 pr-6 relative border-none shadow-md">
+            <div className="absolute top-0 left-0 bg-color-tertiary-1 text-white text-xs font-bold py-2 px-3 rounded-tl-lg rounded-br-lg z-10">
+              {idx + 1}
+            </div>
+            <CardContent className="p-0">
+              <div className="flex flex-col md:!flex-row sm:justify-between gap-4">
+                
+                {/* Left Section: Education Info */}
+                <div className="w-full sm:w-3/4">
+                  <h3 className="text-lg font-bold">
+                    {edu.institution_name} – {edu.degree} | {edu.field_of_study}
+                  </h3>
+                  <div className="text-sm mt-1">
+                    <p>
+                      <span className="font-semibold text-sm">From:</span> {edu.start_date}{' '}
+                      <span className="font-semibold">to</span> {edu.graduation_date}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-sm">Location:</span> {edu.institution_location}
+                    </p>
                   </div>
 
-                  {/* Right Section: Actions */}
-                  <div className="sm:!w-1/4 flex sm:flex-col items-end sm:items-end justify-between sm:justify-start gap-2">
-                    
-                    <div className="flex gap-1">
-                      <Button variant="ghost" size="icon" onClick={() => openEditForm(edu)}>
-                        <Pencil className="w-5 h-5 text-blue-600" />
-                      </Button>
-                      <Button variant="ghost" size="icon" onClick={() => confirmDelete(edu)}>
-                        <Trash2 className="w-5 h-5 text-red-500" />
-                      </Button>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      className="text-blue-600 text-xs hover:underline"
-                      onClick={() => toggleExpand(idx)}
-                    >
-                      {expandedIndex === idx ? (
-                        <>
-                          Hide Details <ChevronUp size={16} className="ml-1" />
-                        </>
-                      ) : (
-                        <>
-                          Show More Details <ChevronDown size={16} className="ml-1" />
-                        </>
-                      )}
+              <AnimatePresence initial={false}>
+                {expandedIndex === idx && edu.achievements?.length > 0 && (
+                  <motion.div
+                    key="achievements"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="overflow-hidden mt-3"
+                  >
+                    <p className="font-semibold underline">Achievements</p>
+                    <ul className="list-disc pl-5 mt-1 text-sm text-gray-800">
+                      {edu.achievements.map((a: string, i: number) => (
+                        <li key={i}>{a}</li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+                </div>
+
+                {/* Right Section: Actions */}
+                <div className="sm:w-1/4 flex sm:flex-col items-end justify-between gap-2">
+                  <div className="flex gap-1">
+                    <Button variant="ghost" size="icon" onClick={() => openEditForm(edu)}>
+                      <Pencil className="w-5 h-5 text-blue-600" />
+                    </Button>
+                    <Button variant="ghost" size="icon" onClick={() => confirmDelete(edu)}>
+                      <Trash2 className="w-5 h-5 text-red-500" />
                     </Button>
                   </div>
+                  <Button
+                    variant="ghost"
+                    className="text-blue-600 text-xs hover:underline"
+                    onClick={() => toggleExpand(idx)}
+                  >
+                    {expandedIndex === idx ? (
+                      <>
+                        Hide Details <ChevronUp size={16} className="ml-1" />
+                      </>
+                    ) : (
+                      <>
+                        Show More Details <ChevronDown size={16} className="ml-1" />
+                      </>
+                    )}
+                  </Button>
                 </div>
-              </CardContent>
-            </Card>
-
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 

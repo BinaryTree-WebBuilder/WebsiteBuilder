@@ -1,158 +1,186 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
-import { Pencil, Trash2 } from 'lucide-react'
-import Link from 'next/link';
+import { Pencil, Trash2, Github, Link as LinkIcon, Play } from 'lucide-react'
+import Link from 'next/link'
+import { useProjectStore } from '../../stores/useProjectStores'
+import { deleteProject } from './action' // your server action to delete
+import { toast } from 'sonner'
+import { Badge } from '@/components/ui/badge'
+import { ConfirmationDialog } from '../../components/ConfirmationDialog'
 
-interface Project {
-  id: string;
-  project_name: string;
-  project_description: string;
-  project_image_url: string;
-  technologies_used: string[];
-  video_url?: string;
-  github_repo_url?: string;
-  website_url?: string;
-  project_details: {
-    header: string;
-    description: string;
-  }[];
-}
-
-
-const dummyProjects: Project[] = [
-  {
-    id: '1',
-    project_name: 'AI Chat Assistant',
-    project_description: 'A smart assistant powered by GPT models.',
-    project_image_url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&h=200&fit=crop&crop=center',
-    technologies_used: ['Next.js', 'OpenAI API', 'TailwindCSS'],
-    github_repo_url: 'https://github.com/example/chat-assistant',
-    website_url: 'https://example.com/chat',
-    video_url: '',
-    project_details: [
-      { header: 'Problem', description: 'Users need fast AI help' },
-      { header: 'Solution', description: 'Built with GPT API' },
-    ],
-  },
-
-    {
-    id: '2',
-    project_name: 'AI Chat Assistant',
-    project_description: 'A smart assistant powered by GPT models A smart assistant powered by GPT models. A smart assistant powered by GPT models.',
-    project_image_url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&h=200&fit=crop&crop=center',
-    technologies_used: ['Next.js', 'OpenAI API', 'TailwindCSS'],
-    github_repo_url: 'https://github.com/example/chat-assistant',
-    website_url: 'https://example.com/chat',
-    video_url: '',
-    project_details: [
-      { header: 'Problem', description: 'Users need fast AI help' },
-      { header: 'Solution', description: 'Built with GPT API' },
-    ],
-  },
-  // Add more projects
-]
 
 export default function ProjectPage() {
-  const [projects, setProjects] = useState<Project[]>([])
+  const { entries, loaded, fetchProject } = useProjectStore()
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
+  const [selectedEntry, setSelectedEntry] = useState<any | null>(null)
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false)
+
 
   useEffect(() => {
-    // Replace with your fetch logic
-    setProjects(dummyProjects)
-  }, [])
+    if (!loaded) {
+      fetchProject().catch(() => setError('Failed to load projects'))
+    }
+  }, [loaded, fetchProject])
 
-  const handleEdit = (project: Project) => {
-    console.log('Edit:', project)
-    // Open modal or navigate to edit
+  const confirmDelete = (entry: any) => {
+    setSelectedEntry(entry)
+    setIsDeleteConfirmOpen(true)
   }
 
-  const handleDelete = (projectId: string) => {
-    console.log('Delete ID:', projectId)
-    // Confirmation + delete logic
+
+  const handleDelete = async () => {
+        if (!selectedEntry?.id) return
+
+        const result = await deleteProject(selectedEntry.id)
+        if (result.success) {
+          toast.success('🗑️ Project deleted successfully!', { id: 'project-toast' })
+          setIsDeleteConfirmOpen(false)
+          await fetchProject()
+        } else {
+          toast.error('❌ Failed to delete project. Try again.', { id: 'project-toast' })
+        }
   }
+
+  if (!loaded) return <p className="text-center mt-10">Loading projects...</p>
+  if (error) return <p className="text-center mt-10 text-red-500">{error}</p>
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <h2 className="text-2xl font-bold">💻 Projects</h2>
-          </div>
-          <Link href="project/addproject">
-              <Button className="bg-gradient-primary-2 p-6">
-                + Add Projects
-              </Button>
-          </Link>
-        </div>
+      <div className="mb-6 flex items-center justify-between">
+        <h2 className="text-2xl font-bold">💻 Projects</h2>
+        <Link href="project/addproject">
+          <Button className="bg-gradient-primary-2 p-6">+ Add Projects</Button>
+        </Link>
       </div>
 
       <div className="space-y-6">
-        {projects.map((project, idx) => (
-            <Card key={project.id} className="relative flex lg:!flex-row overflow-clip gap-4 px-10 py-4 md:!p-0">
+        {entries.map((project, idx) => (
+          <Card
+            key={idx}
+            className="relative flex md:!flex-row overflow-clip gap-4 px-10 py-4 md:!p-0 border-none shadow-md"
+          >
             <div className="absolute top-0 left-0 bg-color-tertiary-1 text-white text-xs font-bold py-2 px-3 rounded-tl-lg rounded-br-lg z-10">
               {idx + 1}
             </div>
+
             {/* Image Section */}
-            <div className="w-1/5 hidden lg:!block">
-                <img
-                src={project.project_image_url}
-                alt={project.project_name}
+            <div className="w-1/5 hidden md:!block">
+              <img
+                src={project.image_url}
+                alt={project.title}
                 className="object-cover w-full h-full"
-                />
+              />
             </div>
 
             {/* Content Section */}
             <div className="flex-1 flex flex-col justify-between p-0 md:p-4">
-                <div className='flex flex-col justify-between h-full'>
-                    <div>
-                        <h2 className="font-bold text-lg">{project.project_name}</h2>
-                        {/* <p className="text-gray-600 leading-snug truncate-3-lines text-sm">
-                            {project.project_description}
-                        </p> */}
+              <div className="flex flex-col justify-between h-full">
+                <div>
+                  <h2 className="font-bold text-lg">{project.title}</h2>
+
+                  <div className="flex gap-4 mt-2">
+                    {project.github_repo_url && (
+                      <a
+                        href={project.github_repo_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-black transition"
+                        title="GitHub Repository"
+                      >
+                        <Github className="w-5 h-5" />
+                      </a>
+                    )}
+                    {project.website_url && (
+                      <Link
+                        href={project.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-black transition"
+                        title="Live Website"
+                      >
+                        <LinkIcon className="w-5 h-5" />
+                      </Link>
+                    )}
+                    {project.video_url && (
+                      <Link
+                        href={project.video_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-black transition"
+                        title="Demo Video"
+                      >
+                        <Play className="w-5 h-5" />
+                      </Link>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-3 flex gap-2 flex-wrap">
+                  {project.technologies?.length > 0 && (
+                    <div className="mt-3">
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech: string, i: number) => (
+                          <Badge
+                            key={i}
+                            variant="outline"
+                            className="rounded-full bg-gray-100 text-gray-800 px-3 py-1 text-xs"
+                          >
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
-
-                {/* Tech Stack */}
-                <div className="mt-2 flex gap-2 truncate">
-                    {project.technologies_used.map((tech, idx) => (
-                    <span
-                        key={idx}
-                        className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-md"
-                    >
-                        {tech}
-                    </span>
-                    ))}
+                  )}
                 </div>
-                </div>
+              </div>
             </div>
-
-  
 
             {/* Actions Section */}
             <div className="w-full md:!w-1/5 flex md:flex-col items-end md:items-end justify-between md:justify-start gap-2 md:p-4">
-                <div className="flex gap-1">
-                <Button variant="ghost" size="icon" className='cursor-pointer' onClick={() => handleEdit(project)}>
-                    <Pencil className="w-5 h-5 text-blue-600" />
+              <div className="flex gap-1">
+                <Link href="/builder/sections/project/edit">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="cursor-pointer"
+                    aria-label="Edit project"
+                  >
+                  <Pencil className="w-5 h-5 text-blue-600" />
                 </Button>
-                <Button variant="ghost" size="icon" className='cursor-pointer' onClick={() => handleDelete(project.id)}>
-                    <Trash2 className="w-5 h-5 text-red-500" />
-                </Button>
-
-                </div>
+                </Link>
                 <Button
+                  variant="ghost"
+                  size="icon"
+                  className="cursor-pointer"
+                  onClick={() => confirmDelete(project)} // ✅ Triggers modal
+                  aria-label="Delete project"
+                >
+                  <Trash2 className="w-5 h-5 text-red-500" />
+                </Button>
+              </div>
+              <Button
                 variant="secondary"
                 className="text-xs cursor-pointer p-4"
-                onClick={() => router.push(`/project/${project.id}`)}
-                >
+                onClick={() => router.push(`/project/${encodeURIComponent(project.project_name)}`)}
+              >
                 Details →
-                </Button>
+              </Button>
             </div>
-            </Card>
+          </Card>
         ))}
       </div>
+
+            <ConfirmationDialog
+              open={isDeleteConfirmOpen}
+              onCancel={() => setIsDeleteConfirmOpen(false)}
+              onConfirm={handleDelete}
+              message={`Are you sure you want to delete "${selectedEntry?.title}"?\nYou can't undo this action.`}
+            />
     </div>
   )
 }
