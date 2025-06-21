@@ -76,14 +76,14 @@ export default function ProjectPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-6">
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-2xl font-bold">💻 Projects</h2>
           </div>
           <Link href="project/addproject">
-              <Button className="bg-gradient-primary-2 px-8 py-4 h-fit">
+              <Button className="bg-gradient-primary-2 p-6">
                 + Add Projects
               </Button>
           </Link>
@@ -91,10 +91,13 @@ export default function ProjectPage() {
       </div>
 
       <div className="space-y-6">
-        {projects.map((project) => (
-            <Card key={project.id} className="flex lg:!flex-row overflow-clip gap-4 p-0">
+        {projects.map((project, idx) => (
+            <Card key={project.id} className="relative flex lg:!flex-row overflow-clip gap-4 px-10 py-4 md:!p-0">
+            <div className="absolute top-0 left-0 bg-color-tertiary-1 text-white text-xs font-bold py-2 px-3 rounded-tl-lg rounded-br-lg z-10">
+              {idx + 1}
+            </div>
             {/* Image Section */}
-            <div className="w-1/6 hidden lg:!block">
+            <div className="w-1/5 hidden lg:!block">
                 <img
                 src={project.project_image_url}
                 alt={project.project_name}
@@ -103,13 +106,13 @@ export default function ProjectPage() {
             </div>
 
             {/* Content Section */}
-            <div className="flex-1 flex flex-col justify-between p-4">
+            <div className="flex-1 flex flex-col justify-between p-0 md:p-4">
                 <div className='flex flex-col justify-between h-full'>
                     <div>
-                        <h2 className="font-bold">{project.project_name}</h2>
-                        <p className="text-gray-600 leading-snug truncate-3-lines text-sm">
+                        <h2 className="font-bold text-lg">{project.project_name}</h2>
+                        {/* <p className="text-gray-600 leading-snug truncate-3-lines text-sm">
                             {project.project_description}
-                        </p>
+                        </p> */}
                     </div>
 
                 {/* Tech Stack */}
@@ -126,19 +129,22 @@ export default function ProjectPage() {
                 </div>
             </div>
 
+  
+
             {/* Actions Section */}
-            <div className="flex flex-col justify-between items-end lg:w-1/6 gap-2 px-5 py-4">
-                <div className="flex gap-2">
+            <div className="w-full md:!w-1/5 flex md:flex-col items-end md:items-end justify-between md:justify-start gap-2 md:p-4">
+                <div className="flex gap-1">
                 <Button variant="ghost" size="icon" className='cursor-pointer' onClick={() => handleEdit(project)}>
                     <Pencil className="w-5 h-5 text-blue-600" />
                 </Button>
                 <Button variant="ghost" size="icon" className='cursor-pointer' onClick={() => handleDelete(project.id)}>
                     <Trash2 className="w-5 h-5 text-red-500" />
                 </Button>
+
                 </div>
                 <Button
                 variant="secondary"
-                className="w-full text-sm cursor-pointer p-0"
+                className="text-xs cursor-pointer p-4"
                 onClick={() => router.push(`/project/${project.id}`)}
                 >
                 Details →

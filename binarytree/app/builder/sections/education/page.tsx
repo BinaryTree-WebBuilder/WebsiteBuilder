@@ -8,6 +8,8 @@ import { Pencil, Trash2 } from 'lucide-react';
 import { EducationFormDialog } from '../../components/EducationFormDialog';
 import { ConfirmationDialog } from '../../components/ConfirmationDialog';
 import { useEducationStore } from '../../stores/userEducationStores';
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 
 export default function EducationFormPage() {
   const { entries, loaded, fetchEducation } = useEducationStore();
@@ -15,6 +17,12 @@ export default function EducationFormPage() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState<any | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const toggleExpand = (index: number) => {
+  setExpandedIndex(prev => (prev === index ? null : index));
+  };
+
 
   useEffect(() => {
     if (!loaded) fetchEducation();
@@ -64,10 +72,10 @@ export default function EducationFormPage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold">📘 Education</h2>
-        <Button className="bg-gradient-primary-2 px-6 py-3" onClick={openNewForm}>
+        <Button className="bg-gradient-primary-2 p-6" onClick={openNewForm}>
           + Add Education
         </Button>
       </div>
@@ -78,51 +86,71 @@ export default function EducationFormPage() {
 
       <div className="grid gap-6">
         {entries.map((edu, idx) => (
-          <Card key={idx} className="p-6 relative">
-            <CardContent className="space-y-2">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-xl font-bold">{edu.institution_name}</h3>
-                  <p className="text-md text-gray-600">{edu.institution_location}</p>
-                </div>
-                <div className="flex gap-2">
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => openEditForm(edu)}
-                    className="text-gray-700 hover:text-blue-600"
-                  >
-                    <Pencil size={18} />
-                  </Button>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => confirmDelete(edu)}
-                    className="text-gray-700 hover:text-red-600"
-                  >
-                    <Trash2 size={18} />
-                  </Button>
-                </div>
+            <Card key={idx} className="py-6 pl-10 pr-6 relative">
+              <div className="absolute top-0 left-0 bg-color-tertiary-1 text-white text-xs font-bold py-2 px-3 rounded-tl-lg rounded-br-lg z-10">
+                {idx + 1}
               </div>
+              <CardContent className="p-0">
+                <div className="flex flex-col sm:!flex-row sm:!justify-between gap-4">
+                  
+                  {/* Left Section: Education Info */}
+                  <div className="w-full sm:!w-3/4">
+                    <h3 className="text-base font-bold">
+                      {edu.institution_name} – {edu.degree} | {edu.field_of_study}
+                    </h3>
+                    <div className="text-sm mt-1">
+                      <p>
+                        <span className="font-semibold text-sm">From:</span> {edu.start_date}{' '}
+                        <span className="font-semibold">to</span> {edu.graduation_date}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-sm">Location:</span> {edu.institution_location}
+                      </p>
+                    </div>
 
-              <div className="text-md">
-                <p><strong>Degree:</strong> {edu.degree} in {edu.field_of_study}</p>
-                <p><strong>Start Date:</strong> {edu.start_date}</p>
-                <p><strong>Graduation Date:</strong> {edu.graduation_date}</p>
-              </div>
+                    {expandedIndex === idx && edu.achievements?.length > 0 && (
+                      <div className="mt-3">
+                        <p className="font-semibold underline">Achievements</p>
+                        <ul className="list-disc pl-5 mt-1 text-sm text-gray-800">
+                          {edu.achievements.map((a: string, i: number) => (
+                            <li key={i}>{a}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
 
-              {edu.achievements?.length > 0 && (
-                <div>
-                  <p className="font-semibold underline">Achievements</p>
-                  <ul className="list-disc pl-5 mt-1 text-sm text-gray-800">
-                    {edu.achievements.map((a: string, i: number) => (
-                      <li key={i}>{a}</li>
-                    ))}
-                  </ul>
+                  {/* Right Section: Actions */}
+                  <div className="sm:!w-1/4 flex sm:flex-col items-end sm:items-end justify-between sm:justify-start gap-2">
+                    
+                    <div className="flex gap-1">
+                      <Button variant="ghost" size="icon" onClick={() => openEditForm(edu)}>
+                        <Pencil className="w-5 h-5 text-blue-600" />
+                      </Button>
+                      <Button variant="ghost" size="icon" onClick={() => confirmDelete(edu)}>
+                        <Trash2 className="w-5 h-5 text-red-500" />
+                      </Button>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      className="text-blue-600 text-xs hover:underline"
+                      onClick={() => toggleExpand(idx)}
+                    >
+                      {expandedIndex === idx ? (
+                        <>
+                          Hide Details <ChevronUp size={16} className="ml-1" />
+                        </>
+                      ) : (
+                        <>
+                          Show More Details <ChevronDown size={16} className="ml-1" />
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </div>
-              )}
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
         ))}
       </div>
 

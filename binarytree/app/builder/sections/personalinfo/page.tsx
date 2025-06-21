@@ -43,7 +43,7 @@ export default function PersonalInfoPage() {
       });
       if (personalInfo.profile_image_url) setProfileImagePreview(personalInfo.profile_image_url);
     }
-  }, [personalInfo]);
+  }, [personalInfo, fetchInfo]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -80,7 +80,7 @@ export default function PersonalInfoPage() {
   };
 
   return (
-    <div className="max-w-6xl w-full mx-auto px-4 py-6">
+    <div className="max-w-5xl w-full mx-auto px-4 py-6">
 
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
