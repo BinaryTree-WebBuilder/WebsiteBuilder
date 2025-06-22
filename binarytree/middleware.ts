@@ -7,5 +7,5 @@ export async function middleware(req: NextRequest) {
   return await updateSession(req)
 }
 export const config = {
-  matcher: ['/builder/:path*'], // adjust for protected routes
+  matcher: ['/main/:path*','/auth/:path*' , '/builder/:path*'], // now runs on both homepage and builder routes
 }

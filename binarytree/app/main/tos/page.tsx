@@ -1,4 +1,3 @@
-
 export default function TOSPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -6,7 +5,7 @@ export default function TOSPage() {
       <main className="pt-30 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-black text-foreground mb-4">
+            <h1 className="text-4xl font-black main-text-color mb-4">
               TERMS OF SERVICE
             </h1>
             <p className="text-muted-foreground">
@@ -16,7 +15,7 @@ export default function TOSPage() {
           
           <div className="prose prose-gray max-w-none space-y-8">
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">1. Acceptance of Terms</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">1. Acceptance of Terms</h2>
               <p className="text-muted-foreground leading-relaxed">
                 By accessing and using BinaryTree&apos;s services, you agree to be bound by these Terms of Service 
                 and all applicable laws and regulations. If you do not agree with any of these terms, 
@@ -25,7 +24,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">2. Use License</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">2. Use License</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Permission is granted to temporarily use BinaryTree&apos;s services for personal, 
                 non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
@@ -39,7 +38,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">3. User Accounts</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">3. User Accounts</h2>
               <p className="text-muted-foreground leading-relaxed">
                 When you create an account with us, you must provide information that is accurate, 
                 complete, and current at all times. You are responsible for safeguarding the password 
@@ -48,7 +47,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">4. Privacy Policy</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">4. Privacy Policy</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Your privacy is important to us. Our Privacy Policy explains how we collect, 
                 use, and protect your information when you use our services.
@@ -56,7 +55,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">5. Disclaimer</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">5. Disclaimer</h2>
               <p className="text-muted-foreground leading-relaxed">
                 The materials on BinaryTree&apos;s website are provided on an &apos;as is&apos; basis. 
                 BinaryTree makes no warranties, expressed or implied, and hereby disclaims and 
@@ -67,7 +66,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">6. Limitations</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">6. Limitations</h2>
               <p className="text-muted-foreground leading-relaxed">
                 In no event shall BinaryTree or its suppliers be liable for any damages 
                 (including, without limitation, damages for loss of data or profit, or due to 
@@ -78,7 +77,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">7. Revisions</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">7. Revisions</h2>
               <p className="text-muted-foreground leading-relaxed">
                 BinaryTree may revise these terms of service at any time without notice. 
                 By using this website, you are agreeing to be bound by the then current version 
@@ -87,7 +86,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">8. Contact Information</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">8. Contact Information</h2>
               <p className="text-muted-foreground leading-relaxed">
                 If you have any questions about these Terms of Service, please contact us at:
               </p>

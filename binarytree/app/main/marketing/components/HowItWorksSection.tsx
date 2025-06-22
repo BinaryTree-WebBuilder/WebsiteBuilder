@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 
 export const HowItWorksSection = () => {
@@ -27,7 +26,7 @@ export const HowItWorksSection = () => {
     <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold main-text-color mb-4">
             Get Started in <span className="text-gradient">3 Simple Steps</span> 
           </h2>
           <p className="text-base lg:text-xl text-gray-600">
@@ -49,7 +48,7 @@ export const HowItWorksSection = () => {
               <CardContent className="p-4 lg:p-8 text-center">
                 <div className="text-5xl mb-4">{step.icon}</div>
                 <div className="text-sm font-bold text-blue-600 mb-2">STEP {step.number}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold main-text-color mb-4">
                   {step.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">

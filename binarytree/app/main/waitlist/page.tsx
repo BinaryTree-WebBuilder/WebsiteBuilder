@@ -69,13 +69,13 @@ export default function WaitlistPage() {
 
       <div className="max-w-2xl w-full">
         <Card className="shadow-lg animate-fade-in-up border border-gray-200">
-          <CardContent className="py-6 px-8 text-center">
+          <CardContent className="py-0 px-18 text-center">
             <img
               src="/binarytree-logo.png"
               alt="BinaryTree Logo"
               className="h-10 mb-6 object-contain mx-auto"
             />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 main-text-color">
               Join the <span className="text-gradient">Waitlist</span>
             </h1>
             <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">
@@ -106,7 +106,7 @@ export default function WaitlistPage() {
               No spam. We’ll only email you about early access.
             </p>
 
-            <div className="mt-10 text-center flex flex-col items-center">
+            <div className="mt-4 text-center flex flex-col items-center">
               <p className="text-md text-gray-600 mb-2 font-medium">Follow us on Instagram for sneak peeks:</p>
               <a
                 href="https://instagram.com/binarytree.me"

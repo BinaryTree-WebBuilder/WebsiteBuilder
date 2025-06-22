@@ -19,7 +19,7 @@ export default function PortfolioPage() {
               alt="BinaryTree Logo"
               className="h-10 mb-6 object-contain mx-auto"
             />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 main-text-color">
               Coming <span className="text-gradient">Soon!</span>
             </h1>
             <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">

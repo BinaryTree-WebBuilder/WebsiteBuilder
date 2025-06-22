@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Check, PanelsTopLeft, Github, FileText } from "lucide-react";
 
@@ -38,10 +37,10 @@ export const SolutionSection = () => {
     <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-3xl lg:text-4xl  font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl  font-bold mb-4">
             <span className="text-gradient">Binarytree</span>: Your Professional Edge, Built in Minutes
           </h2>
-          <p className="text-base lg:text-xl  text-gray-600 max-w-8xl mx-auto">
+          <p className="text-base lg:text-xl  max-w-8xl mx-auto">
           Turn your projects into job offers. Build a powerful online portfolio designed for recruiters, in minutes.
           </p>
         </div>
@@ -60,7 +59,7 @@ export const SolutionSection = () => {
                   </div>
                   <div className="flex-1">
                     <div className="mb-3">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                      <h3 className="text-xl font-semibold main-text-color mb-1">
                         {feature.title}
                       </h3>
                       <span className="text-sm font-medium text-blue-600">

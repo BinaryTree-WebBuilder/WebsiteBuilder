@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body, html, label {
+ color: #131f60;
+}
+

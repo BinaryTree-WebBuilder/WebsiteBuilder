@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -81,11 +80,11 @@ const Features = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16 animate-fade-in-up">
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               Features Built for
               <span className="text-gradient"> Developers</span>
             </h1>
-            <p className="lg:text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="lg:text-xl max-w-3xl mx-auto">
               Everything you need to create a professional portfolio that showcases your skills and gets you hired. 
               Built specifically for the tech community.
             </p>
@@ -122,7 +121,7 @@ const Features = () => {
                     }`} />
                   </div>
                   <h3 className={`text-xl font-semibold mb-3 ${
-                    feature.comingSoon ? 'text-gray-600' : 'text-gray-900'
+                    feature.comingSoon ? 'text-gray-600' : 'main-text-color'
                   }`}>
                     {feature.title}
                   </h3>
@@ -137,7 +136,7 @@ const Features = () => {
           </div>
 
           <div className="text-center text-2xl md:text-6xl">
-            <h2 className="text-gradient font-semibold pb-12">Many more coming soon ...</h2>
+            <h2 className="font-semibold pb-12">Many more coming soon ...</h2>
           </div>
 
           {/* CTA Section */}

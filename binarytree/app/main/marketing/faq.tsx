@@ -1,4 +1,3 @@
-
 import {
   Accordion,
   AccordionContent,
@@ -47,10 +46,10 @@ const FAQ = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16 animate-fade-in-up">
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               Frequently Asked <span className="text-gradient"> Questions</span>
             </h1>
-            <p className="lg:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="lg:text-xl max-w-2xl mx-auto">
               Got questions? We&apos;ve got answers.
             </p>
           </div>
@@ -64,7 +63,7 @@ const FAQ = () => {
                   value={`item-${index}`}
                   className="border border-gray-200 rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <AccordionTrigger className="text-lg cursor-pointer text-left font-semibold text-gray-900 hover:text-indigo-600 transition-colors">
+                  <AccordionTrigger className="text-lg cursor-pointer text-left font-semibold main-text-color hover:text-indigo-600 transition-colors">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-base text-gray-600 leading-relaxed">

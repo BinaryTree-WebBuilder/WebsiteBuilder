@@ -29,11 +29,21 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  if (
-    !user &&
-    request.nextUrl.pathname.startsWith('/builder')
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
+
+  const pathname = request.nextUrl.pathname
+
+  console.log("pathname is: " + pathname);
+
+
+  // ✅ Redirect to /builder if logged in and not already on /builder
+  if (user && (pathname.startsWith('/main') || pathname.startsWith('/auth'))) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/builder'
+    return NextResponse.redirect(url)
+  }
+
+  // ✅ Redirect to login if trying to access /builder while not logged in
+  if (!user && pathname.startsWith('/builder')) {
     const url = request.nextUrl.clone()
     url.pathname = '/auth/login'
     return NextResponse.redirect(url)

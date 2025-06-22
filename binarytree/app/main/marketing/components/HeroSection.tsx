@@ -16,7 +16,7 @@ export const HeroSection = () => {
               Now live in MVP
             </div>
             
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
               Your Tech <span className="text-gradient">Portfolio,</span>{" "}
               <span className="text-gradient">Simplified.</span>{" "}
               Get Hired Faster by <span className="text-gradient">Recruiters</span>           

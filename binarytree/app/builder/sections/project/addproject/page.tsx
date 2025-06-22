@@ -283,12 +283,13 @@ export default function AddProjectPage() {
           </div>
         </section>
 
-        <div className="pt-6">
+        <div className="pt-6 text-center">
           <Button
             type="submit"
             disabled={isPending || !formData.name || !formData.description || !formData.image_file}
+            className='bg-gradient-primary-2 mx-auto px-8 py-6 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed'
           >
-            {isPending ? 'Submitting...' : 'Submit Project'}
+            {isPending ? 'Adding...' : 'Add Project'}
           </Button>
         </div>
       </form>

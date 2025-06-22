@@ -215,6 +215,10 @@
 
 @layer utilities {
 
+  .main-text-color{
+    color: #131f60;
+  }
+
   .truncate-3-lines {
     display: -webkit-box;
     -webkit-line-clamp: 3;       /* Limit to 3 lines */
@@ -253,7 +257,7 @@
   }
 
     .bg-color-tertiary-1 {
-    background-color: #4facfe !important;
+    background-color: #6355ff !important;
   }
 
   .bg-gradient-secondary {

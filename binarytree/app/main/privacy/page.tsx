@@ -1,4 +1,3 @@
-
 export default function TOSPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -6,7 +5,7 @@ export default function TOSPage() {
       <main className="pt-30 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-black text-foreground mb-4">
+            <h1 className="text-4xl font-black main-text-color mb-4">
               PRIVACY POLICY
             </h1>
             <p className="text-muted-foreground">
@@ -16,7 +15,7 @@ export default function TOSPage() {
           
           <div className="prose prose-gray max-w-none space-y-8">
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">1. Information We Collect</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">1. Information We Collect</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We collect information you provide directly to us, such as when you create an account, 
                 use our services, or contact us for support. This may include your name, email address, 
@@ -25,7 +24,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">2. How We Use Your Information</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">2. How We Use Your Information</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We use the information we collect to:
               </p>
@@ -39,7 +38,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">3. Information Sharing</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">3. Information Sharing</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We do not sell, trade, or otherwise transfer your personal information to third parties 
                 without your consent, except as described in this policy. We may share your information 
@@ -49,7 +48,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">4. Data Security</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">4. Data Security</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We implement appropriate technical and organizational measures to protect your personal 
                 information against unauthorized access, alteration, disclosure, or destruction. However, 
@@ -58,7 +57,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">5. Cookies and Tracking</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">5. Cookies and Tracking</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We use cookies and similar tracking technologies to collect and track information 
                 about your use of our services. You can control cookies through your browser settings, 
@@ -67,7 +66,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">6. Your Rights</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">6. Your Rights</h2>
               <p className="text-muted-foreground leading-relaxed">
                 You have the right to access, update, or delete your personal information. 
                 You may also have the right to restrict or object to certain processing of your data. 
@@ -76,7 +75,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">7. Changes to This Policy</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">7. Changes to This Policy</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We may update this Privacy Policy from time to time. We will notify you of any 
                 changes by posting the new policy on this page and updating the &quot;Last updated&quot; date.
@@ -84,7 +83,7 @@ export default function TOSPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-4">8. Contact Us</h2>
+              <h2 className="text-2xl font-bold main-text-color mb-4">8. Contact Us</h2>
               <p className="text-muted-foreground leading-relaxed">
                 If you have any questions about this Privacy Policy, please contact us at:
               </p>
