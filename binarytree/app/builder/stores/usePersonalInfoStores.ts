@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getPersonalInfo } from '@/app/builder/sections/personalinfo/action';
+import { getPersonalInfo } from '@/app/builder/actions/personalinfo'
 
 
 interface PersonalInfo {
@@ -16,7 +16,7 @@ interface PersonalInfo {
 }
 
 interface PersonalInfoStore {
-  data: PersonalInfo | null;
+  entries: PersonalInfo | null;
   loading: boolean;
   error: string | null;
   fetchInfo: () => Promise<void>;
@@ -24,22 +24,23 @@ interface PersonalInfoStore {
   clear: () => void;
 }
 
-export const usePersonalInfoStore = create<PersonalInfoStore>((set) => ({
-  data: null,
+export const usePersonalInfoStore = create<PersonalInfoStore>((set,get) => ({
+  entries: null,
   loading: false,
   error: null,
 
   fetchInfo: async () => {
+    if (get().loading) return
     set({ loading: true, error: null });
     try {
-      const data = await getPersonalInfo();
-      set({ data, loading: false });
+      const entries = await getPersonalInfo();
+      set({ entries, loading: false });
     } catch (error: any) {
       set({ error: error.message ?? 'Error fetching info', loading: false });
     }
   },
 
-  setInfo: (info) => set({ data: info }),
+  setInfo: (info) => set({ entries: info }),
 
-  clear: () => set({ data: null }),
+  clear: () => set({ entries: null }),
 }));

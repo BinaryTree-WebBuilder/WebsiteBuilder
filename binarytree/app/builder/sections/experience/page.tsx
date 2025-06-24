@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { submitExperience, updateExperience, deleteExperience } from './action'
+import { submitExperience, updateExperience, deleteExperience } from '../../actions/experience'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'

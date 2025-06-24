@@ -58,7 +58,7 @@ export default function Sidebar({
               href={href}
               onClick={closeSidebar}
               className={`flex items-center space-x-3 p-3 rounded-md text-base font-medium ${
-                pathname === href
+                pathname.startsWith(href)
                   ? 'bg-primary-op20 text-gradient-primary-1'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
@@ -71,7 +71,7 @@ export default function Sidebar({
 
         {/* Bottom Button */}
         <div className="mt-auto pt-6">
-          <Link href="/builder">
+          <Link href="/builder/preview">
             <button className="flex justify-center items-center gap-4 align-middle cursor-pointer w-full bg-gradient-primary-1 hover:bg-blue-700 text-white text-base p-4 rounded-md">
               <Eye className="w-4 h-4" />
               Preview Portfolio

@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { User } from 'lucide-react';
-import { savePersonalInfo, uploadProfileImage } from './action';
+import { savePersonalInfo, uploadProfileImage } from '../../actions/personalinfo';
 import ProfileImageModal from '../../components/ProfileImageModal';
 import { usePersonalInfoStore } from '../../stores/usePersonalInfoStores';
 
 export default function PersonalInfoPage() {
-  const { data: personalInfo, fetchInfo } = usePersonalInfoStore();
+  const { entries: personalInfo, fetchInfo } = usePersonalInfoStore();
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [showImageModal, setShowImageModal] = useState(false);
   const [profileImagePreview, setProfileImagePreview] = useState('');
@@ -99,7 +99,7 @@ export default function PersonalInfoPage() {
 
           {/* Profile Image */}
           <div className="md:col-span-2">
-            <label className="text-md font-bold">Profile Image</label>
+            <label className="text-sm font-medium">Profile Image</label>
             <div className="text-center">
               {profileImagePreview ? (
                 <img src={profileImagePreview} alt="Profile" className="border w-32 h-32 mx-auto rounded-full mb-2" />
@@ -116,16 +116,16 @@ export default function PersonalInfoPage() {
 
           {/* Input Fields */}
           <div>
-            <label className="text-md font-bold" htmlFor="full_name">Full Name</label>
+            <label className="font-medium text-sm" htmlFor="full_name">Full Name</label>
             <input name="full_name" className="text-md w-full border p-3 rounded" value={formData.full_name} onChange={handleChange} required />
           </div>
           <div>
-            <label className="text-md font-bold" htmlFor="email">Email</label>
+            <label className="font-medium text-sm" htmlFor="email">Email</label>
             <input name="email" className="text-md w-full border p-3 rounded" type="email" value={formData.email} onChange={handleChange} required />
           </div>
 
           <div className="mb-6 relative">
-            <label htmlFor="phone" className="text-md font-bold block mb-1"> Mobile Number <span className='text-gray-600 text-xs'>(Toggle for Visibility)</span></label>
+            <label htmlFor="phone" className="font-medium text-sm block mb-1"> Mobile Number <span className='text-gray-600 text-xs'>(Toggle for Visibility)</span></label>
             <div className="relative">
               <input
                 name="phone"
@@ -152,7 +152,7 @@ export default function PersonalInfoPage() {
           </div>
 
           <div className="mb-6 relative">
-            <label htmlFor="location" className="text-md font-bold block mb-1"> Location <span className='text-gray-600 text-xs'>(Toggle for Visibility)</span></label>
+            <label htmlFor="location" className="font-medium text-sm block mb-1"> Location <span className='text-gray-600 text-xs'>(Toggle for Visibility)</span></label>
             <div className="relative">
               <input
                 name="location"
@@ -179,16 +179,16 @@ export default function PersonalInfoPage() {
           </div>
 
           <div>
-            <label className="text-md font-bold" htmlFor="linkedin_url">LinkedIn Profile</label>
+            <label className="font-medium text-sm" htmlFor="linkedin_url">LinkedIn Profile</label>
             <input name="linkedin_url" className="text-md w-full border p-3 rounded" value={formData.linkedin_url} onChange={handleChange} />
           </div>
           <div>
-            <label className="text-md font-bold" htmlFor="github_url">GitHub Profile</label>
+            <label className="font-medium text-sm" htmlFor="github_url">GitHub Profile</label>
             <input name="github_url" className="text-md w-full border p-3 rounded" value={formData.github_url} onChange={handleChange} />
           </div>
 
           <div className="md:col-span-2">
-            <label className="text-md font-bold" htmlFor="bio">Professional Bio</label>
+            <label className="font-medium text-sm" htmlFor="bio">Professional Bio</label>
             <Textarea name="bio" value={formData.bio} onChange={handleChange} rows={4} />
           </div>
 

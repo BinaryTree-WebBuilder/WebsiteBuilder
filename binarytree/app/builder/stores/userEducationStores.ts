@@ -1,6 +1,6 @@
 // stores/useEducationStore.ts
 import { create } from 'zustand'
-import { getEducationEntries } from '@/app/builder/sections/education/action'
+import { getEducationEntries } from '@/app/builder/actions/education'
 
 type EducationEntry = any // Replace with real type if you have one
 

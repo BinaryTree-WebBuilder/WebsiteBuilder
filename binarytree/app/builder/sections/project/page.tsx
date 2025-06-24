@@ -1,20 +1,20 @@
 'use client'
 
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
 import { Pencil, Trash2, Github, Link as LinkIcon, Play } from 'lucide-react'
 import Link from 'next/link'
 import { useProjectStore } from '../../stores/useProjectStores'
-import { deleteProject } from './action' // your server action to delete
+import { deleteProject } from '@/app/builder/actions/project' // your server action to delete
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import { ConfirmationDialog } from '../../components/ConfirmationDialog'
 
 
 export default function ProjectPage() {
-  const { entries, loaded, fetchProject } = useProjectStore()
+  const { entries, loading, fetchProject } = useProjectStore()
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
   const [selectedEntry, setSelectedEntry] = useState<any | null>(null)
@@ -22,10 +22,10 @@ export default function ProjectPage() {
 
 
   useEffect(() => {
-    if (!loaded) {
+    if (!loading) {
       fetchProject().catch(() => setError('Failed to load projects'))
     }
-  }, [loaded, fetchProject])
+  }, [loading, fetchProject])
 
   const confirmDelete = (entry: any) => {
     setSelectedEntry(entry)
@@ -46,14 +46,14 @@ export default function ProjectPage() {
         }
   }
 
-  if (!loaded) return <p className="text-center mt-10">Loading projects...</p>
+  if (!loading) return <p className="text-center mt-10">Loading projects...</p>
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-2xl font-bold">💻 Projects</h2>
-        <Link href="project/addproject">
+        <Link href="project/add">
           <Button className="bg-gradient-primary-2 p-6">+ Add Projects</Button>
         </Link>
       </div>
@@ -143,7 +143,7 @@ export default function ProjectPage() {
             {/* Actions Section */}
             <div className="w-full md:!w-1/5 flex md:flex-col items-end md:items-end justify-between md:justify-start gap-2 md:p-4">
               <div className="flex gap-1">
-                <Link href="/builder/sections/project/edit">
+                <Link href="project/edit/[projectId]" as={`project/edit/${project.id}`}>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -166,7 +166,7 @@ export default function ProjectPage() {
               <Button
                 variant="secondary"
                 className="text-xs cursor-pointer p-4"
-                onClick={() => router.push(`/project/${encodeURIComponent(project.project_name)}`)}
+                onClick={() => router.push(`/project/${encodeURIComponent(project.id)}`)}
               >
                 Details →
               </Button>

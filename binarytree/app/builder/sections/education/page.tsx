@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { submitEducation, updateEducation, deleteEducation } from './action';
+import { submitEducation, updateEducation, deleteEducation } from '../../actions/education';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Pencil, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
@@ -72,7 +72,7 @@ export default function EducationFormPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">📘 Education</h2>
+        <h2 className="text-2xl font-bold">🎓 Education</h2>
         <Button className="bg-gradient-primary-2 p-6" onClick={openNewForm}>
           + Add Education
         </Button>

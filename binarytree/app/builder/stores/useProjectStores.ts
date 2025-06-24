@@ -1,24 +1,48 @@
-// stores/useProjectStore.ts
 import { create } from 'zustand'
-import { getProjectEntries } from '@/app/builder/sections/project/action'
+import { getProjectEntries } from '@/app/builder/actions/project'
 
-type ProjectEntry = any // Replace with real type if you have one
+export interface ProjectEntry {
+  id: string
+  title: string
+  description: string
+  technologies: string[]
+  github_repo_url?: string
+  website_url?: string
+  video_url?: string
+  image_url?: string
+  user_id?: string
+}
 
 interface ProjectState {
   entries: ProjectEntry[]
-  loaded: boolean
+  loading: boolean
   fetchProject: () => Promise<void>
   setEntries: (entries: ProjectEntry[]) => void
+  getProjectById: (id: string) => ProjectEntry | undefined
   reset: () => void
 }
 
-export const useProjectStore = create<ProjectState>((set) => ({
+export const useProjectStore = create<ProjectState>((set, get) => ({
   entries: [],
-  loaded: false,
+  loading: false,
+
   fetchProject: async () => {
+    if (get().loading) return
     const { success, entries } = await getProjectEntries()
-    if (success) set({ entries, loaded: true })
+    if (success) {
+      // Filter out entries with undefined id and cast id to string
+      const filteredEntries = entries
+        .filter((entry): entry is ProjectEntry & { id: string } => typeof entry.id === 'string')
+      set({ entries: filteredEntries, loading: true })
+    }
   },
+
   setEntries: (entries) => set({ entries }),
-  reset: () => set({ entries: [], loaded: false }),
+
+  getProjectById: (id) => {
+    const { entries } = get()
+    return entries.find((project) => project.id === id)
+  },
+
+  reset: () => set({ entries: [], loading: false }),
 }))
