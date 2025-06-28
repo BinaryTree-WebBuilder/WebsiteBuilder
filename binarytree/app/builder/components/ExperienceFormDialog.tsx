@@ -45,12 +45,12 @@ export function ExperienceFormDialog({
 }: ExperienceFormDialogProps) {
   const [formData, setFormData] = useState<ExperienceData>(
     initialData ?? {
-        company: '',
-        position: '',
-        start_date: '',
-        end_date: '',
-        job_description: '',
-        technologies: [''],
+        company: "",
+        position: "",
+        start_date: "",
+        end_date: "",
+        job_description: "",
+        technologies: [""],
         currently_working: false
     }
   )
@@ -58,12 +58,12 @@ export function ExperienceFormDialog({
   useEffect(() => {
     setFormData(
       initialData ?? {
-        company: '',
-        position: '',
-        start_date: '',
-        end_date: '',
-        job_description: '',
-        technologies: [''],
+        company: "",
+        position: "",
+        start_date: "",
+        end_date: "",
+        job_description: "",
+        technologies: [""],
         currently_working: false
       }
     )
