@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
 import { Pencil, Trash2, Github, Link as LinkIcon, Play } from 'lucide-react'
 import Link from 'next/link'
-import { useProjectStore } from '../../stores/useProjectStores'
+import { useProjects } from '../../stores/useProjectEntries'
 import { deleteProject } from '@/app/builder/actions/project' // your server action to delete
 import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
@@ -14,7 +14,7 @@ import { ConfirmationDialog } from '../../components/ConfirmationDialog'
 
 
 export default function ProjectPage() {
-  const { entries, loading, fetchProject } = useProjectStore()
+  const { data: entries = [], isLoading, refetch } = useProjects()
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
   const [selectedEntry, setSelectedEntry] = useState<any | null>(null)
@@ -22,10 +22,10 @@ export default function ProjectPage() {
 
 
   useEffect(() => {
-    if (!loading) {
-      fetchProject().catch(() => setError('Failed to load projects'))
+    if (!isLoading) {
+      refetch().catch(() => setError('Failed to load projects'))
     }
-  }, [loading, fetchProject])
+  }, [isLoading, refetch])
 
   const confirmDelete = (entry: any) => {
     setSelectedEntry(entry)
@@ -40,14 +40,21 @@ export default function ProjectPage() {
         if (result.success) {
           toast.success('🗑️ Project deleted successfully!', { id: 'project-toast' })
           setIsDeleteConfirmOpen(false)
-          await fetchProject()
+          await refetch()
         } else {
           toast.error('❌ Failed to delete project. Try again.', { id: 'project-toast' })
         }
   }
 
-  if (!loading) return <p className="text-center mt-10">Loading projects...</p>
-  if (error) return <p className="text-center mt-10 text-red-500">{error}</p>
+if (isLoading) {
+  return (
+    <div className="flex justify-center mt-10">
+      <div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-400 border-t-transparent" />
+    </div>
+  )
+}
+
+if (error) return <p className="text-center mt-10 text-red-500">{error}</p>
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
@@ -78,7 +85,7 @@ export default function ProjectPage() {
             </div>
 
             {/* Content Section */}
-            <div className="flex-1 flex flex-col justify-between p-0 md:p-4">
+            <div className="flex-1 flex flex-col justify-between p-0 md:py-4">
               <div className="flex flex-col justify-between h-full">
                 <div>
                   <h2 className="font-bold text-lg">{project.title}</h2>
@@ -120,9 +127,8 @@ export default function ProjectPage() {
                   </div>
                 </div>
 
-                <div className="mt-3 flex gap-2 flex-wrap">
-                  {project.technologies?.length > 0 && (
-                    <div className="mt-3">
+                  <div className="mt-3 flex gap-2 flex-wrap">
+                    {project.technologies?.length > 0 ? (
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech: string, i: number) => (
                           <Badge
@@ -134,9 +140,17 @@ export default function ProjectPage() {
                           </Badge>
                         ))}
                       </div>
-                    </div>
-                  )}
-                </div>
+                    ) : (
+                      <Link href="project/edit/[projectId]" as={`project/edit/${project.id}`}>
+                        <Badge
+                          variant="outline"
+                          className="rounded-full border border-blue-500 text-blue-600 bg-blue-50 px-3 py-1 text-xs cursor-pointer hover:bg-blue-100 transition"
+                        >
+                          <span className="inline-block h-2 w-2 rounded-full bg-yellow-500" />Missing technologies – click to edit
+                        </Badge>
+                      </Link>
+                    )}
+                  </div>
               </div>
             </div>
 
@@ -166,7 +180,13 @@ export default function ProjectPage() {
               <Button
                 variant="secondary"
                 className="text-xs cursor-pointer p-4"
-                onClick={() => router.push(`/project/${encodeURIComponent(project.id)}`)}
+                onClick={() => {
+                  if (project.id) {
+                    router.push(`/project/${encodeURIComponent(project.id)}`)
+                  } else {
+                    toast.error('Project ID is missing, cannot show details.')
+                  }
+                }}
               >
                 Details →
               </Button>

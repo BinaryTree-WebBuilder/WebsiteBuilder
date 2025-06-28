@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { User, BookOpen, Briefcase, FileCode, Eye } from 'lucide-react';
+import { User, BookOpen, Briefcase, FileCode, Eye, PocketKnife } from 'lucide-react';
 
 import { useEffect, useRef } from 'react';
 
@@ -11,6 +11,8 @@ const navItems = [
   { label: 'Education', icon: BookOpen, href: '/builder/sections/education' },
   { label: 'Experience', icon: Briefcase, href: '/builder/sections/experience' },
   { label: 'Projects', icon: FileCode, href: '/builder/sections/project' },
+  { label: 'Skills', icon: PocketKnife, href: '/builder/sections/skill' },
+  // { label: 'Language', icon: Speech, href: '/builder/sections/language' },
 ];
 
 export default function Sidebar({

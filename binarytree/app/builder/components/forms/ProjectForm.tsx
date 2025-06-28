@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import { UploadCloud, X, Link as LinkIcon, Github, Play } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { useProjectStore } from '@/app/builder/stores/useProjectStores' // adjust path accordingly
 import ProjectImageCropModal from '@/app/builder/components/ProjectImageCropModal'
 import { submitProject, updateProject } from '@/app/builder/actions/project'
 
@@ -51,13 +50,10 @@ export default function ProjectForm({
   const [cropModalFile, setCropModalFile] = useState<File | null>(null)
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
-  const fetchProject = useProjectStore(state => state.fetchProject)
 
   useEffect(() => {
     if (initialData) {
       setFormData(initialData)
-
-      console.log('Initial data:', initialData);
       if (isEdit && initialData.image_url) {
         setImagePreviewUrl(initialData.image_url)
       }
@@ -105,100 +101,97 @@ export default function ProjectForm({
     }
   }
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
 
-  const { title, description, technologies, github_url, live_url, video_url, image_file, image_url } = formData
+    const {
+      title,
+      description,
+      technologies,
+      github_url,
+      live_url,
+      video_url,
+      image_file,
+      image_url,
+    } = formData
 
-  const isImagePresent = !!image_file || !!image_url
+    const isImagePresent = !!image_file || !!image_url
 
-  if (!title || !description || !technologies.length || !isImagePresent) {
-    toast.error('Please fill all required fields and upload an image.')
-    return
-  }
-
-  const projectData = {
-    title,
-    description,
-    technologies,
-    github_repo_url: github_url,
-    website_url: live_url,
-    video_url,
-    image_url: image_url || undefined, // fallback if no new image_file is uploaded
-  }
-
-  startTransition(async () => {
-    const res = isEdit
-      ? await updateProject(projectData, projectId!, image_file ?? undefined)
-      : await submitProject(projectData, image_file!)
-
-    if (res.success) {
-      toast.success(isEdit ? '✅ Project updated!' : '✅ Project added!')
-      onSuccess?.()
-
-    // Refresh project list in zustand store
-    await fetchProject()
-
-    // Navigate back to project list page
-    router.push('/builder/sections/project')
-
-
-      if (!isEdit) {
-        console.log('Resetting form data after adding new project')
-        setFormData({
-          title: '',
-          description: '',
-          technologies: [],
-          github_url: '',
-          live_url: '',
-          video_url: '',
-          image_file: null,
-          image_url: '',
-        })
-        setTechInput('')
-        setImagePreviewUrl(null)
-      }
-    } else {
-        console.error('Operation failed:', res.message);
-      toast.error(`❌ ${res.message || 'Operation failed'}`)
+    if (!title || !description || !isImagePresent) {
+      toast.error('Please fill all required fields and upload an image.')
+      return
     }
-  })
-}
+
+    const projectData = {
+      title,
+      description,
+      technologies,
+      github_repo_url: github_url,
+      website_url: live_url,
+      video_url,
+      image_url: image_url || undefined,
+    }
+
+    startTransition(async () => {
+      const res = isEdit
+        ? await updateProject(projectData, projectId!, image_file ?? undefined)
+        : await submitProject(projectData, image_file!)
+
+      if (res.success) {
+        toast.success(isEdit ? '✅ Project updated!' : '✅ Project added!')
+        onSuccess?.()
+        router.push('/builder/sections/project')
+
+        if (!isEdit) {
+          setFormData({
+            title: '',
+            description: '',
+            technologies: [],
+            github_url: '',
+            live_url: '',
+            video_url: '',
+            image_file: null,
+            image_url: '',
+          })
+          setTechInput('')
+          setImagePreviewUrl(null)
+        }
+      } else {
+        toast.error(`❌ ${res.message || 'Operation failed'}`)
+      }
+    })
+  }
 
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-8 shadow-lg bg-white rounded-3xl p-8">
-        {/* 1. Upload Image */}
-        <section>
+      {/* 1. Upload Image */}
+      <section>
         <h2 className="font-bold text-lg mb-2">1. Project Image</h2>
-
         <label
-            htmlFor="project-image"
-            className="border-4 border-dashed border-gray-300 rounded-lg w-full h-48 flex items-center justify-center cursor-pointer hover:border-gray-500 transition-colors overflow-hidden"
+          htmlFor="project-image"
+          className="border-4 border-dashed border-gray-300 rounded-lg w-full h-48 flex items-center justify-center cursor-pointer hover:border-gray-500 transition-colors overflow-hidden"
         >
-
-            
-            {imagePreviewUrl ? (
+          {imagePreviewUrl ? (
             <img
-                src={imagePreviewUrl}
-                alt="Project"
-                className="object-contain w-full h-full shadow-sm rounded-lg"
+              src={imagePreviewUrl}
+              alt="Project"
+              className="object-contain w-full h-full shadow-sm rounded-lg"
             />
-            ) : (
+          ) : (
             <div className="flex flex-col items-center text-center text-gray-600">
-                <UploadCloud className="w-8 h-8 mb-2 text-gray-500" />
-                <span className="text-sm">Click or Drag & Drop to Upload</span>
+              <UploadCloud className="w-8 h-8 mb-2 text-gray-500" />
+              <span className="text-sm">Click or Drag & Drop to Upload</span>
             </div>
-            )}
+          )}
         </label>
-
         <Input
-            id="project-image"
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleImageUpload}
+          id="project-image"
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleImageUpload}
         />
-        </section>
+      </section>
 
       {/* 2. Project Info */}
       <section>
@@ -280,7 +273,6 @@ const handleSubmit = async (e: React.FormEvent) => {
       <div className="pt-6 text-center">
         <Button
           type="submit"
-
           className="bg-gradient-primary-2 mx-auto px-8 py-6 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isPending ? (isEdit ? 'Updating...' : 'Adding...') : (isEdit ? 'Update Project' : 'Add Project')}

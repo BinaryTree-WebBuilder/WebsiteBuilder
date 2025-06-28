@@ -1,25 +1,19 @@
 'use client'
 
 import { use, useEffect, useState } from 'react'
-import { useProjectStore } from '@/app/builder/stores/useProjectStores'
-import ProjectForm, { ProjectFormData } from '@/app/builder/components/ProjectForm'
+import { useProjectById } from '@/app/builder/stores/useProjectEntries'
+import ProjectForm, { ProjectFormData } from '@/app/builder/components/forms/ProjectForm'
 import { toast } from 'sonner'
 
-export default function EditProjectPage({ params: paramsPromise }: { params: Promise<{ id: string }> }) {
-  const params = use(paramsPromise)
-  const { fetchProject, loading, getProjectById } = useProjectStore()
+
+
+export default function EditProjectPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params) // ✅ unwrap the params with use()
+  const { data: project, isLoading, isError,refetch } = useProjectById(id)
   const [initialData, setInitialData] = useState<ProjectFormData | null>(null)
 
   useEffect(() => {
-    const load = async () => {
-      if (!loading) await fetchProject()
-
-      const project = getProjectById(params.id)
-      if (!project) {
-        toast.error('Project not found')
-        return
-      }
-
+    if (project) {
       setInitialData({
         title: project.title,
         description: project.description,
@@ -31,16 +25,28 @@ export default function EditProjectPage({ params: paramsPromise }: { params: Pro
         image_file: null,
       })
     }
+  }, [project])
 
-    load()
-  }, [loading, fetchProject, getProjectById, params.id])
+  useEffect(() => {
+    if (isError) {
+      toast.error('Failed to load project')
+    }
+  }, [isError])
 
-  if (!initialData) return <div className="text-center py-10 text-gray-500">Loading project...</div>
+  if (isLoading || !initialData) {
+    return <div className="text-center py-10 text-gray-500">Loading project...</div>
+  }
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
       <h2 className="text-2xl font-bold mb-6">✏️ Edit Project - {initialData.title}</h2>
-      <ProjectForm isEdit initialData={initialData} projectId={params.id} />
-    </div>
+<ProjectForm
+  isEdit
+  initialData={initialData}
+  projectId={id}
+  onSuccess={() => refetch()}
+/>    
+
+</div>
   )
 }

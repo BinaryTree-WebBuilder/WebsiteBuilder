@@ -7,3 +7,6 @@ body, html, label {
  color: #131f60;
 }
 
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
