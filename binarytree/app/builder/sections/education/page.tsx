@@ -88,7 +88,7 @@ if (error) return <p className="text-center mt-10 text-red-500">{error}</p>
             className="block border-4 border-dashed border-gray-400 rounded-xl p-12 hover:border-gray-500 text-gray-400 hover:text-gray-500 transition-colors cursor-pointer"
           >
             <div className="flex flex-col items-center justify-center space-y-4">
-              <p className="text-lg font-semibold">You haven't added any education entries yet.</p>
+              <p className="text-lg font-semibold">You haven&apos;t added any education entries yet.</p>
               <p className="text-lg font-semibold">+ Click to add</p>
             </div>
           </Link>

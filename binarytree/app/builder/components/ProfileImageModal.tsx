@@ -96,7 +96,7 @@ export default function ProfileImageModal({
 
             <input
               type="file"
-              accept="image/*"
+              accept="image/jpeg,image/png,image/webp,image/svg+xml,image/avif"
               ref={fileRef}
               className="hidden"
               onChange={(e) => {

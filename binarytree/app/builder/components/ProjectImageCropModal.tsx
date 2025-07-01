@@ -76,7 +76,7 @@ export default function ProjectImageCropModal({
             </div>
 
             <div className="flex gap-2 justify-end">
-              <Button onClick={handleSubmit} className="w-full">
+              <Button type="button" onClick={handleSubmit} className="w-full">
                 Save Cropped Image
               </Button>
             </div>

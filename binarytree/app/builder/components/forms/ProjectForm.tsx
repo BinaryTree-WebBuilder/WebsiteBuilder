@@ -9,6 +9,8 @@ import { UploadCloud, X, Link as LinkIcon, Github, Play } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import ProjectImageCropModal from '@/app/builder/components/ProjectImageCropModal'
 import { submitProject, updateProject } from '@/app/builder/actions/project'
+import imageCompression from 'browser-image-compression'
+
 
 export interface ProjectFormData {
   title: string
@@ -70,11 +72,22 @@ export default function ProjectForm({
     if (file) setCropModalFile(file)
   }
 
-  const handleImageCropped = (croppedFile: File) => {
-    setFormData(prev => ({ ...prev, image_file: croppedFile }))
-    setImagePreviewUrl(URL.createObjectURL(croppedFile))
-    toast.success('Image cropped and ready!')
-  }
+    const handleImageCropped = async (croppedFile: File) => {
+      const compressedFile = await imageCompression(croppedFile, {
+        maxSizeMB: 0.1,
+        maxWidthOrHeight: 800,
+        useWebWorker: true,
+      })
+
+      setFormData(prev => ({
+        ...prev,
+        image_file: compressedFile,
+        image_url: '',
+      }))
+
+      setImagePreviewUrl(URL.createObjectURL(compressedFile))
+      toast.success('✅ Image cropped & compressed!')
+    }
 
   const handleAddTechnology = () => {
     const tech = techInput.trim()
@@ -132,6 +145,8 @@ export default function ProjectForm({
       image_url: image_url || undefined,
     }
 
+    console.log('Submitting project data:', image_file)
+
     startTransition(async () => {
       const res = isEdit
         ? await updateProject(projectData, projectId!, image_file ?? undefined)
@@ -187,7 +202,7 @@ export default function ProjectForm({
         <Input
           id="project-image"
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp,image/svg+xml,image/avif"
           className="hidden"
           onChange={handleImageUpload}
         />

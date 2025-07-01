@@ -1,13 +1,13 @@
 'use client'
 
 import { useBuilderDataWithQuery } from '@/app/builder/utils/getPortfolioData'
-import { Button } from '@/components/ui/button'
+// import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import ProjectCard from '@/app/builder/preview/component/project'
 import PersonalInfoCard from '@/app/builder/preview/component/personalinfo' // adjust path as needed
-import ExperienceCard from '@/app/builder/preview/component/experience' // adjust path as needed
-import EducationCard from '@/app/builder/preview/component/education' // adjust path as needed
-import { User } from 'lucide-react'
+// import ExperienceCard from '@/app/builder/preview/component/experience' // adjust path as needed
+// import EducationCard from '@/app/builder/preview/component/education' // adjust path as needed
+// import { User } from 'lucide-react'
 import { ProjectEntry } from '../actions/project'
 
 

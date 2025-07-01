@@ -57,7 +57,7 @@ export default function PersonalInfoCard({
             title="GitHub"
             className="hover:text-black transition text-gray-500 block"
           >
-            <Github className="w-5 h-5" />
+            <Github className="w-8 h-8" />
           </a>
         )}
 
@@ -69,7 +69,7 @@ export default function PersonalInfoCard({
             title="LinkedIn"
             className="hover:text-black transition text-gray-500 block"
           >
-            <Linkedin className="w-5 h-5" />
+            <Linkedin className="w-8 h-8" />
           </a>
         )}
         {personal_info?.instagram_url && (
@@ -80,7 +80,7 @@ export default function PersonalInfoCard({
             title="instagram"
             className="hover:text-black transition text-gray-500 block"
           >
-            <Instagram className="w-5 h-5" />
+            <Instagram className="w-8 h-8" />
           </a>
         )}
         {personal_info?.youtube_url && (
@@ -91,7 +91,7 @@ export default function PersonalInfoCard({
             title="Youtube"
             className="hover:text-black transition text-gray-500 block"
           >
-            <Youtube className="w-5 h-5" />
+            <Youtube className="w-8 h-8" />
           </a>
         )}
       </div>
