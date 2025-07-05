@@ -4,18 +4,19 @@ export const ProblemSection = () => {
   const problems = [
     {
       icon: "⏰",
-      title: "Wasting Time",
-      description: "Stop wasting valuable engineering hours building your portfolio website, fussing over design, UI/UX issues, or struggling with every new project update"
+      title: "Time Drain & Distraction",
+      description: "Building your portfolio website or keeping it updated eats into valuable coding, LeetCode, or project time. Stop the endless fussing over design and minor tweaks."
     },
     {
       icon: "📝",
-      title: "Static Resumes",
-      description: "Static resumes don't capture your full potential. They hide your actual code, dynamic projects, and technical problem-solving."
+      title: "Hidden Potential",
+      description: "Your static resume just can't showcase your actual code, dynamic projects, or unique problem-solving skills, leaving recruiters guessing about your true abilities."
     },
     {
-      icon: "🗂️",
-      title: "Scattered Versions",
-      description: "Applying to frontend, backend, or data roles often means rewriting and reorganizing your resume each time to match the field."}
+      icon: "🤯", // Changed icon for emphasis on mental load/anxiety
+      title: "Application Overwhelm",
+      description: "Constantly rewriting and reorganizing your resume and portfolio for different roles (frontend, backend, data) is stressful and inefficient, leading to missed opportunities."
+    }
   ];
 
   return (
