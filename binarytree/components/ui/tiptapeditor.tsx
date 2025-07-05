@@ -1,58 +1,42 @@
-'use client';
+'use client'
 
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import BulletList from '@tiptap/extension-bullet-list';
-import OrderedList from '@tiptap/extension-ordered-list';
-import ListItem from '@tiptap/extension-list-item';
+import { useEditor, EditorContent, JSONContent } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import BulletList from '@tiptap/extension-bullet-list'
+import OrderedList from '@tiptap/extension-ordered-list'
+import ListItem from '@tiptap/extension-list-item'
 
-import { Bold, Italic, List, ListOrdered } from 'lucide-react';
-import { useEffect } from 'react';
+import { Bold, Italic, List, ListOrdered } from 'lucide-react'
+import { useEffect } from 'react'
 
 type Props = {
-  content: string;
-  onChange: (content: string) => void;
-};
-
-const CustomBulletList = BulletList.extend({
-  renderHTML() {
-    return ['ul', { class: 'list-disc pl-5 space-y-1' }, 0];
-  },
-});
-
-const CustomOrderedList = OrderedList.extend({
-  renderHTML() {
-    return ['ol', { class: 'list-decimal pl-5 space-y-1' }, 0];
-  },
-});
+  content: JSONContent
+  onChange: (content: JSONContent) => void
+}
 
 export default function TiptapEditor({ content, onChange }: Props) {
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({
-        bulletList: false,
-        orderedList: false,
-        listItem: false,
-      }),
+      StarterKit,
+      BulletList,
+      OrderedList,
       ListItem,
-      CustomBulletList,
-      CustomOrderedList,
     ],
     content,
-    onUpdate({ editor }) {
-      onChange(editor.getHTML());
+    onUpdate: ({ editor }) => {
+      onChange(editor.getJSON())
     },
-  });
+  })
 
   useEffect(() => {
-    if (editor && content !== editor.getHTML()) {
-      editor.commands.setContent(content);
+    if (editor && content) {
+      editor.commands.setContent(content)
     }
-  }, [content, editor]);
+  }, [editor, content])
 
-  if (!editor) return null;
+  if (!editor) return null
 
-  const buttonStyle = 'p-2 hover:bg-gray-100 rounded transition';
+  const buttonStyle = 'p-2 hover:bg-gray-100 rounded transition'
 
   return (
     <div className="border rounded-md">
@@ -90,7 +74,8 @@ export default function TiptapEditor({ content, onChange }: Props) {
           <ListOrdered size={18} />
         </button>
       </div>
-      <EditorContent editor={editor} className="p-3" style={{ outline: 'none', border: 'none' }} />
+
+      <EditorContent editor={editor} className="p-3" />
     </div>
-  );
+  )
 }

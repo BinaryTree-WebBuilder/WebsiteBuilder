@@ -2,7 +2,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { username } = JSON.parse(req.body)
+  // const { username } = JSON.parse(req.body)
 
   // Optionally: Validate and persist something (e.g. mark "is_published" in DB)
 

@@ -7,14 +7,16 @@ const TABLE_NAME = 'education'
 
 export interface EducationEntry {
   id?: string
-  institution_name: string
-  institution_location: string
-  degree: string
-  field_of_study: string
-  start_date: string // ISO date format (e.g. "2025-06-01")
-  graduation_date: string // ISO date format (e.g. "2025-06-01")
-  achievements: string[]
   user_id?: string
+  institution_name: string
+  course: string
+  field_of_study: string
+  location: string
+  start_month: number
+  start_year: number
+  end_month: number
+  end_year: number
+  highlights: string[]
 }
 
 export async function getEducationEntries(): Promise<{
@@ -34,11 +36,25 @@ export async function getEducationEntries(): Promise<{
     .from(TABLE_NAME)
     .select('*')
     .eq('user_id', user.id)
-    .order('graduation_date', { ascending: true })
+    .order('start_year', { ascending: false })
+    .order('start_month', { ascending: false })
 
   if (error || !data) return { success: false, entries: [] }
 
   return { success: true, entries: data as EducationEntry[] }
+}
+
+export async function getEducationById(id: string) {
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from(TABLE_NAME)
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (error || !data) return { success: false, entries: [] }
+
+  return { success: true, entries: data as EducationEntry }
 }
 
 export async function submitEducation(entries: EducationEntry[]): Promise<{
@@ -58,9 +74,14 @@ export async function submitEducation(entries: EducationEntry[]): Promise<{
     user_id: user.id,
   }))
 
-  const { error } = await supabase.from(TABLE_NAME).insert(payload)
+  const { error: insertError } = await supabase.from(TABLE_NAME).insert(payload)
 
-  return { success: !error }
+  
+  if (insertError) {
+    console.error('Insert project error:', insertError)
+  }
+
+  return { success: !insertError }
 }
 
 export async function updateEducation(
@@ -76,13 +97,17 @@ export async function updateEducation(
 
   if (userError || !user) return { success: false }
 
-  const { error } = await supabase
+  const { error: updateError } = await supabase
     .from(TABLE_NAME)
     .update(entry)
     .eq('id', id)
     .eq('user_id', user.id)
 
-  return { success: !error }
+    if (updateError) {
+      console.error('Update project error:', updateError)
+    }
+
+  return { success: !updateError }
 }
 
 export async function deleteEducation(id: string): Promise<{ success: boolean }> {

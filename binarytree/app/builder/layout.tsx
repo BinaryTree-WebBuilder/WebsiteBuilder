@@ -1,7 +1,7 @@
 'use client';
 
-import Topbar from '@/app/builder/components/Topbar';
-import Sidebar from '@/app/builder/components/Sidebar';
+import Topbar from '@/app/builder/components/navbar/Topbar';
+import Sidebar from '@/app/builder/components/navbar/Sidebar';
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from "sonner";
@@ -23,6 +23,8 @@ function useMediaQuery(query: string): boolean {
 
   return matches;
 }
+
+
 
 export default function BuilderLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

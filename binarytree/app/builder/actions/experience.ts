@@ -2,18 +2,21 @@
 
 import { createClient } from '@/app/utils/supabase/server'
 
-// Replace with your actual table name
 const TABLE_NAME = 'experience'
 
 export interface ExperienceEntry {
   id?: string
   company: string
   position: string
-  start_date: string
-  end_date?: string
+  start_month: number
+  start_year: number
+  end_month: number
+  end_year: number
   job_description: string
-  currently_working: boolean
-  technologies: string[]
+  employment_type?: string // Optional field for employment type
+  location: string
+  ongoing: boolean
+  skills: string[]
   user_id?: string
 }
 
@@ -34,19 +37,35 @@ export async function getExperienceEntries(): Promise<{
     .from(TABLE_NAME)
     .select('*')
     .eq('user_id', user.id)
-    .order('start_date', { ascending: true })
+    .order('start_year', { ascending: false })
+    .order('start_month', { ascending: false })
 
   if (error || !data) return { success: false, entries: [] }
 
   return { success: true, entries: data as ExperienceEntry[] }
 }
 
+export async function getExperienceById(id: string) {
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from(TABLE_NAME)
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (error || !data) {
+    console.error("Insert error:", error)
+    return { success: false, entries: [] }
+  }
+
+
+  return { success: true, entries: data as ExperienceEntry }
+}
+
 export async function submitExperience(entries: ExperienceEntry[]): Promise<{
   success: boolean
 }> {
   const supabase = await createClient()
-
-  console.log("Enter submitExperience");
 
   const {
     data: { user },

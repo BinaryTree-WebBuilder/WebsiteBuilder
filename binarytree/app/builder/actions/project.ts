@@ -159,7 +159,7 @@ export async function submitProject(
     user_id: user.id,
   }
 
-  const { error: insertError } = await supabase.from(TABLE_NAME).insert(payload)
+  const { error: insertError } = await supabase.from(TABLE_NAME).upsert(payload)
 
   if (insertError) {
     console.error('Insert project error:', insertError)

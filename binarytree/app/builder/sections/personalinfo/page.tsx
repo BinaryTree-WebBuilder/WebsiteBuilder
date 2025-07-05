@@ -1,213 +1,217 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { User } from 'lucide-react';
+import { Github, Instagram, Youtube, Linkedin, User } from 'lucide-react';
+import { usePersonalInfo } from '../../stores/usePersonalInfoEntries';
 import { savePersonalInfo, uploadProfileImage } from '../../actions/personalinfo';
 import ProfileImageModal from '../../components/ProfileImageModal';
-import { usePersonalInfoStore } from '../../stores/usePersonalInfoStores';
+import { toast } from 'sonner';
+
 
 export default function PersonalInfoPage() {
-  const { entries: personalInfo, fetchInfo } = usePersonalInfoStore();
-  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const { data: personalInfo, isLoading, error, refetch } = usePersonalInfo();
+  const [formState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [showImageModal, setShowImageModal] = useState(false);
   const [profileImagePreview, setProfileImagePreview] = useState('');
 
   const [formData, setFormData] = useState({
-    full_name: '',
+    first_name: '',
+    last_name: '',
     email: '',
-    phone: '',
-    location: '',
-    linkedin_url: '',
+    headline: '',
+    mobile_number: '',
+    address: '',
+    summary: '',
     github_url: '',
-    bio: '',
-    show_phone: true,
-    show_location: true,
+    instagram_url: '',
+    youtube_url: '',
+    linkedin_url: '',
   });
 
   useEffect(() => {
-    if (!personalInfo) {
-      fetchInfo();
-    } else {
-      setFormData({
-        full_name: personalInfo.full_name || '',
-        email: personalInfo.email || '',
-        phone: personalInfo.phone || '',
-        location: personalInfo.location || '',
-        linkedin_url: personalInfo.linkedin_url || '',
-        github_url: personalInfo.github_url || '',
-        bio: personalInfo.bio || '',
-        show_phone: personalInfo.show_phone ?? true,
-        show_location: personalInfo.show_location ?? true,
-      });
-      if (personalInfo.profile_image_url) setProfileImagePreview(personalInfo.profile_image_url);
+    if (!personalInfo) return;
+    setFormData({
+      first_name: personalInfo.entry.first_name || '',
+      last_name: personalInfo.entry.last_name || '',
+      email: personalInfo.entry.email || '',
+      headline: personalInfo.entry.headline || '',
+      mobile_number: personalInfo.entry.mobile_number || '',
+      address: personalInfo.entry.address || '',
+      summary: personalInfo.entry.professional_summary || '',
+      github_url: personalInfo.entry.github_url || '',
+      instagram_url: personalInfo.entry.instagram_url || '',
+      youtube_url: personalInfo.entry.youtube_url || '',
+      linkedin_url: personalInfo.entry.linkedin_url || '',
+    });
+    if (personalInfo.entry.image_url) {
+      setProfileImagePreview(personalInfo.entry.image_url);
     }
-  }, [personalInfo, fetchInfo]);
+  }, [personalInfo]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormState('loading');
-
-    const form = new FormData();
-    for (const [key, value] of Object.entries(formData)) {
-      form.append(key, typeof value === 'boolean' ? String(value) : value);
-    }
-
-    try {
-      await savePersonalInfo(form);
-      await fetchInfo(); // refetch after save
-      setFormState('success');
-    } catch (err) {
-      console.error(err);
-      setFormState('error');
-    }
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleImageSave = async (file: File) => {
     try {
       const { profileImageUrl } = await uploadProfileImage(file);
       setProfileImagePreview(profileImageUrl);
-      await fetchInfo(); // update image globally
+      toast.success('✅ Profile image updated successfully!', { id: 'personal-info-toast' });
+      await refetch(); // refresh after upload
     } catch (err) {
       console.error('Failed to upload image', err);
-      alert('Upload failed');
+      toast.success('✅ Profile image fail to update!', { id: 'personal-info-toast' });
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    toast.loading('Saving personal info...', { id: 'personal-info-toast' });
+
+    try {
+      const form = new FormData();
+      for (const [key, value] of Object.entries(formData)) {
+        form.append(key, value);
+      }
+
+      await savePersonalInfo(form);
+      await refetch();
+
+      toast.success('✅ Personal info saved successfully!', { id: 'personal-info-toast' });
+    } catch (error) {
+      console.error(error);
+      toast.error('❌ Failed to save personal info. Try again.', { id: 'personal-info-toast' });
     }
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <h2 className="text-2xl font-bold mb-6">👤 Personal Information</h2>
 
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <h2 className="text-2xl font-bold">👤 Personal Info</h2>
-          </div>
-          <div className="invisible bg-gradient-primary-2 px-8 py-4 h-fit">
-            Placeholder
-          </div>
-        </div>
-      </div>
+      <form onSubmit={handleSubmit} className="space-y-10 bg-white p-8 rounded-3xl shadow-md">
 
-
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-8 shadow-lg bg-white rounded-3xl">
-        <div className="grid grid-cols-1 md:!grid-cols-2 gap-4">
-
-          {/* Profile Image */}
-          <div className="md:col-span-2">
-            <label className="text-sm font-medium">Profile Image</label>
-            <div className="text-center">
-              {profileImagePreview ? (
-                <img src={profileImagePreview} alt="Profile" className="border w-32 h-32 mx-auto rounded-full mb-2" />
-              ) : (
-                <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto flex items-center justify-center mb-2">
-                  <User className="w-8 h-8 text-gray-400" />
-                </div>
-              )}
-              <Button type="button" variant="outline" onClick={() => setShowImageModal(true)}>
-                Edit Profile Image
-              </Button>
+        {/* Profile Image Section */}
+        <section className="text-center">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-color-tertiary-1 text-white text-sm font-semibold">
+              1
             </div>
-          </div>
-
-          {/* Input Fields */}
-          <div>
-            <label className="font-medium text-sm" htmlFor="full_name">Full Name</label>
-            <input name="full_name" className="text-md w-full border p-3 rounded" value={formData.full_name} onChange={handleChange} required />
-          </div>
-          <div>
-            <label className="font-medium text-sm" htmlFor="email">Email</label>
-            <input name="email" className="text-md w-full border p-3 rounded" type="email" value={formData.email} onChange={handleChange} required />
-          </div>
-
-          <div className="mb-6 relative">
-            <label htmlFor="phone" className="font-medium text-sm block mb-1"> Mobile Number <span className='text-gray-600 text-xs'>(Toggle for Visibility)</span></label>
-            <div className="relative">
-              <input
-                name="phone"
-                id="phone"
-                placeholder="+65 9123 4567"
-                className="text-md w-full border p-3 pr-16 rounded"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-              <label className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="sr-only peer"
-                  checked={formData.show_phone}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, show_phone: e.target.checked }))
-                  }
-                />
-                <div className="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-600 relative">
-                  <div className="absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div className="mb-6 relative">
-            <label htmlFor="location" className="font-medium text-sm block mb-1"> Location <span className='text-gray-600 text-xs'>(Toggle for Visibility)</span></label>
-            <div className="relative">
-              <input
-                name="location"
-                id="location"
-                placeholder="Singapore, SG"
-                className="text-md w-full border p-3 pr-16 rounded"
-                value={formData.location}
-                onChange={handleChange}
-              />
-              <label className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="sr-only peer"
-                  checked={formData.show_location}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, show_location: e.target.checked }))
-                  }
-                />
-                <div className="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-600 relative">
-                  <div className="absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div>
-            <label className="font-medium text-sm" htmlFor="linkedin_url">LinkedIn Profile</label>
-            <input name="linkedin_url" className="text-md w-full border p-3 rounded" value={formData.linkedin_url} onChange={handleChange} />
-          </div>
-          <div>
-            <label className="font-medium text-sm" htmlFor="github_url">GitHub Profile</label>
-            <input name="github_url" className="text-md w-full border p-3 rounded" value={formData.github_url} onChange={handleChange} />
-          </div>
-
-          <div className="md:col-span-2">
-            <label className="font-medium text-sm" htmlFor="bio">Professional Bio</label>
-            <Textarea name="bio" value={formData.bio} onChange={handleChange} rows={4} />
-          </div>
-
-          <div className="md:col-span-2 text-center">
-            <Button className="w-3/5 p-8 bg-gradient-primary-2" type="submit" disabled={formState === 'loading'}>
-              {formState === 'loading' ? 'Saving...' : 'Save Info'}
-            </Button>
-          </div>
-
-          {formState !== 'idle' && (
-            <div className="md:col-span-2 text-center">
-              {formState === 'success' && <p className="text-green-600 mt-2">✅ Personal Info added successfully!</p>}
-              {formState === 'error' && <p className="text-red-600 mt-2">❌ Failed to save Personal Info. Try again.</p>}
-              {formState === 'loading' && <p className="text-blue-600 mt-2">⏳ Saving...</p>}
+            <h3 className="text-lg font-bold">Profile Image</h3>
+          </div>          
+        
+        {profileImagePreview ? (
+            <img src={profileImagePreview} alt="Profile" className="border w-32 h-32 mx-auto rounded-full mb-2 object-cover" />
+          ) : (
+            <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto flex items-center justify-center mb-2">
+              <User className="w-8 h-8 text-gray-400" />
             </div>
           )}
+          <Button variant="outline" type="button" onClick={() => setShowImageModal(true)}>
+            Edit Profile Image
+          </Button>
+        </section>
+
+        {/* 1. Personal Info */}
+        <section>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-color-tertiary-1 text-white text-sm font-semibold">
+              2
+            </div>
+            <h3 className="text-lg font-bold">Personal Info</h3>
+          </div>
+          <div className="grid grid-cols-1 md:!grid-cols-2 gap-4">
+            {[
+              { name: 'first_name', label: 'First Name', placeholder: 'e.g. John' },
+              { name: 'last_name', label: 'Last Name', placeholder: 'e.g. Doe' },
+              { name: 'email', label: 'Email', type: 'email', placeholder: 'e.g. john@example.com' },
+              { name: 'headline', label: 'Headline / Role', placeholder: 'e.g. Full Stack Developer' },
+              { name: 'mobile_number', label: 'Phone Number', placeholder: 'e.g. +65 9876 5432' },
+              { name: 'address', label: 'Address', placeholder: 'e.g. 400045, Singapore' },
+            ].map(({ name, label, type, placeholder }) => (
+              <div key={name}>
+                <label htmlFor={name} className="text-sm font-medium mb-1 block">{label}</label>
+                <Input
+                  id={name}
+                  name={name}
+                  type={type || 'text'}
+                  placeholder={placeholder}
+                  value={(formData as any)[name]}
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 2. Professional Summary */}
+        <section>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-color-tertiary-1 text-white text-sm font-semibold">
+              3
+            </div>
+            <h3 className="text-lg font-bold">Professional Summary</h3>
+          </div> 
+          <label htmlFor="summary" className="text-sm font-medium mb-1 block">Summary</label>
+          <Textarea
+            id="summary"
+            name="summary"
+            placeholder="Tell us about your experience, skills, or career goals..."
+            rows={5}
+            maxLength={2000}
+            value={formData.summary}
+            onChange={handleChange}
+          />
+          <div className="text-right text-xs text-gray-500 mt-1">
+            {formData.summary.length} / 2000 characters
+          </div>
+        </section>
+
+        {/* 3. Social Links */}
+        <section>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-color-tertiary-1 text-white text-sm font-semibold">
+              4
+            </div>
+            <h3 className="text-lg font-bold">Social Links</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:!grid-cols-2 gap-4">
+            {[
+              { name: 'github_url', label: 'GitHub', icon: <Github size={16} /> },
+              { name: 'instagram_url', label: 'Instagram', icon: <Instagram size={16} /> },
+              { name: 'youtube_url', label: 'YouTube', icon: <Youtube size={16} /> },
+              { name: 'linkedin_url', label: 'LinkedIn', icon: <Linkedin size={16} /> },
+            ].map(({ name, label, icon }) => (
+              <div key={name}>
+                <label htmlFor={name} className="text-cd font-medium mb-1 block">{label}</label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">{icon}</span>
+                  <Input
+                    id={name}
+                    name={name}
+                    className="pl-10"
+                    placeholder={`${label} URL`}
+                    value={(formData as any)[name]}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Submit Button */}
+        <div className="text-center pt-2">
+          <Button className="px-8 py-4 bg-gradient-primary-2" type="submit" disabled={formState === 'loading'}>
+            {formState === 'loading' ? 'Saving...' : 'Save Info'}
+          </Button>
         </div>
       </form>
 
+      {/* Image Crop Modal */}
       {showImageModal && (
         <ProfileImageModal
           onClose={() => setShowImageModal(false)}

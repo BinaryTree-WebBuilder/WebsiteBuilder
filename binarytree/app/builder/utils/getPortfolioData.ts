@@ -1,23 +1,28 @@
-// app/builder/utils/getBuilderStoreData.ts
-import { useEffect } from 'react'
+import { usePersonalInfo } from '../stores/usePersonalInfoEntries'
+import { useEducationEntries } from '../stores/useEducationEntries'
+import { useExperienceEntries } from '../stores/useExperienceEntries '
+import { useProjects } from '../stores/useProjectEntries'
+import { useSkills } from '../stores/useSkillsEntries'
 
-import { usePersonalInfoStore } from '../stores/usePersonalInfoStores'
-import { useProjectStore } from '../stores/useProjectStores'
-import { useEducationStore } from '../stores/userEducationStores'
-import { useExperienceStore } from '../stores/userExperienceStores'
+export function useBuilderDataWithQuery() {
+  const personalInfoQuery = usePersonalInfo()
+  const educationQuery = useEducationEntries()
+  const experienceQuery = useExperienceEntries()
+  const projectsQuery = useProjects()
+  const skillsQuery = useSkills()
 
-export function useBuilderStoreDataWithFetch() {
-  const { entries: personalInfo, fetchInfo } = usePersonalInfoStore()
-  const { entries: projects, fetchProject } = useProjectStore()
-  const { entries: experience, fetchExperience } = useExperienceStore()
-  const { entries: education, fetchEducation } = useEducationStore()
 
-  useEffect(() => {
-    if (!personalInfo) fetchInfo()
-    if (!projects.length) fetchProject()
-    if (!experience.length) fetchExperience()
-    if (!education.length) fetchEducation()
-  }, [personalInfo, projects.length, fetchInfo, fetchProject, fetchExperience, fetchEducation])
-
-  return { personalInfo, projects, experience, education }
+  return {
+    personalInfo: personalInfoQuery.data,
+    projects: projectsQuery.data,
+    experience: experienceQuery.data,
+    education: educationQuery.data,
+    skills: skillsQuery.data,
+    isLoading:
+      personalInfoQuery.isLoading ||
+      projectsQuery.isLoading ||
+      experienceQuery.isLoading ||
+      educationQuery.isLoading || 
+      skillsQuery.isLoading,
+  }
 }
