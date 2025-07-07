@@ -8,11 +8,11 @@ const nextConfig: NextConfig = {
           destination: '/main',
           permanent: true,       // Use true for 308 Permanent Redirect (SEO friendly)
         },
-        // {
-        //   source: '/auth/:path*',
-        //   destination: '/main/waitlist',
-        //   permanent: true,
-        // },
+        {
+          source: '/auth/:path*',
+          destination: '/main/waitlist',
+          permanent: true,
+        },
 
         // {
         //   source: '/builder/:path*',

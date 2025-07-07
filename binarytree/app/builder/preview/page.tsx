@@ -1,7 +1,7 @@
 'use client'
 
 import { useBuilderDataWithQuery } from '@/app/builder/utils/getPortfolioData'
-// import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import ProjectCard from '@/app/builder/preview/component/project'
 import PersonalInfoCard from '@/app/builder/preview/component/personalinfo' // adjust path as needed
@@ -16,15 +16,31 @@ export default function PreviewPage() {
   const router = useRouter()
 
   const handlePublish = async () => {
+
+    console.log("Entered");
+
+  if (!personalInfo) return;
+
+  const payload = {
+    username: personalInfo.entry.first_name.trim().toLowerCase(),
+    personalInfo,
+    projects,
+    experience,
+    education,
+  }
+
     if (!personalInfo) return;
     const res = await fetch('/api/portfolio/publish', {
       method: 'POST',
-      body: JSON.stringify({ username: personalInfo.entry.first_name }),
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
 
     const data = await res.json()
     if (data.success) {
-      router.push(`/preview/${personalInfo.entry.first_name}`)
+      // router.push(`/sites/${personalInfo.entry.first_name}`)
     }
   }
 
@@ -86,9 +102,9 @@ export default function PreviewPage() {
         
       </div> */}
 
-              {/* <Button onClick={handlePublish} className="w-full mt-4">
-          🚀 Publish to {personalInfo.full_name}.binarytree.me
-        </Button> */}
+        <Button onClick={handlePublish} className="w-full mt-4">
+          🚀 Publish to {personalInfo.entry.first_name}.binarytree.me
+        </Button>
     </div>
   )
 }

@@ -9,7 +9,7 @@ export const Footer = () => {
           <div className="md:col-span-2">
           <div className="flex items-center my-8">
             <img
-              src="/binarytree-logo.png"
+              src="/binarytree-logo-white.png"
               alt="BinaryTree Logo"
               className="h-10 object-contain" // slightly larger logo & padding
             />
@@ -26,7 +26,7 @@ export const Footer = () => {
               <li><Link href="/main/features" className="hover:text-white transition-colors">Features</Link></li>
               <li><Link href="/main/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
               <li><Link href="/main/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
-              <li><Link href="/amin/faq" className="hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="/main/faq" className="hover:text-white transition-colors">FAQ</Link></li>
             </ul>
           </div>
           

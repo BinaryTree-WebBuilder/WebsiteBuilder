@@ -40,7 +40,7 @@ export default function ProjectCard({project}: ProjectCardProps) {
                   <Badge
                     key={i}
                     variant="outline"
-                    className="rounded-full bg-gray-100 text-gray-800 px-3 py-0.5 text-xs font-normal "
+                    className="rounded-full bg-gray-100 text-gray-800 px-3 py-0.5 text-xs font-normal"
                   >
                     <span>{tech}</span>
                   </Badge>

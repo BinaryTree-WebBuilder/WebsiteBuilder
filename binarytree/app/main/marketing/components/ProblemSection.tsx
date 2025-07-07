@@ -27,7 +27,7 @@ export const ProblemSection = () => {
             Tired of the Usual <span className="text-gradient">Portfolio Headaches?</span>
           </h2>
           <p className="text-base lg:text-xl text-gray-600 max-w-8xl mx-auto">
-            Static resumes, scattered versions, wasted hours — time for a smarter portfolio.
+            Static resumes, job hunt anxiety, wasted hours — time for a smarter portfolio.
           </p>
         </div>
         
