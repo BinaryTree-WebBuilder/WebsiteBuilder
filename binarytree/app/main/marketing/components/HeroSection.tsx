@@ -109,7 +109,7 @@ export const HeroSection = () => {
                           <div className="flex flex-col lg:!flex-row w-full justify-between items-start gap-8">
                             <div>
                               <h2 className="font-bold text-base">🌎 Hello World App</h2>
-                              <p className="text-xs font-medium text-gray-600 mt-1 truncate-3-lines">A classic "Hello, World!" application written in Python. This program prints the text "Hello, World!" to the console, serving as a fundamental first step for any new programmer and a quick way to verify that your Python environment is set up correctly.</p>
+                              <p className="text-xs font-medium text-gray-600 mt-1 truncate-3-lines">A classic Hello World application written in Python. This program prints the text "Hello, World!" to the console, serving as a fundamental first step for any new programmer and a quick way to verify that your Python environment is set up correctly.</p>
 
                             </div>
                           </div>
@@ -131,7 +131,7 @@ export const HeroSection = () => {
                           <div className="flex flex-col lg:!flex-row w-full justify-between items-start gap-8">
                             <div>
                               <h2 className="font-bold text-base">🤖 AI Chat Bot</h2>
-                              <p className="text-xs font-medium text-gray-600 mt-1 truncate-3-lines">A conversational AI chatbot built using Python. This project leverages a deep learning model created with TensorFlow for Natural Language Understanding (NLU) and exposes its functionality through a flexible REST API for easy integration with other applications.</p>
+                              <p className="text-xs font-medium text-gray-600 mt-1 truncate-3-lines">A conversational AI chatbot built using Python. This project leverages a deep learning model created with TensorFlow for Natural Language Understanding NLU and exposes its functionality through a flexible REST API for easy integration with other applications.</p>
 
                             </div>
                           </div>
