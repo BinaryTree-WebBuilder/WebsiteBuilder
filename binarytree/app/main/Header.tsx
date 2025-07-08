@@ -68,11 +68,9 @@ export const Header = () => {
             <Link href="/main/portfolio" onClick={closeMenu} className="py-4 block text-gray-700 hover:text-gray-900 text-base">Portfolio</Link>
             <Link href="/main/faq" onClick={closeMenu} className="py-4 block text-gray-700 hover:text-gray-900 text-base">FAQ</Link>
             <hr className="my-4" />
-            <Link href="/auth/login" className="py-4 block text-gray-700 hover:text-gray-900 text-base text-center" onClick={closeMenu}>
-              <Button variant="ghost" className="">Login</Button>
-            </Link>
-            <Link href="/auth/register" onClick={closeMenu} className="">
-              <Button className="p-6 bg-gradient-primary w-full text-white ">Get Started Free</Button>
+
+            <Link href="/main/waitlist" onClick={closeMenu} className="">
+              <Button className="p-6 bg-gradient-primary w-full text-white ">Join the Waitlist</Button>
             </Link>
 
           </div>
