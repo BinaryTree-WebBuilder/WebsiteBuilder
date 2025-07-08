@@ -22,9 +22,9 @@ export default function WaitlistPage() {
     e.preventDefault();
 
     if (!validateEmail(email)) {
-        toast.error("Please enter a valid email address.", {
+      toast.error("Please enter a valid email address.", {
         id: "waitlist-toast",
-        });
+      });
       return;
     }
 
@@ -48,11 +48,11 @@ export default function WaitlistPage() {
     } else {
       if (result.message === "already_exists") {
         toast.info("You're already on the waitlist!", {
-        id: "waitlist-toast",
+          id: "waitlist-toast",
         });
       } else {
         toast.error("Something went wrong. Please try again.", {
-        id: "waitlist-toast",
+          id: "waitlist-toast",
         });
       }
     }
@@ -69,7 +69,7 @@ export default function WaitlistPage() {
 
       <div className="max-w-2xl w-full">
         <Card className="shadow-lg animate-fade-in-up border border-gray-200">
-          <CardContent className="py-0 px-18 text-center">
+          <CardContent className="py-0 px-4 lg:px-18 text-center">
             <img
               src="/binarytree-logo.png"
               alt="BinaryTree Logo"
