@@ -27,17 +27,17 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      
+
       {/* Main Content */}
       <div className="pt-36 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16 animate-fade-in-up">
             <h1 className="text-4xl lg:text-5xl lg:text-6xl font-bold mb-6">
-            Free Today, <span className="text-gradient">Pro Tommorow</span> 
+              Free Today, <span className="text-gradient">Pro Tommorow</span>
             </h1>
             <p className="lg:text-xl max-w-6xl mx-auto">
-            Start building your professional portfolio today. We&apos;re constantly evolving, and a powerful Pro version packed with even more features is just around the corner!            
+              Start building your professional portfolio today. We&apos;re constantly evolving, and a powerful Pro version packed with even more features is just around the corner!
             </p>
           </div>
 
@@ -49,7 +49,7 @@ const Pricing = () => {
                 <div className="text-5xl font-bold mb-2">$0</div>
                 <p className="text-blue-100">Forever free to get started</p>
               </CardHeader>
-              
+
               <CardContent className="p-8">
                 <ul className="space-y-4 mb-8">
                   {features.map((feature, index) => (
@@ -60,16 +60,16 @@ const Pricing = () => {
                   ))}
                 </ul>
 
-                  <Button 
-                    className="w-full bg-slate-700 hover:bg-slate-800 hover:opacity-90 text-white py-6 text-lg font-semibold"
-                    asChild
-                  >
-                    <Link  href="/auth/register">
-                      Get Started Free
-                    </Link>
-                  </Button>
+                <Button
+                  className="w-full bg-slate-700 hover:bg-slate-800 hover:opacity-90 text-white py-6 text-lg font-semibold"
+                  asChild
+                >
+                  <Link href="/main/waitlist">
+                    Get Started Free
+                  </Link>
+                </Button>
 
-                
+
                 <p className="text-center text-sm text-gray-500 mt-4">
                   No credit card required
                 </p>
@@ -128,10 +128,10 @@ const Pricing = () => {
               </Button>
             </Button>
           </div> */}
-          
+
         </div>
       </div>
-      
+
     </div>
   );
 };

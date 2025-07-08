@@ -27,7 +27,7 @@ export const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link href="/auth/register">
+              <Link href="/main/waitlist">
                 <Button
                   size="lg"
                   className="w-full bg-gradient-primary hover:opacity-90 text-white px-8 py-8 text-lg font-semibold cursor-pointer"

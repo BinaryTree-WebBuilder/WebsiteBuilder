@@ -14,22 +14,22 @@ export const CTASection = () => {
           {/* Join thousands of developers who've already transformed their careers with Binarytree. 
           Start building your standout portfolio today. */}
 
-          Join thousands of developers who is ready to transformed their careers with Binarytree. 
+          Join thousands of developers who is ready to transformed their careers with Binarytree.
           Start building your standout portfolio today.
         </p>
-        
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Link href="/auth/register">
-          <Button 
-                size="lg" 
-                variant="ghost" 
-                className="hover:text-gray-800 text-base px-10 py-10 cursor-pointer bg-white"
-              >
-                <span className="text-gradient lg:text-xl">Start Building Your Portfolio Now!</span>
-              </Button>
+          <Link href="/main/waitlist">
+            <Button
+              size="lg"
+              variant="ghost"
+              className="hover:text-gray-800 text-base px-10 py-10 cursor-pointer bg-white"
+            >
+              <span className="text-gradient lg:text-xl">Start Building Your Portfolio Now!</span>
+            </Button>
           </Link>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-blue-100">
           <span className="flex items-center">
             <Check className="mr-2 h-5 w-5" />
