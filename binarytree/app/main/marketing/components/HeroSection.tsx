@@ -22,7 +22,7 @@ export const HeroSection = () => {
               Your <span className="text-gradient">Tech Portfolio,</span> Simplified.{" "}
               Land More <span className="text-gradient">Opportunities.</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p className="text-base lg:text-xl text-gray-600 mb-8 leading-relaxed">
               <span className="text-gradient font-bold">BinaryTree</span> intelligently crafts your portfolio and tailors your resume from a simple document upload, matching you to roles with precision.
             </p>
 
